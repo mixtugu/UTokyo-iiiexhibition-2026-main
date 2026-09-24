@@ -1,0 +1,191 @@
+/* Readable type scale for the shared prototype. */
+body {
+  font-size: 16px;
+}
+nav {
+  font-size: 16px;
+  gap: clamp(16px, 2vw, 32px);
+}
+.brand span {
+  font-size: 13px;
+}
+.menu-link {
+  font-size: 16px;
+}
+.section-top {
+  font-size: 17px;
+}
+.section-top > span:last-child {
+  font-size: 14px;
+}
+.hero-bottom > div {
+  font-size: 18px;
+}
+.hero-bottom > div span,
+.hero-bottom > a {
+  font-size: 15px;
+}
+#concept .story-copy {
+  max-width: 1200px;
+}
+#concept .story-copy p {
+  font-size: clamp(28px, 3.1vw, 48px);
+  line-height: 1.95;
+}
+.donation-panel h3 {
+  font-size: 24px;
+}
+#announce .donation-panel p,
+.donation-panel a {
+  font-size: 17px;
+  line-height: 2;
+}
+#access .access-block h3 {
+  font-size: 22px;
+}
+#access .access-block p,
+#access .access-block li {
+  font-size: 17px;
+  line-height: 2;
+}
+#works .wave-toolbar,
+#works .wave-toolbar button,
+#works .wave-search {
+  font-size: 16px;
+}
+#works .wave-toolbar button {
+  min-height: 44px;
+}
+#works .wave-search input {
+  font-size: 16px;
+  width: min(42vw, 380px);
+}
+#works .wave-list span {
+  font-size: 24px;
+  line-height: 1.5;
+}
+#works .wave-list small {
+  font-size: 14px;
+}
+#works .wave-empty {
+  font-size: 16px;
+}
+#archives .archive-column h3 {
+  font-size: 14px;
+}
+#archives .archive-catalog a {
+  padding: 7px 6px;
+  min-height: 38px;
+}
+#archives .archive-catalog a small {
+  font-size: 14px;
+}
+#archives .archive-catalog a span {
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: normal;
+  overflow: visible;
+}
+#contents .footer-brand {
+  font-size: 26px;
+}
+#contents .footer-nav {
+  font-size: 15px;
+  flex-wrap: wrap;
+}
+#contents .footer-small {
+  font-size: 12px;
+}
+.detail-grid p {
+  font-size: 17px;
+  line-height: 2;
+}
+.close-detail {
+  font-size: 16px;
+  min-height: 44px;
+}
+@media (max-width: 1000px) and (min-width: 701px) {
+  nav {
+    gap: 12px;
+    font-size: 14px;
+  }
+  .brand span {
+    font-size: 11px;
+  }
+}
+@media (max-width: 700px) {
+  .brand span {
+    font-size: 12px;
+  }
+  .section-top {
+    font-size: 16px;
+  }
+  .section-top > span:last-child {
+    font-size: 12px;
+  }
+  .hero-bottom > div {
+    font-size: 16px;
+  }
+  .hero-bottom > div span,
+  .hero-bottom > a {
+    font-size: 14px;
+  }
+  #concept .story-copy p {
+    font-size: clamp(23px, 5.8vw, 30px);
+    line-height: 1.95;
+  }
+  .story-content {
+    padding-inline: 7%;
+  }
+  .donation-panel h3,
+  #access .access-block h3 {
+    font-size: 21px;
+  }
+  #announce .donation-panel p,
+  .donation-panel a,
+  #access .access-block p,
+  #access .access-block li {
+    font-size: 16px;
+  }
+  #works .wave-toolbar {
+    gap: 12px;
+  }
+  #works .wave-toolbar button {
+    font-size: 15px;
+    padding: 10px;
+  }
+  #works .wave-filters {
+    flex-wrap: wrap;
+  }
+  #works .wave-search label {
+    font-size: 16px;
+    width: 100%;
+  }
+  #works .wave-search input {
+    width: 100%;
+  }
+  #works .wave-list span {
+    font-size: 20px;
+  }
+  #archives .archive-catalog {
+    grid-template-columns: 1fr;
+  }
+  #archives .archive-catalog a {
+    min-height: 44px;
+  }
+  #archives .archive-catalog a span {
+    font-size: 16px;
+  }
+  #contents .footer-brand {
+    font-size: 23px;
+  }
+  #contents .footer-nav {
+    font-size: 14px;
+  }
+  #contents .footer-small {
+    font-size: 12px;
+  }
+  .detail-grid p {
+    font-size: 16px;
+  }
+}

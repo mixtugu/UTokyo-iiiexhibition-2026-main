@@ -1,0 +1,106 @@
+#concept.concept-story {
+  padding: 0;
+  height: auto;
+  scroll-margin-top: 0;
+  border: 0;
+}
+.concept-story .story-pin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  position: relative;
+  isolation: isolate;
+}
+.concept-story .concept-visual {
+  grid-area: 1/1;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  width: 100%;
+  height: 100svh;
+  margin: 0;
+  aspect-ratio: auto;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  filter: grayscale(1);
+  overflow: hidden;
+}
+.concept-story .concept-visual > div {
+  position: absolute;
+  width: min(100vw, 95svh);
+  aspect-ratio: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.concept-story .concept-visual img {
+  width: 100%;
+  display: block;
+}
+.concept-story .concept-visual .moving-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(var(--story-mask, 0px));
+}
+.story-content {
+  grid-area: 1/1;
+  position: relative;
+  z-index: 1;
+  padding: 55px 8% 55svh;
+  pointer-events: none;
+}
+.story-content a {
+  pointer-events: auto;
+}
+.story-content .section-top {
+  margin-bottom: 28svh;
+}
+.concept-story .story-copy {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.concept-story .story-copy p {
+  font:
+    300 clamp(23px, 2.65vw, 40px)/2.05 'Noto Serif JP',
+    serif;
+  letter-spacing: 0.045em;
+  color: #304a4c;
+  margin: 0 0 32svh;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.concept-story .story-copy p:last-of-type {
+  margin-bottom: 7svh;
+}
+.story-copy .text-link {
+  margin-top: 10px;
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .story-content {
+    padding: 35px 8% 55svh;
+  }
+  .story-content .section-top {
+    margin-bottom: 26svh;
+  }
+  .concept-story .story-copy p {
+    font-size: clamp(19px, 4.6vw, 28px);
+    line-height: 2.2;
+    letter-spacing: 0.035em;
+    margin-bottom: 30svh;
+  }
+  .concept-story .concept-visual > div {
+    width: 145vw;
+  }
+  .concept-break {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept-story .moving-mask {
+    transform: none !important;
+  }
+}

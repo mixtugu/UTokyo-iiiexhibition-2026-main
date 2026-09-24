@@ -4,7 +4,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'assets/archive/imported'
+OUT=ROOT/'public/assets/archive/imported'
 OUT.mkdir(parents=True,exist_ok=True)
 class Tags(HTMLParser):
     def __init__(self): super().__init__(); self.tags=[]
@@ -52,7 +52,7 @@ def collect(item):
                 if min(im.size)<180:continue
                 ext={'image/png':'.png','image/jpeg':'.jpg','image/webp':'.webp','image/gif':'.gif'}[mime]
                 dest=OUT/(key+ext);dest.write_bytes(data)
-                item['image']=str(dest.relative_to(ROOT));item['imageSource']=actual;break
+                item['image']=str(dest.relative_to(ROOT/'public'));item['imageSource']=actual;break
             except Exception:pass
     except Exception as e:item['error']=str(e)
     print(key,item['image'] or 'NO IMAGE',flush=True)

@@ -1,63 +1,65 @@
-# iii Exhibition 2026 — Web prototype
+# iii Exhibition 2026
 
-東京大学制作展のデザイン・インタラクション確認用プロトタイプです。
-正式な公開サイトではなく、作品情報・会場分類・掲載文章・画像に仮の内容を含みます。
+東京大学制作展 디자인·인터랙션 프로토타입입니다. **Node.js + TypeScript + Tailwind CSS + Vite**를 사용하며, 기존 통합 화면의 콘텐츠와 입자·스크롤 효과를 유지합니다. 브라우저 코드는 프레임워크에 의존하지 않는 TypeScript DOM 컴포넌트입니다. Node.js는 개발 서버, 빌드 및 검증에 사용하며 별도 API 서버는 없습니다.
 
-## 起動方法
+## 시작하기
 
-ビルドや npm install は不要です。Python 3 がある環境で、このフォルダから実行します。
+Node.js 24 사용을 권장합니다 (`.nvmrc`).
 
 ```sh
-python3 -m http.server 4323
+nvm use
+npm ci
+npm run dev
 ```
 
-ブラウザで http://localhost:4323/preview.html を開いてください。
-画像やJSONを読み込むため、HTMLファイルのダブルクリックではなくHTTPサーバーを使用します。
+<http://127.0.0.1:4323/>를 엽니다. `/preview.html`도 같은 화면을 제공합니다. `nvm`을 사용하지 않으면 Node.js 24를 설치한 후 `npm ci`부터 실행합니다. HTML 직접 실행이나 소스 폴더의 Python 서버는 TypeScript를 처리하지 못하므로 Vite를 사용하세요.
 
-## 現行版とファイル構成
+## 명령어
 
-- `preview.html`: 現行の統合プロトタイプ。TOPからフッターまで。
-- `preview.css`, `atmosphere.css`: 基本レイアウト・見た目。
-- `hero-particles.js`: TOPのロゴ粒子、CONCEPTへの接続。
-- `concept-story.js`, `concept-story.css`, `concept-liquid.js`: CONCEPTの固定背景、切り替え、粒子化。
-- `works-wave.js`, `works-wave.css`: 作品30枠、ロゴ状配置、会場A/B、検索・一覧・ホバー。
-- `preview.js`: 作品詳細モーダル・アーカイブ一覧。
-- `member-transition.js`: 元のメンバー画像からアーカイブ輪郭への粒子変形。
-- `smooth-scroll.js`: スクロールの調整。
-- `assets/`: ロゴ・作品・地図・過去展示の画像。
-- `design-concepts/members-original-transparent.png`: 元のメンバー名グラフィック。
-- `wireframe.html`: Figma取り込み用の静的な説明画面。実際の動作の基準は `preview.html`。
-- `index.html`, `works.html`, `concept.html` と関連ファイル: 過去の個別試作。統合版とは異なります。
-- `scripts/`: 素材作成・収集に使用した補助スクリプト。通常の閲覧には不要。一部は当時の一時ファイルに依存します。
+| 명령                   | 용도                                            |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | 개발 서버와 변경 사항 자동 반영                 |
+| `npm run typecheck`    | 엄격한 TypeScript 검사                          |
+| `npm run build`        | 타입 검사 후 `dist/` 정적 사이트 생성           |
+| `npm run preview`      | 빌드한 사이트를 로컬에서 확인                   |
+| `npm run format`       | 소스·문서 형식 정리                             |
+| `npm run format:check` | 형식 검사                                       |
+| `npm test`             | 빌드 결과를 대상으로 Playwright 브라우저 테스트 |
+| `npm run check`        | 형식·타입·빌드·브라우저 검사                    |
 
-## 引き継ぎ時の確認事項
+테스트 최초 실행 전 `npx playwright install chromium`을 실행합니다. Linux CI에서는 `npx playwright install --with-deps chromium`을 사용합니다.
 
-- 作品は30枠。実画像2点、残り28点は仮枠です。会場A/Bの割り振りも仮です。
-- アーカイブは公式サイトを参照した29件。画像・ロゴ等の権利は各権利者に帰属します。
-- 開催日時、会場、Donationの文章・リンク、正式な作品情報は関係者に確認してください。
-- ACCESSの地図は資料画像の切り抜き表示です。正式な地図への差し替えが必要です。
-- 問い合わせメールは原資料の表記を保持しており、現状 `@` がありません。公開用に要確認です。
-- CONCEPTの外部参考写真5枚は公開許可未確認のためGit対象外です。現在は過去制作展のアーカイブ画像5枚を仮配置しています。出典・仮素材の説明は `assets/concept/README.md`。正式採用時は背景への転用許可を確認してください。
-- Figmaの説明画面は動作・権限・レスポンシブを完全再現したものではありません。
-- 実装時はモバイル、キーボード操作、動きを抑える設定、描画負荷を確認してください。
+## 구조
 
-## 素材の扱い
+```text
+src/
+  app/          화면 구성
+  components/   공통 제목, 카드, 헤더·푸터, 모달 마크업
+  content/      작품 데이터, 내비게이션, 아카이브 폴백·검증
+  features/     works, archives, hero, concept, members, scroll
+  lib/          공통 DOM·Canvas·수학 함수
+  sections/     섹션별 정적 콘텐츠
+  styles/       Tailwind 진입점, 기본 디자인, 타이포그래피
+  main.ts       명시적인 초기화 순서
+  types.ts      콘텐츠 타입
+public/
+  assets/       이미지, 아카이브 JSON, 출처 문서
+  design-concepts/ 실제 화면에서 사용하는 멤버 이미지
+  prototypes/   이전 개별 시안 (보존용 HTML·JS·CSS)
+  wireframe.html Figma 설명용 정적 화면
+scripts/        선택적 Python 소재 제작 도구
 
-本リポジトリに第三者素材を再利用可能とするライセンスは付与していません。
-参考写真の出典は `assets/reference-layrid/README.md`、アーカイブは `assets/archive/imported/README.md` を参照してください。
-画像の再配布・本番公開については、各素材の権利・許可を確認してください。
+docs/           구조·구현·검증·인수인계 안내, 디자인 시안
+tests/         브라우저 회귀 테스트
+```
 
-## Figma
+- [구조와 의존성](docs/architecture.md)
+- [구현·콘텐츠 수정 안내](docs/implementation.md)
+- [테스트·빌드·배포 안내](docs/validation.md)
+- [기존 자료와 공개 전 확인사항](docs/handoff.md)
 
-https://www.figma.com/design/zb65ebDCEavshYKyUQ7t82
+기본 화면은 기존 `preview.html` 통합판입니다. 이전 `index.html` 개별 아카이브 시안은 `/prototypes/index.html`, 작품·콘셉트 시안은 `/prototypes/works.html`, `/prototypes/concept.html`에서 확인할 수 있습니다.
 
-## ZIPと版の一致
+## 소재와 콘텐츠
 
-共有用サイト: https://anninumai.github.io/iii-exhibition-2026/
-
-GitHub: https://github.com/anninumai/iii-exhibition-2026
-
-mainへのプッシュでGitHub Pagesを更新します。公開時のみpreview.htmlをトップのindex.htmlとして配置します。既存のポートフォリオとは別のプロジェクトです。
-
-プッシュしたコミットから `git archive` でZIPを作成すると、エンジニアへの引き継ぎ版とGitHub上のソースを一致させられます。
-GitHubの「Code → Download ZIP」でも取得できます（ブランチのZIPは更新に伴い中身が変わります）。
+작품 30개 중 실이미지는 2점이며 나머지는 임시 슬롯입니다. 회장 A/B 배정과 소개 문구도 임시입니다. 아카이브 29건의 출처·소재 권리는 [아카이브 안내](public/assets/archive/imported/README.md), [콘셉트 안내](public/assets/concept/README.md), [참고 자료 안내](public/assets/reference-layrid/README.md)를 확인하세요. 기존 자료의 상세 주의사항은 [인수인계 문서](docs/handoff.md)에 보존했습니다.

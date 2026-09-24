@@ -3,7 +3,7 @@ import concurrent.futures,json,re,urllib.request,urllib.parse
 from pathlib import Path
 from PIL import Image
 from io import BytesIO
-root=Path(__file__).resolve().parents[1];out=root/'assets/archive/imported'
+root=Path(__file__).resolve().parents[1];out=root/'public/assets/archive/imported'
 items=json.loads((out/'catalog.json').read_text());sources={}
 page=Path('/tmp/iii-extra-2021.html').read_text()
 for path in set(re.findall(r'teaser_img/past_visuals/[^"\s]+',page)):
@@ -34,7 +34,7 @@ def run(item):
         with urllib.request.urlopen(req,timeout=25) as r:data=r.read()
         im=Image.open(BytesIO(data));ext='.'+{'JPEG':'jpg','PNG':'png','WEBP':'webp','GIF':'gif'}[im.format]
         dest=out/(key+'-visual'+ext);dest.write_bytes(data)
-        item['image']=str(dest.relative_to(root));item['imageSource']=src
+        item['image']=str(dest.relative_to(root/'public'));item['imageSource']=src
         print(key,im.size,flush=True)
     except Exception as e:
         item['image']='';item['error']=str(e);print(key,'FAILED',e,flush=True)

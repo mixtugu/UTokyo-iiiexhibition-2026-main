@@ -1,0 +1,25 @@
+<div class="wave-toolbar">
+  <div class="wave-filters" role="group" aria-label="会場で絞り込み">
+    <button data-venue="all" aria-pressed="true">すべて</button
+    ><button data-venue="0" aria-pressed="false">会場 A</button
+    ><button data-venue="1" aria-pressed="false">会場 B</button>
+  </div>
+  <button class="wave-view" aria-pressed="false">一覧表示</button>
+</div>
+<div
+  class="wave-stage"
+  role="region"
+  aria-label="作品ギャラリー。左右キーまたは横ドラッグで移動"
+  tabindex="0"
+></div>
+<div class="wave-caption" aria-live="polite">
+  <span></span>
+  <h3></h3>
+  <button class="text-link">作品を見る ↗</button>
+</div>
+<div class="wave-controls">
+  <button class="wave-prev" aria-label="前の作品">←</button
+  ><span class="wave-count" aria-live="polite"></span
+  ><button class="wave-next" aria-label="次の作品">→</button>
+</div>
+<div class="wave-list" hidden></div>

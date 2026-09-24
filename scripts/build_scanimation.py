@@ -5,8 +5,8 @@ from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "assets/concept/iiiex2026-logo.png"
-OUTPUT = ROOT / "assets/concept"
+SOURCE = ROOT / "public/assets/concept/iiiex2026-logo.png"
+OUTPUT = ROOT / "public/assets/concept"
 SIZE = 1600
 FRAME_COUNT = 8
 STRIPE = 5

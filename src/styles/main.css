@@ -1,0 +1,17 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import './base.css' layer(components);
+@import './atmosphere.css' layer(components);
+@import '../features/concept/story.css' layer(components);
+@import '../features/works/gallery.css' layer(components);
+@import './typography.css' layer(components);
+@import '../features/members/transition.css' layer(components);
+@source "../";
+@theme {
+  --color-paper: #edf0e8;
+  --color-ink: #284137;
+  --color-accent: #38b52d;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
