@@ -17,6 +17,7 @@
     "check": "npm run format:check && npm run build && npm test",
     "storybook": "storybook dev -p 6006 --host 127.0.0.1 --no-open --disable-telemetry",
     "storybook:build": "storybook build --disable-telemetry",
+    "build:staging": "npm run build && npm run storybook:build -- -o dist/storybook",
     "test:storybook": "playwright test --config playwright.storybook.config.ts"
   },
   "devDependencies": {
