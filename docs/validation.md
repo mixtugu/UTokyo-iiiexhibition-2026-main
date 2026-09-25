@@ -21,7 +21,7 @@ CI는 `.github/workflows/ci.yml`에서 동일 검사를 수행합니다. 실패�
 
 ## 화면 비교와 수동 확인
 
-리팩터링 시 기존 통합판과 새 앱을 1440px 및 390px 너비, 900px 높이, 동작 감소 설정에서 비교했습니다. 7개 섹션의 위치·높이와 작품/아카이브 개수가 동일했습니다. 실제 기기의 터치 반응, GPU 부하, Safari·Firefox 및 스크린리더 동작은 별도로 확인해야 합니다. 모바일 테스트는 실제 iOS Safari가 아닌 Chromium 에뮬레이션입니다.
+최초 TypeScript 전환 시 기존 통합판과 새 앱을 1440px 및 390px 너비, 900px 높이, 동작 감소 설정에서 비교했습니다. 7개 섹션의 위치·높이와 작품/아카이브 개수가 동일했습니다. 이후 디자인 토큰 정리에서는 여백·조작 영역을 8px 기준으로, 반응형 기준을 768/1024px로 조정했으므로 당시의 픽셀 배치와 같지는 않습니다. 실제 기기의 터치 반응, GPU 부하, Safari·Firefox 및 스크린리더 동작은 별도로 확인해야 합니다. 모바일 테스트는 실제 iOS Safari가 아닌 Chromium 에뮬레이션입니다.
 
 움직이는 Canvas는 매 프레임 달라지므로 단순 스크린샷만으로 효과 보존을 단정하지 않습니다. 효과를 수정할 때 Hero → Concept, Members → Archives 전환과 목록/공간 뷰 전환을 함께 확인하세요.
 
@@ -43,3 +43,7 @@ GitHub Pages를 사용한다면 저장소 설정에서 GitHub Actions 빌드 결
 - [Vite 개발·빌드 안내](https://vite.dev/guide/)
 - [Tailwind Vite 통합](https://tailwindcss.com/docs/installation/using-vite)
 - [Tailwind Preflight와 선택적 import](https://tailwindcss.com/docs/preflight)
+
+## 디자인 토큰과 카탈로그 검사
+
+앱 테스트는 공통 설정 변경 시 실제 섹션 여백, 최대폭, 본문/주석, 조작 영역, 이미지 크롭이 함께 변하는지 검증합니다. 반응형 경계 바로 전후도 확인합니다. `npm run storybook:build && npm run test:storybook`은 모든 story의 렌더링·이미지, Controls 적용과 초기화, 모달 조작, 모바일 긴 문구를 확인합니다. 자세한 사용법은 [디자인 안내](design-system.md)를 참고하세요.

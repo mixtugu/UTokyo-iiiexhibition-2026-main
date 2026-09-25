@@ -41,10 +41,14 @@ HTML 조각은 저장소에서 관리하는 신뢰된 마크업만 입력합니�
 
 공통 컴포넌트는 Tailwind 클래스, 기존 레이아웃은 `@apply`와 디자인 CSS를 함께 사용합니다. 복잡한 sticky 배치, 반응형 조정, 입자/3D transform, 셰이더는 전용 코드에 남겨 두었습니다. Tailwind 테마는 `--color-paper`, `--color-ink`, `--color-accent`, `--font-display`, `--font-body`를 제공합니다.
 
-스타일 순서는 base → atmosphere → concept → works → typography → members입니다. 뒤의 선언이 기존 화면에서 덮어쓰던 순서를 보존합니다. 동적 Tailwind 클래스 문자열을 조합하면 탐지되지 않을 수 있으므로 완성된 클래스 문자열을 사용하세요.
+스타일 순서는 tokens → base → atmosphere → concept → works → typography → members → design/layout입니다. 뒤의 선언이 기존 화면에서 덮어쓰던 순서를 보존합니다. 동적 Tailwind 클래스 문자열을 조합하면 탐지되지 않을 수 있으므로 완성된 클래스 문자열을 사용하세요.
 
 ## 수명과 확장 범위
 
 각 initializer는 문서 로드당 한 번 실행하는 계약입니다. 동일 DOM에 중복 호출하지 마세요. 현재는 페이지 전체 이동/새로고침으로 정리되며, SPA 재마운트를 위한 cleanup API는 없습니다. 추후 라우터를 도입한다면 이벤트 해제, Observer 해제, RAF 취소와 WebGL 자원 정리를 함께 구현해야 합니다.
 
 과거 실험은 `public/prototypes/`에 원형으로 보존하며 TypeScript·Tailwind 전환 대상인 현재 앱과 구분합니다. `public/`은 가공 없이 `dist/`에 복사되므로, 디자인 검토용 대형 이미지는 `docs/design-concepts/`에 보관합니다.
+
+## 공통 디자인 설정
+
+사이트 디자인 수치는 `src/design/tokens.css`, 실제 요소와의 연결은 `src/design/layout.css`와 `src/styles/typography.css`에서 관리합니다. 반응형 기준은 `@theme static`으로 정의하여 CSS와 Canvas가 공유합니다. Storybook은 실제 컴포넌트를 import하고 앱의 스크롤 효과는 초기화하지 않습니다. [디자인 설정·Storybook 안내](design-system.md)를 우선 참고하세요.

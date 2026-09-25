@@ -1,3 +1,5 @@
+import { designNumber } from '../../design/read-tokens';
+import { actionButton } from '../../components/action';
 import galleryMarkup from './gallery.html?raw';
 import { workCard, venueName } from '../../components/work-card';
 import { qs, qsa, context2d } from '../../lib/dom';
@@ -95,9 +97,10 @@ export function initWorksGallery(works: readonly Work[], detail: WorkDialog) {
       render();
     })
     .catch(() => {});
-  const back = document.createElement('button');
-  back.className = 'spatial-back';
-  back.textContent = '作品群へ戻る ↙';
+  const back = actionButton({
+    label: '作品群へ戻る ↙',
+    className: 'spatial-back',
+  });
   back.onclick = () => {
     focused = false;
     render();
@@ -187,14 +190,25 @@ export function initWorksGallery(works: readonly Work[], detail: WorkDialog) {
     stage.append(b);
     return b;
   });
+  let layoutStyles = getComputedStyle(stage);
+  let compactWidth = designNumber(layoutStyles, '--gallery-compact-width');
+  let logoWidth = designNumber(layoutStyles, '--gallery-logo-width');
+  let logoHeight = designNumber(layoutStyles, '--gallery-logo-height');
+  function refreshLayout() {
+    layoutStyles = getComputedStyle(stage);
+    compactWidth = designNumber(layoutStyles, '--gallery-compact-width');
+    logoWidth = designNumber(layoutStyles, '--gallery-logo-width');
+    logoHeight = designNumber(layoutStyles, '--gallery-logo-height');
+    render();
+  }
   function render() {
-    const mobile = stage.clientWidth < 600;
+    const mobile = stage.clientWidth < compactWidth;
     const width = stage.clientWidth || 700,
       height = stage.clientHeight || 600;
     const logoMode = venue === 'all';
     stage.classList.toggle('logo-layout', logoMode);
     logoGuide.hidden = !logoMode;
-    const logoSize = Math.min(width * 0.98, height * 1.08);
+    const logoSize = Math.min(width * logoWidth, height * logoHeight);
     stage.style.setProperty('--works-logo-size', logoSize + 'px');
     const positions = works.map((_, i) => {
       if (logoMode && logoPoints.length) {
@@ -439,7 +453,7 @@ export function initWorksGallery(works: readonly Work[], detail: WorkDialog) {
       detailNext();
     }
   };
-  new ResizeObserver(render).observe(stage);
+  new ResizeObserver(refreshLayout).observe(stage);
   render();
   stage.addEventListener('pointerenter', () => {
     inStage = true;

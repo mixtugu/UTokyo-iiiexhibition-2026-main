@@ -5,3 +5,5 @@ docs/design-concepts
 package-lock.json
 test-results
 playwright-report
+
+storybook-static/

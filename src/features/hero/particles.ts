@@ -1,3 +1,4 @@
+import { designNumber } from '../../design/read-tokens';
 interface HeroParticle {
   u: number;
   v: number;
@@ -79,6 +80,7 @@ export function initHeroParticles() {
     last = 0,
     loaded = false;
   let motionTime = 0;
+  let mobile = false;
   const pointer = { x: -10000, y: -10000, last: -10000, amount: 0 };
   const random = (n: number) => {
     const r = Math.sin(n * 127.1 + 311.7) * 43758.5453;
@@ -88,12 +90,14 @@ export function initHeroParticles() {
     const r = art.getBoundingClientRect();
     width = r.width;
     height = r.height;
-    const mobile = width <= 700;
-    size = mobile
-      ? Math.min(width * 0.94, height * 0.64)
-      : Math.min(width * 0.7, height * 0.98);
-    cx = width * (mobile ? 0.5 : 0.65);
-    cy = height * (mobile ? 0.69 : 0.52);
+    const styles = getComputedStyle(art);
+    mobile = width < designNumber(styles, '--breakpoint-tablet');
+    size = Math.min(
+      width * designNumber(styles, '--hero-logo-width'),
+      height * designNumber(styles, '--hero-logo-height'),
+    );
+    cx = width * designNumber(styles, '--hero-logo-x');
+    cy = height * designNumber(styles, '--hero-logo-y');
     const dpr = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
@@ -123,7 +127,7 @@ export function initHeroParticles() {
     ctx.clearRect(0, 0, width, height);
     // One population, sampled from the logo. No fixed logo underlay and no
     // independent ambient particles: every visible grain leaves and comes home.
-    const radius = width < 700 ? 105 : 165;
+    const radius = mobile ? 105 : 165;
     const cr = concept.getBoundingClientRect();
     const merge = ease((height - cr.top) / (height * 0.75));
     const end = ease((height * 1.1 - cr.bottom) / (height * 0.85));
@@ -170,7 +174,7 @@ export function initHeroParticles() {
         p.vy = (p.vy + (ty - p.y) * 0.008 * dt) * Math.pow(0.86, dt);
         // Limit speed even when the cursor moves abruptly or the tab resumes.
         const speed = Math.hypot(p.vx, p.vy),
-          limit = width < 700 ? 0.32 : 0.45;
+          limit = mobile ? 0.32 : 0.45;
         if (speed > limit) {
           p.vx *= limit / speed;
           p.vy *= limit / speed;
@@ -182,7 +186,7 @@ export function initHeroParticles() {
         p.y = by;
       }
       ctx.fillStyle = p.color;
-      const dot = (width < 700 ? 1.05 : 1.4) + p.seed * 0.65;
+      const dot = (mobile ? 1.05 : 1.4) + p.seed * 0.65;
       let renderX = p.x,
         renderY = p.y;
       if (!reduced.matches) {
@@ -202,7 +206,7 @@ export function initHeroParticles() {
         const swell = 0.55 + 0.45 * Math.sin(lift * Math.PI);
         const r =
           width *
-          (width < 700 ? 0.065 : 0.037) *
+          (mobile ? 0.065 : 0.037) *
           swell *
           (0.65 + random(group + 700) * 0.65);
         const angle = p.phase * Math.PI * 2;

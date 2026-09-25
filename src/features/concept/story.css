@@ -16,7 +16,7 @@
   top: 0;
   align-self: start;
   width: 100%;
-  height: 100svh;
+  height: var(--visual-height);
   margin: 0;
   aspect-ratio: auto;
   opacity: 0.14;
@@ -27,7 +27,7 @@
 }
 .concept-story .concept-visual > div {
   position: absolute;
-  width: min(100vw, 95svh);
+  width: var(--concept-visual-width);
   aspect-ratio: 1;
   left: 50%;
   top: 50%;
@@ -55,7 +55,7 @@
   pointer-events: auto;
 }
 .story-content .section-top {
-  margin-bottom: 28svh;
+  margin-bottom: var(--story-heading-gap);
 }
 .concept-story .story-copy {
   max-width: 1000px;
@@ -68,7 +68,7 @@
     serif;
   letter-spacing: 0.045em;
   color: #304a4c;
-  margin: 0 0 32svh;
+  margin: 0 0 var(--story-paragraph-gap);
   text-align: center;
   overflow-wrap: anywhere;
 }
@@ -79,21 +79,21 @@
   margin-top: 10px;
   font-size: 12px;
 }
-@media (max-width: 700px) {
+@media (width < theme(--breakpoint-tablet)) {
   .story-content {
     padding: 35px 8% 55svh;
   }
   .story-content .section-top {
-    margin-bottom: 26svh;
+    margin-bottom: var(--story-heading-gap);
   }
   .concept-story .story-copy p {
     font-size: clamp(19px, 4.6vw, 28px);
     line-height: 2.2;
     letter-spacing: 0.035em;
-    margin-bottom: 30svh;
+    margin-bottom: var(--story-paragraph-gap);
   }
   .concept-story .concept-visual > div {
-    width: 145vw;
+    width: var(--concept-visual-width);
   }
   .concept-break {
     display: none;

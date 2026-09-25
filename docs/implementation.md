@@ -33,7 +33,9 @@ const work: Work = {
 
 ## Tailwind와 효과
 
-새 레이아웃은 `flex`, `grid`, `gap-5`, `items-center`, `text-ink` 같은 정적 유틸리티 클래스를 우선 사용합니다. 기존 디자인 규칙에는 `@apply`를 사용할 수 있습니다. 전체 앱 스타일을 한 진입점에서 처리하므로 기능 CSS에서 Tailwind를 중복 import하지 않습니다.
+일반적인 디자인 수치는 `src/design/tokens.css`에서 수정합니다. Tailwind 간격 한 단위는 이 프로젝트에서 **8px**입니다 (`gap-2` = 16px). 반응형은 `tablet:`, `desktop:`, `wide:`를 사용합니다. [디자인 설정·Storybook 안내](design-system.md)에서 적용 범위를 확인하세요.
+
+새 레이아웃은 `flex`, `grid`, `gap-2`, `items-center`, `text-ink` 같은 정적 유틸리티 클래스를 우선 사용합니다. 기존 디자인 규칙에는 `@apply`를 사용할 수 있습니다. 전체 앱 스타일을 한 진입점에서 처리하므로 기능 CSS에서 Tailwind를 중복 import하지 않습니다.
 
 - Hero: 로고 이미지를 점으로 샘플링하고 포인터·스크롤에 따라 이동합니다.
 - Concept: 문단별 배경 전환은 WebGL로 그리며 미지원 시 CSS 배경을 사용합니다.

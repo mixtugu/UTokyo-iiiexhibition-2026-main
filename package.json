@@ -14,13 +14,19 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "playwright test",
-    "check": "npm run format:check && npm run build && npm test"
+    "check": "npm run format:check && npm run build && npm test",
+    "storybook": "storybook dev -p 6006 --host 127.0.0.1 --no-open --disable-telemetry",
+    "storybook:build": "storybook build --disable-telemetry",
+    "test:storybook": "playwright test --config playwright.storybook.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/html-vite": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.2",
     "prettier": "^3.9.9",
+    "storybook": "^10.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"

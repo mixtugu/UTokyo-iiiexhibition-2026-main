@@ -1,5 +1,5 @@
 .member-journey {
-  height: 340svh;
+  height: var(--members-journey-height);
   position: relative;
   --member-opacity: 1;
   --archive-opacity: 0;
@@ -7,7 +7,7 @@
 .journey-pin {
   position: sticky;
   top: 0;
-  height: 100svh;
+  height: var(--visual-height);
   overflow: hidden;
   isolation: isolate;
 }
@@ -69,11 +69,11 @@
 .journey-pin .archive-stage,
 .journey-morph {
   position: absolute;
-  width: min(86vw, calc(65svh * 1000 / 580));
+  width: var(--members-visual-width);
   height: auto;
   aspect-ratio: 1000/580;
   left: 50%;
-  top: 55%;
+  top: var(--members-visual-top);
   transform: translate(-50%, -50%);
   margin: 0;
   min-height: 0;
@@ -120,11 +120,11 @@
 .journey-pin .particle-field {
   position: absolute;
   inset: auto;
-  width: min(86vw, calc(65svh * 1000 / 580));
+  width: var(--members-visual-width);
   height: auto;
   aspect-ratio: 1000/580;
   left: 50%;
-  top: 55%;
+  top: var(--members-visual-top);
   transform: translate(-50%, -50%);
   margin: 0;
   min-height: 0;
@@ -141,13 +141,13 @@
 .journey-pin .particle-field {
   z-index: 4;
 }
-@media (max-width: 700px) {
+@media (width < theme(--breakpoint-tablet)) {
   .journey-pin .particle-original,
   .journey-pin .particle-field {
     inset: auto;
     left: 50%;
-    top: 54%;
-    width: 96vw;
+    top: var(--members-visual-top);
+    width: var(--members-visual-width);
     transform: translate(-50%, -50%);
   }
 }
@@ -185,9 +185,9 @@
 .journey-hint.arrived small {
   opacity: 0;
 }
-@media (max-width: 700px) {
+@media (width < theme(--breakpoint-tablet)) {
   .member-journey {
-    height: 290svh;
+    height: var(--members-journey-height);
   }
   .journey-pin > section {
     padding: 35px 8% 70px;
@@ -208,8 +208,8 @@
   }
   .journey-pin .archive-stage,
   .journey-morph {
-    width: 96vw;
-    top: 54%;
+    width: var(--members-visual-width);
+    top: var(--members-visual-top);
   }
   .journey-pin .members .draft-note {
     left: 8%;
@@ -241,12 +241,12 @@
     height: auto;
   }
 }
-@media (max-width: 700px) {
+@media (width < theme(--breakpoint-tablet)) {
   .journey-pin .member-art.particle-original {
     inset: auto;
     left: 50%;
-    top: 54%;
-    width: 96vw;
+    top: var(--members-visual-top);
+    width: var(--members-visual-width);
     transform: translate(-50%, -50%);
     margin: 0;
     filter: none;

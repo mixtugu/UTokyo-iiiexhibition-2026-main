@@ -1,3 +1,4 @@
+import { designNumber } from '../../design/read-tokens';
 import { clamp, smoothstep as smooth } from '../../lib/math';
 import { qs, qsa, context2d } from '../../lib/dom';
 // Temporary archive visuals; source and rights notes: assets/concept/README.md.
@@ -128,14 +129,15 @@ export function initConceptLiquid() {
       precision mediump float;
       varying vec2 uv;
       uniform sampler2D firstImage,secondImage;
-      uniform vec2 viewport,firstSize,secondSize;
+      uniform vec2 viewport,firstSize,secondSize,focus;
       uniform float progress;
       float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
       float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
         return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+1.),f.x),f.y);}
       float field(vec2 p){return noise(p)*.6+noise(p*2.03)*.28+noise(p*4.11)*.12;}
       vec2 cover(vec2 p,vec2 size){float screen=viewport.x/viewport.y,ratio=size.x/size.y;
-        return (p-.5)*vec2(min(screen/ratio,1.),min(ratio/screen,1.))+.5;}
+        vec2 scale=vec2(min(screen/ratio,1.),min(ratio/screen,1.));
+        return p*scale+(1.-scale)*focus;}
       void main(){
         vec2 p=uv;float pulse=sin(progress*3.14159265);
         vec2 q=p*vec2(viewport.x/viewport.y,1.)*3.;
@@ -174,6 +176,7 @@ export function initConceptLiquid() {
         'firstSize',
         'secondSize',
         'progress',
+        'focus',
       ].map((k) => [k, gl.getUniformLocation(program!, k)]),
     );
     textures = images.map((img) => {
@@ -243,6 +246,12 @@ export function initConceptLiquid() {
       loc.secondSize,
       images[index + 1].naturalWidth,
       images[index + 1].naturalHeight,
+    );
+    const styles = getComputedStyle(layer);
+    gl.uniform2f(
+      loc.focus,
+      clamp(designNumber(styles, '--background-focus-x')),
+      1 - clamp(designNumber(styles, '--background-focus-y')),
     );
     gl.uniform1f(loc.progress, blend);
     gl.drawArrays(gl.TRIANGLES, 0, 6);

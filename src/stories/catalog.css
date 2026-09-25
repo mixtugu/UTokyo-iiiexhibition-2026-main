@@ -1,0 +1,80 @@
+/* Catalog framing only. Component appearance comes from production CSS. */
+.sb-panel {
+  background: white;
+  padding: var(--space-3);
+  color: var(--ink);
+}
+.sb-panel > h2 {
+  font-size: var(--type-heading);
+}
+.sb-panel > p {
+  font-size: var(--type-body);
+}
+.sb-navigation {
+  position: relative;
+  background: var(--paper);
+}
+.sb-navigation header {
+  position: relative;
+}
+.sb-card-gallery {
+  position: relative;
+  min-height: 360px;
+}
+.sb-card-gallery .wave-card {
+  transform: translate(-50%, -50%);
+}
+.sb-card-gallery .logo-tile {
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, -50%);
+}
+.sb-scale {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: end;
+}
+.sb-scale figure {
+  margin: 0;
+}
+.sb-scale i {
+  display: block;
+  height: var(--space-3);
+  background: var(--ink);
+}
+.sb-scale figcaption {
+  font-size: var(--type-note);
+}
+.sb-foundation {
+  background: white;
+  padding: var(--section-space) var(--content-inset);
+}
+.sb-foundation .wave-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+.sb-foundation .wave-list button {
+  max-width: 320px;
+}
+.sb-foundation .sb-copy {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+.sb-foundation .sb-note {
+  font-size: var(--type-note);
+  line-height: var(--leading-note);
+}
+.sb-foundation h2 {
+  font-size: var(--type-heading);
+  line-height: var(--leading-heading);
+}
+.sb-foundation .sb-title {
+  font-size: var(--type-title);
+  line-height: var(--leading-display);
+}
+.sb-foundation .sb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--content-gap);
+}
