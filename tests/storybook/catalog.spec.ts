@@ -113,3 +113,22 @@ test('mobile long labels and content sections remain within the viewport', async
     ).toBe(true);
   }
 });
+
+test('reference stories run the actual exhibition and keep review navigation inside Storybook', async ({
+  page,
+}) => {
+  await page.goto(story('reference-exhibition--works'));
+  const exhibition = page.frameLocator('iframe[title="Reference exhibition"]');
+  await expect(exhibition.locator('.wave-card')).toHaveCount(30);
+  await exhibition.locator('.wave-view').click();
+  await expect(exhibition.locator('.wave-list button:visible')).toHaveCount(2);
+  await exhibition
+    .locator('.prototype-review-bar a', { hasText: 'ANNOUNCE' })
+    .click();
+  await expect(exhibition.locator('html')).toHaveAttribute(
+    'data-prototype',
+    'announce',
+  );
+  await exhibition.locator('[data-notice="event"]').first().click();
+  await expect(exhibition.locator('#announce-detail')).toBeVisible();
+});

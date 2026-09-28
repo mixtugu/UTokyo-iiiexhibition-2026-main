@@ -7,3 +7,5 @@ test-results
 playwright-report
 
 storybook-static/
+/reference/
+src/reference/page.html

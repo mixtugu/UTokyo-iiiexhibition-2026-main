@@ -3,19 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#edf0e8" />
+    <meta name="theme-color" content="#FFFFFF" />
     <title>iii Exhibition 2026 — Between perspectives</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="/reference-runtime/preview.css" />
+    <link rel="stylesheet" href="/reference-runtime/atmosphere.css" />
+    <link rel="stylesheet" href="/reference-runtime/concept-story.css" />
+    <link rel="stylesheet" href="/reference-runtime/works-wave.css" />
+    <link rel="stylesheet" href="/reference-runtime/typography.css" />
+    <link rel="stylesheet" href="/reference-runtime/works-person.css" />
+    <link rel="stylesheet" href="/reference-runtime/top-redesign.css" />
+    <link rel="stylesheet" href="/reference-runtime/announce.css" />
+    <link rel="stylesheet" href="/reference-runtime/archive-columns.css" />
+    <link rel="stylesheet" href="/reference-runtime/members-marker-main.css" />
+    <link rel="stylesheet" href="/reference-runtime/prototype-review.css" />
+    <link rel="stylesheet" href="/reference-runtime/figma-latest.css" />
+    <link rel="stylesheet" href="/reference-runtime/flow-refinement.css" />
   </head>
   <body>
+    <script>
+      const prototypeView = new URLSearchParams(location.search).get(
+        'prototype',
+      );
+      if (['works', 'announce', 'members-archives'].includes(prototypeView))
+        document.documentElement.dataset.prototype = prototypeView;
+    </script>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

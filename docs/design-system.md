@@ -1,5 +1,7 @@
 # 디자인 설정과 Storybook
 
+> The current homepage uses the [reference reproduction](reference-reproduction.md). This document describes the retained earlier component library unless stated otherwise.
+
 디자인 수치는 확정값이 아닙니다. `src/design/tokens.css` 한 곳에서 사이트의 기본값과 화면 크기별 값을 조정합니다. 일반 여백은 8px 그리드로 정리했으며, 전체 배경은 화면을 채우고 콘텐츠만 최대폭 안에 정렬됩니다.
 
 ## 빠른 변경 안내

@@ -1,5 +1,7 @@
 # 검증과 배포
 
+> The current homepage uses the [reference reproduction](reference-reproduction.md). This document describes the retained earlier component library unless stated otherwise.
+
 ## 자동 검사
 
 ```sh

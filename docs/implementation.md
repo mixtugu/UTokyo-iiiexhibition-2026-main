@@ -1,5 +1,7 @@
 # 구현과 콘텐츠 수정
 
+> The current homepage uses the [reference reproduction](reference-reproduction.md). This document describes the retained earlier component library unless stated otherwise.
+
 ## 작품 추가·교체
 
 1. 이미지를 `public/assets/works/`에 저장합니다.

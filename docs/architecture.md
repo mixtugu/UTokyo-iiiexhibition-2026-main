@@ -1,5 +1,7 @@
 # 프로젝트 구조
 
+> The current homepage uses the [reference reproduction](reference-reproduction.md). This document describes the retained earlier component library unless stated otherwise.
+
 ## 실행 흐름
 
 `index.html`과 `preview.html`은 같은 `src/main.ts`를 사용합니다. `renderApp()`이 저장소 내 HTML 조각을 조합하고 공통 제목과 내비게이션을 생성합니다. 이후 기능별 초기화 함수를 한 번 실행합니다. 라우터나 서버 상태 없이 단일 페이지로 동작합니다.

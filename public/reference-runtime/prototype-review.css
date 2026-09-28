@@ -1,0 +1,35 @@
+/* Shareable, focused views of the same implementation used by preview.html. */
+html[data-prototype] .top-header,
+html[data-prototype] #contents { display: none !important; }
+
+html[data-prototype="works"] .birth-journey,
+html[data-prototype="works"] .chapter-stack,
+html[data-prototype="works"] #top,
+html[data-prototype="works"] #concept { display: none !important; }
+
+html[data-prototype="announce"] .birth-journey,
+html[data-prototype="announce"] #works,
+html[data-prototype="announce"] .chapter-stack > #access,
+html[data-prototype="announce"] .chapter-stack > .member-journey { display: none !important; }
+
+html[data-prototype="members-archives"] .birth-journey,
+html[data-prototype="members-archives"] #works,
+html[data-prototype="members-archives"] .chapter-stack > #announce,
+html[data-prototype="members-archives"] .chapter-stack > #access { display: none !important; }
+
+html[data-prototype="works"] #works,
+html[data-prototype="announce"] #announce { min-height: 100svh; }
+
+.prototype-review-bar {
+ position: fixed; bottom: 16px; left: 16px; z-index: 80;
+ display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px;
+ max-width: calc(100vw - 32px); padding: 11px 14px;
+ border: 1px solid #052d0340; border-radius: 4px;
+ background: #fffffff0; box-shadow: 0 6px 24px #052d0318;
+ color: #052d03; font: 600 12px/1.35 'Barlow','Zen Kaku Gothic Antique',sans-serif;
+}
+.prototype-review-bar strong { font-size: 12px; white-space: nowrap; }
+.prototype-review-bar a { color: #052d03; text-decoration: underline; text-underline-offset: 3px; }
+.prototype-review-bar a[aria-current="page"] { text-decoration-thickness: 2px; }
+.prototype-review-bar a:focus-visible { outline: 2px solid #052d03; outline-offset: 3px; }
+@media(max-width:600px){.prototype-review-bar{bottom:8px;left:8px;max-width:calc(100vw - 16px);gap:6px 10px;padding:8px 10px;font-size:10px}.prototype-review-bar strong{width:100%;font-size:10px}}

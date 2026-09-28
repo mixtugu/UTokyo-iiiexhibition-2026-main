@@ -1,0 +1,144 @@
+#works .wave-list.person-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: clamp(28px, 4vw, 56px);
+}
+
+#works .person-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: clamp(320px, 30vw, 440px);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e8efeb;
+  color: var(--mv-ink, #052d03);
+  text-align: left;
+  cursor: pointer;
+}
+
+#works .person-card:nth-child(4n + 2) { background: #e2ecec; }
+#works .person-card:nth-child(4n + 3) { background: #edf0e5; }
+#works .person-card:nth-child(4n + 4) { background: #e6e8ec; }
+#works .person-card__backdrop {
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  display: block;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  opacity: .17;
+  filter: blur(26px) saturate(.65);
+  transform: scale(1.04);
+}
+
+#works .person-card__art {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 10%;
+  display: block;
+  width: min(44%, 220px);
+  height: auto;
+  max-height: 72%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 15px 42px #163c2b26;
+  transform: translateY(-50%) rotate(3deg);
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+}
+
+#works .person-card__number,
+#works .person-card__venue,
+#works .person-card__footer,
+#works .person-card__line,
+#works .person-card__title {
+  position: absolute;
+  z-index: 2;
+  display: block;
+}
+
+#works .person-list .person-card > span { margin-top: 0; }
+
+#works .person-list .person-card__number,
+#works .person-list .person-card__venue,
+#works .person-list .person-card__footer {
+  font: 600 clamp(12px, .95vw, 15px)/1.4 'Barlow', 'Zen Kaku Gothic Antique', sans-serif;
+  letter-spacing: .03em;
+}
+
+#works .person-card__number { top: clamp(20px, 2.8vw, 38px); left: clamp(20px, 2.8vw, 38px); }
+#works .person-card__venue { top: clamp(20px, 2.8vw, 38px); right: clamp(20px, 2.8vw, 38px); }
+#works .person-card__footer { bottom: clamp(54px, 5vw, 68px); left: clamp(20px, 2.8vw, 38px); }
+
+#works .person-list .person-card__title {
+  top: 50%;
+  left: clamp(20px, 2vw, 32px);
+  width: 72%;
+  max-width: 650px;
+  font: 600 clamp(28px, 2.7vw, 44px)/1 'Barlow', 'Zen Kaku Gothic Antique', sans-serif;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+  transform: translateY(-50%);
+}
+
+#works .person-list .person-card__line {
+  left: clamp(20px, 2.8vw, 38px);
+  bottom: clamp(18px, 2.5vw, 28px);
+  width: 84px;
+  height: 20px;
+}
+
+#works .person-card__line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+  transition: width .55s cubic-bezier(.22, 1, .36, 1);
+}
+
+#works .person-card:hover .person-card__art,
+#works .person-card:focus-visible .person-card__art {
+  transform: translateY(-51%) rotate(0deg) scale(1.045);
+}
+
+#works .person-card:hover .person-card__line::after,
+#works .person-card:focus-visible .person-card__line::after { width: 84px; }
+#works .person-card:focus-visible { outline: 3px solid var(--mv-blue, #2727f2); outline-offset: -3px; }
+
+@media (max-width: 1100px) and (min-width: 701px) {
+  #works .wave-list.person-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  #works .wave-list.person-list { grid-template-columns: minmax(0, 1fr); }
+  #works .person-card { min-height: clamp(380px, 110vw, 510px); }
+  #works .person-card__art { top: 58%; right: 8%; width: min(48%, 220px); max-height: 53%; }
+  #works .person-list .person-card__title {
+    top: 32%;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-width: none;
+    font-size: clamp(36px, 9vw, 56px);
+  }
+  #works .person-card__number,
+  #works .person-card__venue { top: 18px; }
+  #works .person-card__number,
+  #works .person-card__footer { left: 20px; }
+  #works .person-card__venue { right: 20px; }
+  #works .person-list .person-card__footer { bottom: 55px; max-width: 70%; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #works .person-card__art,
+  #works .person-card__line::after { transition: none; }
+}

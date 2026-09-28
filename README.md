@@ -1,5 +1,9 @@
 # iii Exhibition 2026
 
+현재 메인 화면은 `reference/preview.html` 통합판을 재현합니다. `npm run dev` 후 <http://127.0.0.1:4323/>에서 확인하세요. 원본의 스타일·소재·애니메이션을 적용했으며, Storybook의 **Reference → Exhibition**에서도 확인할 수 있습니다. 동기화 방법과 비교 검증은 [레퍼런스 재현 안내](docs/reference-reproduction.md)를 참고하세요.
+
+아래의 컴포넌트·토큰 구조 설명은 보존된 이전 구현에 관한 내용입니다. 현재 메인 화면의 실행 경로는 위 안내를 기준으로 합니다.
+
 東京大学制作展 디자인·인터랙션 프로토타입입니다. **Node.js + TypeScript + Tailwind CSS + Vite**를 사용하며, 기존 통합 화면의 콘텐츠와 입자·스크롤 효과를 유지합니다. 브라우저 코드는 프레임워크에 의존하지 않는 TypeScript DOM 컴포넌트입니다. Node.js는 개발 서버, 빌드 및 검증에 사용하며 별도 API 서버는 없습니다.
 
 ## 시작하기
