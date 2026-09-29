@@ -2,15 +2,24 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  outputDir: './test-results/app',
+  testIgnore: '**/storybook/**',
   fullyParallel: true,
   workers: 2,
   use: { baseURL: 'http://127.0.0.1:4325', trace: 'retain-on-failure' },
-  webServer: {
-    command: 'npm run build && npm run preview -- --port 4325',
-    url: 'http://127.0.0.1:4325',
-    reuseExistingServer: false,
-    timeout: 60_000,
-  },
+  webServer: [
+    {
+      command: 'npm run build && npm run preview -- --port 4325',
+      url: 'http://127.0.0.1:4325',
+      reuseExistingServer: false,
+      timeout: 60_000,
+    },
+    {
+      command: 'node scripts/serve-reference.mjs',
+      url: 'http://127.0.0.1:4326/preview.html',
+      reuseExistingServer: false,
+    },
+  ],
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
     {

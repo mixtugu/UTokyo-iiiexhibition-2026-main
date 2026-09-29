@@ -1,0 +1,5 @@
+.marker-path-source{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.member-art{filter:none;opacity:1}
+.member-art #marker-canvas{display:none;width:100%;height:100%;object-fit:contain;aspect-ratio:1200/673}
+.member-art.marker-ready #marker-canvas{display:block}
+@media(prefers-reduced-motion:reduce){#members .member-art{display:flex;align-items:center;justify-content:center;width:min(100%,1480px);margin:clamp(32px,8vh,90px) auto}.member-art.marker-ready #marker-canvas{display:block}}

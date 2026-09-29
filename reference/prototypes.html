@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>セクション別プロトタイプ — iii Exhibition 2026</title>
+ <style>
+  :root{font-family:system-ui,sans-serif;color:#052d03;background:#f5f7f3}
+  *{box-sizing:border-box}
+  body{margin:0;padding:clamp(24px,6vw,80px)}
+  main{max-width:980px;margin:auto}
+  h1{font-size:clamp(32px,5vw,58px);line-height:1.1;margin:0 0 24px}
+  p{line-height:1.8;max-width:660px}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:44px}
+  .card{display:flex;flex-direction:column;min-height:250px;padding:24px;background:white;border:1px solid #052d032b;color:inherit;text-decoration:none;transition:transform .2s,background .2s}
+  .card:hover,.card:focus-visible{background:#e8f1e5;transform:translateY(-4px)}
+  .card:focus-visible{outline:3px solid #052d03}
+  .card small{font-weight:700;letter-spacing:.1em}
+  .card strong{font-size:clamp(23px,2.6vw,36px);line-height:1.1;margin:24px 0 14px}
+  .card span{font-size:14px;line-height:1.6}
+  .card b{margin-top:auto;text-align:right;font-size:20px}
+  .note{font-size:13px;margin-top:30px}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}.card{min-height:180px}}
+ </style>
+</head>
+<body><main>
+ <small>iii EXHIBITION 2026 / REVIEW</small>
+ <h1>セクション別プロトタイプ</h1>
+ <p>変更点を個別に確認するための試作です。3つのページは統合版と同じ実装を表示しています。掲載文章・画像・作品情報には仮の内容が含まれます。</p>
+ <div class="grid">
+  <a class="card" href="preview.html?prototype=works"><small>01 / WORKS</small><strong>作品の円環</strong><span>すべて・会場A・会場B、空間表示と一覧表示、作品詳細モーダル。</span><b aria-hidden="true">↗</b></a>
+  <a class="card" href="preview.html?prototype=announce"><small>02 / ANNOUNCE</small><strong>イベントと基金</strong><span>トークイベントからクリエイターズ基金への切り替えと、告知詳細。</span><b aria-hidden="true">↗</b></a>
+  <a class="card" href="preview.html?prototype=members-archives"><small>03 / TRANSITION</small><strong>MEMBERS → ARCHIVES</strong><span>メンバー名のマーカー表現から粒子になり、過去展の画像へ移る流れ。</span><b aria-hidden="true">↗</b></a>
+ </div>
+ <p class="note">動きは調整中です。<a href="preview.html">サイト全体を見る ↗</a></p>
+</main></body></html>

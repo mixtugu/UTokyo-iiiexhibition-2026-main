@@ -1,0 +1,875 @@
+[
+  {
+    "group": "EXHIBITION",
+    "year": "2025",
+    "title": "あることないこと",
+    "url": "https://2025-main.pages.dev/",
+    "image": "assets/archive/imported/main-2025-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "https://iiiexhibition.com/images/ogpImage.jpg"
+      ]
+    ],
+    "imageSource": "https://2025-main.pages.dev/images/ogpImage.jpg"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2024",
+    "title": "付いて離れて",
+    "url": "https://2024-main.pages.dev/",
+    "image": "assets/archive/imported/main-2024-visual.webp",
+    "candidates": [
+      [
+        20,
+        "https://iiiexhibition.com/twitter-image.png"
+      ],
+      [
+        20,
+        "https://iiiexhibition.com/opengraph-image.png"
+      ],
+      [
+        5,
+        "https://2024-main.pages.dev/works/zip.webp"
+      ],
+      [
+        5,
+        "https://2024-main.pages.dev/works/umoru.webp"
+      ],
+      [
+        5,
+        "https://2024-main.pages.dev/works/suzumushi.webp"
+      ],
+      [
+        5,
+        "https://2024-main.pages.dev/works/random_texture.webp"
+      ]
+    ],
+    "imageSource": "https://2024-main.pages.dev/assets/background_desktop-CciUMRI2.webp"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2023",
+    "title": "學藝運動",
+    "url": "https://iii-exhibition2023-main.vercel.app/",
+    "image": "assets/archive/main-2023.png",
+    "candidates": [
+      [
+        20,
+        "https://iii-exhibition2023-main-56xlegb5i-kakeru-miyazaki-s-team.vercel.app/twitter-image.png?21b1b618c6357331"
+      ],
+      [
+        20,
+        "https://iii-exhibition2023-main-56xlegb5i-kakeru-miyazaki-s-team.vercel.app/opengraph-image.png?21b1b618c6357331"
+      ],
+      [
+        5,
+        "https://iii-exhibition2023-main.vercel.app/footer/x.svg"
+      ],
+      [
+        5,
+        "https://iii-exhibition2023-main.vercel.app/_next/image?url=%2Fspeakers%2Fyamakawa.jpg&w=640&q=75"
+      ],
+      [
+        5,
+        "https://iii-exhibition2023-main.vercel.app/_next/image?url=%2Fspeakers%2Fkakehi.jpg&w=640&q=75"
+      ],
+      [
+        5,
+        "https://iii-exhibition2023-main.vercel.app/_next/image?url=%2Fspeakers%2Fito.png&w=640&q=75"
+      ]
+    ],
+    "imageSource": "https://iii-exhibition2023-main.vercel.app/_next/image?url=%2Fspeakers%2Fyamakawa.jpg&w=640&q=75"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2022",
+    "title": "Emulsion",
+    "url": "https://archive.iiiexhibition.com/log/i3e24",
+    "image": "assets/archive/imported/main-2022-visual.webp",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/img/about.901c8f5.webp"
+      ],
+      [
+        12,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/img/hero.7d4c5cc.webp"
+      ],
+      [
+        12,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/img/hero-sp.90e6695.webp"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/image/f11525.webp"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/image/e8d1ad.webp"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e24/_nuxt/image/e64c07.webp"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/i3e24/_nuxt/img/hero.7d4c5cc.webp"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2021",
+    "title": "キョリブレーション",
+    "url": "https://archive.iiiexhibition.com/log/i3e23",
+    "image": "assets/archive/imported/main-2021.png",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e23/images/eventposter.png"
+      ],
+      [
+        20,
+        "https://iiiexhibition.com/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e23/images/thumbnail/9_kabuku_tmb800.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e23/images/thumbnail/8_ENDRAGON.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e23/images/thumbnail/7_kurata_picture.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e23/images/thumbnail/6_(s)hukan.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/i3e23/images/eventposter.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2020",
+    "title": "弛む",
+    "url": "https://archive.iiiexhibition.com/log/i3e22",
+    "image": "assets/archive/imported/main-2020-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://iiiexhibition.com/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e22/img/work9.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e22/img/work8.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e22/img/work7.JPG"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e22/img/work6.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e22/img/work5.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e22_main.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2019",
+    "title": "ああ言えばこう言う。こう言えばどう言う？",
+    "url": "https://archive.iiiexhibition.com/log/i3e21",
+    "image": "assets/archive/imported/main-2019-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://iiiexhibition.com/log/i3e21/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e21/images/works/work21/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e21/images/works/work21/pic.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e21/images/works/work20/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e21/images/works/work19/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e21/images/works/work18/thumbnail.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e21_ogp.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2018",
+    "title": "Destlogy REBUILD",
+    "url": "https://archive.iiiexhibition.com/log/i3e20",
+    "image": "assets/archive/imported/main-2018-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/images/img_ogp_rebuild.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e20/images/works/world9.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e20/images/works/uzu.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e20/images/works/twilight.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e20/images/works/sei.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e20/images/works/rhyme.jpg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e20_img_ogp.jpg"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2017",
+    "title": "WYSIWYG?",
+    "url": "https://archive.iiiexhibition.com/log/i3e19",
+    "image": "assets/archive/imported/main-2017-visual.jpg",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e19/img/top_blur.png"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e19/img/top.svg"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e19/img/top.png"
+      ],
+      [
+        20,
+        "http://www.iiiexhibition.com/img/og_img.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e19/img/wysiwyg.svg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e19/img/works_head.svg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e19_og_img.jpg"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2016",
+    "title": "FAKE FUTURE",
+    "url": "https://archive.iiiexhibition.com/log/i3e18",
+    "image": "assets/archive/imported/main-2016-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/main/mv-pc.jpg?ver=1120"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e18/img/work/watanabe.jpg?ver=1120"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e18/img/work/uzawa.jpg?ver=1120"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e18/img/work/tagami.jpg?ver=1120"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e18/img/work/sugihara.jpg?ver=1120"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e18/img/work/shiro.jpg?ver=1120"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e18_mv-pc.jpg"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2015",
+    "title": "わたしエクステンション",
+    "url": "https://archive.iiiexhibition.com/log/i3e17",
+    "image": "assets/archive/imported/main-2015-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/opengraph.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e17/img/title_01.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e17/img/main_mv.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/i3e17/img/twitter.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/i3e17/img/logo_w.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/i3e17/img/facebook.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e17_main_mv.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2014",
+    "title": "!!!",
+    "url": "https://archive.iiiexhibition.com/log/i3e16",
+    "image": "assets/archive/imported/main-2014-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/ogp.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/i3e16/img/nav-logo.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/i3e16/img/main-logo.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e16_main.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2013",
+    "title": "mosaic",
+    "url": "https://archive.iiiexhibition.com/log/i3e15",
+    "image": "assets/archive/imported/main-2013-visual.png",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e15/KeyVisual_alpha.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e15/thumbnail/yoshimura_thum.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e15/thumbnail/yoshida_thum.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e15/thumbnail/tujii_thum.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e15/thumbnail/tazaki_thum.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e15/thumbnail/takamatsu_thum.jpg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e15_mosaic_repeat.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2012",
+    "title": "いとをかし",
+    "url": "https://archive.iiiexhibition.com/log/i3e14",
+    "image": "assets/archive/imported/main-2012-visual.png",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/i3e14/images/top_620x340.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e14/works-14win/work-25.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e14/works-14win/work-24.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e14/works-14win/work-23.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e14/works-14win/work-22.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e14/works-14win/work-21.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e14_main.png"
+  },
+  {
+    "group": "EXHIBITION",
+    "year": "2011",
+    "title": "Re:",
+    "url": "https://archive.iiiexhibition.com/log/i3e13",
+    "image": "assets/archive/imported/main-2011-visual.jpg",
+    "candidates": [
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/i3e13/images/main.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e13_back.jpg"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2025",
+    "title": "あることないこと",
+    "url": "https://iii-exhibition2025-beginning.pages.dev",
+    "image": "assets/archive/imported/extra-2025-visual.png",
+    "candidates": [
+      [
+        20,
+        "https://iii-exhibition2025-beginning.pages.dev/images/japanese-gradient-background.png.png"
+      ],
+      [
+        5,
+        "https://iii-exhibition2025-beginning.pages.dev/images/works/voice_dune.webp"
+      ],
+      [
+        5,
+        "https://iii-exhibition2025-beginning.pages.dev/images/works/invisible_words.webp"
+      ],
+      [
+        5,
+        "https://iii-exhibition2025-beginning.pages.dev/images/works/couter_partner.webp"
+      ],
+      [
+        5,
+        "https://iii-exhibition2025-beginning.pages.dev/images/japanese-gradient-background.png"
+      ],
+      [
+        5,
+        "https://iii-exhibition2025-beginning.pages.dev/images/info copy.png"
+      ]
+    ],
+    "imageSource": "https://iii-exhibition2025-beginning.pages.dev/images/logo_large.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2024",
+    "title": "なにいう展",
+    "url": "https://iii-exhibition-2024-web.vercel.app/",
+    "image": "assets/archive/extra-2024.png",
+    "candidates": [
+      [
+        35,
+        "https://iii-exhibition-2024-web.vercel.app/_next/image?url=%2Fworks%2Fmain-visual-bw.png&w=3840&q=75"
+      ],
+      [
+        20,
+        "https://iii-exhibition-2024-mm801o62n-hrm1810884s-projects.vercel.app/twitter-image.png?e018e110248016fc"
+      ],
+      [
+        20,
+        "https://iii-exhibition-2024-mm801o62n-hrm1810884s-projects.vercel.app/opengraph-image.png?e018e110248016fc"
+      ],
+      [
+        5,
+        "https://iii-exhibition-2024-web.vercel.app/footer/x.svg"
+      ],
+      [
+        5,
+        "https://iii-exhibition-2024-web.vercel.app/access/atSign.svg"
+      ],
+      [
+        5,
+        "https://iii-exhibition-2024-web.vercel.app/_next/image?url=%2Fworks%2Fzip-bw.png&w=3840&q=75"
+      ]
+    ],
+    "imageSource": "https://iii-exhibition-2024-web.vercel.app/_next/image?url=%2Fworks%2Fmain-visual-bw.png&w=3840&q=75"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2023",
+    "title": "voidage",
+    "url": "https://iii-exhibition2023.vercel.app/",
+    "image": "assets/archive/extra-2023.jpg",
+    "candidates": [
+      [
+        20,
+        "https://iiiexhibition.com/ogp.jpg"
+      ],
+      [
+        5,
+        "https://iii-exhibition2023.vercel.app/figure/voidage-primary.svg"
+      ],
+      [
+        -45,
+        "https://iii-exhibition2023.vercel.app/figure/logo.png"
+      ]
+    ]
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2022",
+    "title": "Emulsion",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2022",
+    "image": "assets/archive/imported/extra-2022-visual.png",
+    "candidates": [
+      [
+        20,
+        "https://iiiexhibition.com/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2022/images/works/work9/thumbnail.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2022/images/works/work8/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2022/images/works/work7/thumbnail.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2022/images/works/work6/thumbnail.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2022/images/works/work5/thumbnail.jpg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2022/images/logo.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2021",
+    "title": "0PUNK",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2021",
+    "image": "assets/archive/imported/extra-2021-visual.jpg",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2020_ogp.png"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2019_ogp.png"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e21_ogp.png"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/i3e20_img_ogp.jpg"
+      ],
+      [
+        20,
+        "https://iiiexhibition.com/teaser_img/ogp.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2021/works_img/thumbnail/zeromind_koyama.jpeg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/Main/desktop.jpg"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2020",
+    "title": "WHO ZIPS YOU?",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2020",
+    "image": "assets/archive/imported/extra-2020-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://iiiexhibition.com/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2020/images/works/work10/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2020/images/works/work09/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2020/images/works/work08/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2020/images/works/work07/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2020/images/works/work06/thumbnail.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2020_ogp.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2019",
+    "title": "enact one's self",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2019",
+    "image": "assets/archive/imported/extra-2019-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "http://iiiexhibition.com/images/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2019/images/works/work12/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2019/images/works/work11/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2019/images/works/work10/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2019/images/works/work09/thumbnail.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2019/images/works/work08/thumbnail.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2019_ogp.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2018",
+    "title": "Dest-logy",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2018",
+    "image": "assets/archive/imported/extra-2018-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://iiiexhibition.com/log/iiiEx2018/images/img_ogp.jpg"
+      ],
+      [
+        12,
+        "https://archive.iiiexhibition.com/log/iiiEx2018/images/egg_1920-03.png"
+      ],
+      [
+        12,
+        "https://archive.iiiexhibition.com/log/iiiEx2018/images/egg_1920-02.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2018/images/sigh_square.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2018/images/sigh.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2018/images/pose_square.gif"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2018_egg_rectangle-01.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2017",
+    "title": "SUKIMANIAC",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2017",
+    "image": "assets/archive/imported/extra-2017-visual.png",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2017/imgs/win_top.png"
+      ],
+      [
+        20,
+        "http://www.iiiexhibition.com/imgs/og_image.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2017/imgs/works/work9.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2017/imgs/works/work8.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2017/imgs/works/work7.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2017/imgs/works/work6.jpg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2017_og_image.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2016",
+    "title": "補序線",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2016",
+    "image": "assets/archive/imported/extra-2016-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/main/mv-pc.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2016/img/work_gif/yoshida.gif"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2016/img/work_gif/takase.gif"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2016/img/work_gif/sugiyama.gif"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2016/img/work_gif/sugihara.gif"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2016/img/work_gif/shiro.gif"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2016_mv-pc.jpg"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2015",
+    "title": "グッバイ・マイ・ボディ",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2015",
+    "image": "assets/archive/imported/extra-2015-visual.jpg",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/MVweb.jpg"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2015_MVweb.jpg"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2014",
+    "title": "リアルからちょっと離れてる空間",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2014",
+    "image": "assets/archive/imported/extra-2014-visual.png",
+    "candidates": [
+      [
+        20,
+        "http://www.iiiexhibition.com/img/ogp.png"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2014/img/work/yamamoto.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2014/img/work/usagi.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2014/img/work/togo.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2014/img/work/tearai_matsui.jpg"
+      ],
+      [
+        5,
+        "https://archive.iiiexhibition.com/log/iiiEx2014/img/work/seisakuten_chotoku.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2014_main.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2013",
+    "title": "⏻",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2013",
+    "image": "assets/archive/imported/extra-2013-visual.png",
+    "candidates": [
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/iiiEx2013/images/twitter_32.png"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/iiiEx2013/images/logo.PNG"
+      ],
+      [
+        -45,
+        "https://archive.iiiexhibition.com/log/iiiEx2013/images/facebook_32.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2013_main.png"
+  },
+  {
+    "group": "BEGINNING / EXTRA",
+    "year": "2012",
+    "title": "パルス",
+    "url": "https://archive.iiiexhibition.com/log/iiiEx2012",
+    "image": "assets/archive/imported/extra-2012-visual.png",
+    "candidates": [
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2012/images/key_visual.png"
+      ],
+      [
+        35,
+        "https://archive.iiiexhibition.com/log/iiiEx2012/images/illustration.png"
+      ]
+    ],
+    "imageSource": "https://archive.iiiexhibition.com/log/iiiEx2021/teaser_img/past_visuals/iiiEx2012_illustration.png"
+  }
+]

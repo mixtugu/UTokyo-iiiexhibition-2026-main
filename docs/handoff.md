@@ -1,5 +1,7 @@
 # 기존 자료와 인수인계
 
+> The current homepage uses the [reference reproduction](reference-reproduction.md). This document describes the retained earlier component library unless stated otherwise.
+
 東京大学制作展のデザイン・インタラクション確認用プロトタイプです。正式な公開サイトではなく、作品情報・会場分類・掲載文章・画像に仮の内容を含みます。
 
 ## 公開前の確認事項（元READMEから保持）

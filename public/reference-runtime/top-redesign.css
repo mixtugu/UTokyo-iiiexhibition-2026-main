@@ -1,0 +1,102 @@
+/* TOP composition — outlined display lettering, responsive HTML navigation. */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+.top-header{
+  position:absolute;
+  inset:0 0 auto;
+  height:clamp(88px,10vw,138px);
+  padding:clamp(20px,2.2vw,34px) clamp(24px,3.3vw,54px);
+  align-items:flex-start;
+  background:transparent;
+  border:0;
+  z-index:25;
+  pointer-events:none;
+}
+.top-header .brand,.top-header nav{pointer-events:auto}
+.top-header .brand{display:block;width:clamp(70px,6.1vw,110px);height:clamp(70px,6.1vw,110px);overflow:hidden}
+.top-header .brand img{width:100%;height:100%;object-fit:contain;filter:brightness(0) saturate(100%) invert(64%) sepia(73%) saturate(825%) hue-rotate(65deg) brightness(89%) contrast(93%)}
+.top-header nav{
+  width:min(35vw,560px);
+  display:grid;
+  grid-template-columns:repeat(3,minmax(92px,1fr));
+  gap:0 clamp(10px,1.3vw,24px);
+  align-items:center;
+}
+.top-header nav a{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:12px 8px;transition:opacity .2s,transform .2s}
+.top-header nav a:hover{opacity:.68;transform:translateY(-2px)}
+.top-header nav img{display:block;width:100%;height:17px;object-fit:contain}
+
+.hero{
+  background:#d2decf!important;
+  padding:0!important;
+  overflow:hidden;
+  isolation:isolate;
+}
+.birth-intro #top{background:transparent!important}
+.birth-pin{background:#d2decf!important}
+.hero-art{position:absolute!important;inset:0!important;overflow:hidden!important;background:none!important}
+.hero-art .hero-brush{
+  position:absolute;
+  z-index:0;
+  left:14vw;
+  top:11vh;
+  width:min(90vw,1500px);
+  height:min(102vh,1100px);
+  object-fit:contain;
+  transform:rotate(-2deg);
+  opacity:.9;
+}
+.hero-art .hero-logo{position:absolute;left:14vw;top:11vh;width:min(90vw,1500px);height:min(102vh,1100px);object-fit:contain;opacity:0}
+.hero-particles{z-index:1;opacity:.78;mix-blend-mode:multiply}
+.has-particle-logo .hero-brush{opacity:.62}
+
+.hero-composition{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-composition img{position:absolute;display:block}
+.hero-title-ja{left:-1.7vw;top:13vh;width:clamp(155px,18vw,330px);height:min(66vh,690px);object-fit:contain;object-position:left center}
+.hero-venue{left:15.5vw;bottom:19vh;width:clamp(190px,15.8vw,300px);height:auto}
+.hero-dates{right:3.6vw;bottom:17.5vh;width:clamp(175px,14vw,270px);height:auto}
+.hero-wordmark{right:-.5vw;bottom:-.3vh;width:min(44vw,760px);height:auto}
+.hero-scroll{position:absolute;left:50%;bottom:22px;z-index:6;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 14px;color:#fff;font:600 11px/1 'Barlow',sans-serif;letter-spacing:.12em;transform:translateX(-50%)}
+.hero-scroll span:last-child{font-size:18px}
+
+@media(min-width:1700px){
+  .top-header nav{width:600px}
+  .hero-art .hero-brush,.hero-art .hero-logo{left:18vw;width:78vw}
+  .hero-title-ja{left:0;width:300px}
+  .hero-venue{left:17vw}
+}
+
+@media(max-width:900px){
+  .top-header{height:120px;padding:16px 18px}
+  .top-header .brand{width:62px;height:62px}
+  .top-header nav{width:min(68vw,470px);grid-template-columns:repeat(3,minmax(70px,1fr));gap:0 4px}
+  .top-header nav a{padding:10px 6px}
+  .top-header nav img{height:13px}
+  .hero-title-ja{top:15vh;width:clamp(130px,25vw,210px);height:58vh}
+  .hero-art .hero-brush,.hero-art .hero-logo{left:9vw;top:18vh;width:105vw;height:84vh}
+  .hero-venue{left:18vw;bottom:17vh;width:190px}
+  .hero-dates{right:4vw;bottom:15vh;width:175px}
+  .hero-wordmark{width:58vw}
+}
+
+@media(max-width:600px){
+  .top-header{height:auto;padding:14px 14px 0}
+  .top-header .brand{width:54px;height:54px;flex:none}
+  .top-header nav{width:70vw;grid-template-columns:repeat(2,minmax(88px,1fr));gap:0}
+  .top-header nav a{min-height:44px;padding:12px 7px}
+  .top-header nav img{height:12px}
+  .hero-title-ja{left:-7vw;top:16vh;width:40vw;height:55vh}
+  .hero-art .hero-brush,.hero-art .hero-logo{left:1vw;top:25vh;width:132vw;height:68vh;transform:rotate(-7deg)}
+  .hero-composition .hero-venue{left:25vw;bottom:16vh;width:36vw;max-width:165px}
+  .hero-composition .hero-dates{right:4vw;bottom:13vh;width:34vw;max-width:150px}
+  .hero-wordmark{right:0;bottom:1.5vh;width:80vw}
+  .hero-scroll{bottom:4px}
+}
+
+@media(max-height:700px) and (min-width:601px){
+  .hero-title-ja{top:16vh;height:60vh}
+  .hero-venue{bottom:12vh}
+  .hero-dates{bottom:10vh}
+}
+
+@media(prefers-reduced-motion:reduce){.top-header nav a{transition:none}.top-header nav a:hover{transform:none}}

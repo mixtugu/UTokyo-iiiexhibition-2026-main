@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEMBERS — マーカー描画試作</title>
+  <link rel="stylesheet" href="members-marker-prototype.css">
+  <script src="members-marker-prototype.js" defer></script>
+  <script src="members-marker-source-points.js" defer></script>
+  <script src="members-archive-transition.js" defer></script>
+</head>
+<body>
+  <div class="scroll-journey" id="scroll-journey">
+  <main class="prototype">
+    <header class="prototype-header">
+      <span id="chapter-label">05 / MEMBERS</span>
+      <button type="button" id="replay">もう一度見る <span aria-hidden="true">↗</span></button>
+    </header>
+    <div class="stage">
+      <canvas id="marker-canvas" width="1200" height="673" role="img" aria-label="3つの始点からマーカーの線が描かれ、少し遅れてメンバーの名前に変わり、最後に3つの点が描かれるアニメーション"></canvas>
+      <canvas id="transition-canvas" aria-hidden="true"></canvas>
+      <section class="archive-panel" id="archives" aria-label="過去の制作展" aria-hidden="true" inert>
+        <div class="archive-intro"><span>06 / ARCHIVES</span><p>メンバーの文字が、過去の制作展につながる。</p></div>
+        <div class="archive-groups">
+          <div class="archive-group"><h2>EXHIBITION</h2><div class="archive-list">
+            <a href="https://2025-main.pages.dev/" target="_blank" rel="noopener noreferrer"><span class="archive-year">2025</span><span class="archive-title">あることないこと</span><span class="archive-arrow">↗</span></a>
+            <a href="https://2024-main.pages.dev/" target="_blank" rel="noopener noreferrer"><span class="archive-year">2024</span><span class="archive-title">付いて離れて</span><span class="archive-arrow">↗</span></a>
+            <a href="https://iii-exhibition2023-main.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="archive-year">2023</span><span class="archive-title">學藝運動</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e24" target="_blank" rel="noopener noreferrer"><span class="archive-year">2022</span><span class="archive-title">Emulsion</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e23" target="_blank" rel="noopener noreferrer"><span class="archive-year">2021</span><span class="archive-title">キョリブレーション</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e22" target="_blank" rel="noopener noreferrer"><span class="archive-year">2020</span><span class="archive-title">弛む</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e21" target="_blank" rel="noopener noreferrer"><span class="archive-year">2019</span><span class="archive-title">ああ言えばこう言う。こう言えばどう言う？</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e20" target="_blank" rel="noopener noreferrer"><span class="archive-year">2018</span><span class="archive-title">Destlogy REBUILD</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e19" target="_blank" rel="noopener noreferrer"><span class="archive-year">2017</span><span class="archive-title">WYSIWYG?</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e18" target="_blank" rel="noopener noreferrer"><span class="archive-year">2016</span><span class="archive-title">FAKE FUTURE</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e17" target="_blank" rel="noopener noreferrer"><span class="archive-year">2015</span><span class="archive-title">わたしエクステンション</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e16" target="_blank" rel="noopener noreferrer"><span class="archive-year">2014</span><span class="archive-title">!!!</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e15" target="_blank" rel="noopener noreferrer"><span class="archive-year">2013</span><span class="archive-title">mosaic</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e14" target="_blank" rel="noopener noreferrer"><span class="archive-year">2012</span><span class="archive-title">いとをかし</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/i3e13" target="_blank" rel="noopener noreferrer"><span class="archive-year">2011</span><span class="archive-title">Re:</span><span class="archive-arrow">↗</span></a>
+          </div></div>
+          <div class="archive-group"><h2>BEGINNING / EXTRA</h2><div class="archive-list">
+            <a href="https://iii-exhibition2025-beginning.pages.dev" target="_blank" rel="noopener noreferrer"><span class="archive-year">2025</span><span class="archive-title">あることないこと</span><span class="archive-arrow">↗</span></a>
+            <a href="https://iii-exhibition-2024-web.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="archive-year">2024</span><span class="archive-title">なにいう展</span><span class="archive-arrow">↗</span></a>
+            <a href="https://iii-exhibition2023.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="archive-year">2023</span><span class="archive-title">voidage</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2022" target="_blank" rel="noopener noreferrer"><span class="archive-year">2022</span><span class="archive-title">Emulsion</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2021" target="_blank" rel="noopener noreferrer"><span class="archive-year">2021</span><span class="archive-title">0PUNK</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2020" target="_blank" rel="noopener noreferrer"><span class="archive-year">2020</span><span class="archive-title">WHO ZIPS YOU?</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2019" target="_blank" rel="noopener noreferrer"><span class="archive-year">2019</span><span class="archive-title">enact one's self</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2018" target="_blank" rel="noopener noreferrer"><span class="archive-year">2018</span><span class="archive-title">Dest-logy</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2017" target="_blank" rel="noopener noreferrer"><span class="archive-year">2017</span><span class="archive-title">SUKIMANIAC</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2016" target="_blank" rel="noopener noreferrer"><span class="archive-year">2016</span><span class="archive-title">補序線</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2015" target="_blank" rel="noopener noreferrer"><span class="archive-year">2015</span><span class="archive-title">グッバイ・マイ・ボディ</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2014" target="_blank" rel="noopener noreferrer"><span class="archive-year">2014</span><span class="archive-title">リアルからちょっと離れてる空間</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2013" target="_blank" rel="noopener noreferrer"><span class="archive-year">2013</span><span class="archive-title">⏻</span><span class="archive-arrow">↗</span></a>
+            <a href="https://archive.iiiexhibition.com/log/iiiEx2012" target="_blank" rel="noopener noreferrer"><span class="archive-year">2012</span><span class="archive-title">パルス</span><span class="archive-arrow">↗</span></a>
+          </div></div>
+        </div>
+      </section>
+      <div class="scroll-cue" id="scroll-cue" aria-hidden="true">SCROLL TO ARCHIVES ↓</div>
+      <noscript><img src="design-concepts/members-original-transparent.png" alt="メンバーの名前で構成された3つの曲線"></noscript>
+    </div>
+    <footer class="prototype-footer"><span>iii EXHIBITION 2026</span><span id="journey-caption">MARKER → NAMES → THREE DOTS → ARCHIVES</span></footer>
+  </main>
+  </div>
+  <svg class="path-source" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1675 939" aria-hidden="true">
+    <!-- Each guide follows one row of names in the 1675 × 939 source image. -->
+    <path class="name-route" data-group="0" data-primary="true" d="M253 368 C340 265 460 155 573 145 C698 110 837 174 898 295"/>
+    <path class="name-route" data-group="0" d="M297 418 C390 315 494 233 581 230 C652 211 699 222 738 244"/>
+    <path class="name-route" data-group="0" d="M444 403 C502 345 561 309 628 310"/>
+    <path class="name-route" data-group="0" d="M799 315 C707 353 603 456 525 563 C459 661 442 758 476 823 C531 851 633 808 719 755"/>
+    <path class="name-route" data-group="0" d="M753 446 C681 488 607 572 557 655 C539 720 570 749 642 741 C724 718 788 608 808 505 C819 447 820 398 815 364"/>
+    <path class="name-route" data-group="0" d="M909 331 C936 428 920 549 867 641 C837 683 784 724 743 748"/>
+    <path class="name-route" data-group="1" data-primary="true" d="M941 288 C1059 264 1167 308 1251 365"/>
+    <path class="name-route" data-group="1" d="M948 351 C1047 343 1118 365 1170 401"/>
+    <path class="name-route" data-group="1" d="M1502 444 C1373 394 1239 405 1138 454 C1033 501 957 651 962 755 C954 838 1012 876 1087 867"/>
+    <path class="name-route" data-group="1" d="M1129 577 C1168 520 1201 489 1239 490 C1274 541 1262 701 1210 765 C1153 840 1077 820 1059 746 C1039 686 1082 615 1129 577"/>
+    <path class="name-route" data-group="2" data-primary="true" d="M1306 485 C1349 565 1359 656 1315 740 C1285 797 1214 846 1133 865"/>
+    <path class="name-route" data-group="2" d="M1361 482 C1445 489 1514 537 1553 574"/>
+    <path class="name-route" data-group="2" d="M1401 559 C1487 569 1560 612 1615 654"/>
+  </svg>
+</body>
+</html>

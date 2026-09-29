@@ -7,8 +7,11 @@ export interface WorkDialog {
   open(index: number): void;
 }
 
-export function createWorkDialog(works: readonly Work[]): WorkDialog {
-  const dialog = qs<HTMLDialogElement>('#detail');
+export function createWorkDialog(
+  works: readonly Work[],
+  root: ParentNode = document,
+): WorkDialog {
+  const dialog = qs<HTMLDialogElement>('#detail', root);
   const image = qs<HTMLImageElement>('#detail-image', dialog);
   const title = qs('#detail-title', dialog);
   const number = qs('#detail-number', dialog);

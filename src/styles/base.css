@@ -597,14 +597,7 @@ body:has(dialog[open]) {
   font-size: 13px;
   line-height: 2;
 }
-@media (min-width: 1600px) {
-  main,
-  footer {
-    max-width: 1900px;
-    margin: auto;
-  }
-}
-@media (max-width: 700px) {
+@media (width < theme(--breakpoint-tablet)) {
   header {
     height: 65px;
     padding: 0 5%;

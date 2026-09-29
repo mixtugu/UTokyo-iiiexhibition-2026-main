@@ -1,0 +1,134 @@
+/* The single source for responsive thresholds. theme() resolves media queries
+   at build time; @theme static also exposes these values to Canvas code. */
+@theme static {
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1920px;
+}
+
+:root {
+  /* 8px grid. Fluid gutters and artwork proportions intentionally stay fluid. */
+  --space-unit: 8px;
+  --space-1: var(--space-unit);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-10: calc(var(--space-unit) * 10);
+  --space-12: calc(var(--space-unit) * 12);
+
+  /* Full-bleed backgrounds; constrain the content with shared inline padding. */
+  --page-gutter: clamp(var(--space-3), 8vw, var(--space-unit) * 16);
+  --content-max-width: 1280px;
+  --content-inset: max(
+    var(--page-gutter),
+    (100% - var(--content-max-width)) / 2
+  );
+  --section-space: var(--space-8);
+  --content-gap: var(--space-5);
+  --heading-gap: var(--space-4);
+  --grid-gap: var(--space-3);
+  --header-height: var(--space-12);
+  --footer-space: var(--space-3);
+
+  /* Semantic type roles. Change a role once to update all consumers. */
+  --type-display: clamp(38px, 4.5vw, 70px);
+  --type-title: clamp(38px, 5vw, 72px);
+  --type-heading: 24px;
+  --type-body: 17px;
+  --type-note: 14px;
+  --type-label: 17px;
+  --type-control: 16px;
+  --type-story: clamp(28px, 3.1vw, 48px);
+  --leading-display: 1.1;
+  --leading-heading: 1.5;
+  --leading-body: 2;
+  --leading-note: 1.6;
+  --leading-story: 1.95;
+  --copy-max-width: 680px;
+  --story-max-width: 1200px;
+
+  /* The minimum is a layout value, not a transform applied to tiny art tiles. */
+  --control-min-size: var(--space-6);
+  --control-padding-block: var(--space-1);
+  --control-padding-inline: var(--space-2);
+  --menu-size: var(--space-8);
+  --control-radius: var(--space-4);
+
+  /* Artwork framing. These are proportions, not spacing-grid values. */
+  --visual-height: 100svh;
+  --work-image-fit: contain;
+  --work-image-position: 50% 50%;
+  --work-image-ratio: 1;
+  --background-focus-x: 0.5;
+  --background-focus-y: 0.5;
+  --concept-visual-width: min(100vw, 95svh);
+  --hero-logo-width: 0.7;
+  --hero-logo-height: 0.98;
+  --hero-logo-x: 0.65;
+  --hero-logo-y: 0.52;
+  --gallery-compact-width: 600px;
+  --gallery-height: clamp(490px, 65svh, 760px);
+  --gallery-logo-width: 0.98;
+  --gallery-logo-height: 1.08;
+  --members-visual-width: min(86vw, calc(65svh * 1000 / 580));
+  --members-visual-top: 55%;
+  --map-ratio: 491 / 458;
+  --map-image-width: 255.805%;
+  --map-image-left: -27.088%;
+  --map-image-top: -55.022%;
+
+  /* Scroll choreography: keep separate from ordinary section spacing. */
+  --hero-journey-height: 200svh;
+  --members-journey-height: 340svh;
+  --story-paragraph-gap: 32svh;
+  --story-heading-gap: 28svh;
+  --story-ending-height: 150svh;
+}
+
+@media (width < theme(--breakpoint-desktop)) and (width >= theme(--breakpoint-tablet)) {
+  :root {
+    --page-gutter: var(--space-6);
+    --section-space: var(--space-6);
+    --content-gap: var(--space-4);
+  }
+}
+
+@media (width < theme(--breakpoint-tablet)) {
+  :root {
+    --page-gutter: var(--space-3);
+    --section-space: var(--space-6);
+    --content-gap: var(--space-3);
+    --heading-gap: var(--space-3);
+    --grid-gap: var(--space-2);
+    --header-height: var(--space-10);
+    --menu-size: var(--space-6);
+    --type-display: clamp(30px, 9vw, 48px);
+    --type-title: 36px;
+    --type-heading: 21px;
+    --type-body: 16px;
+    --type-label: 16px;
+    --type-control: 15px;
+    --type-story: clamp(23px, 5.8vw, 30px);
+    --concept-visual-width: 145vw;
+    --hero-logo-width: 0.94;
+    --hero-logo-height: 0.64;
+    --hero-logo-x: 0.5;
+    --hero-logo-y: 0.69;
+    --gallery-height: 540px;
+    --members-visual-width: 96vw;
+    --members-visual-top: 54%;
+    --members-journey-height: 290svh;
+    --story-paragraph-gap: 30svh;
+    --story-heading-gap: 26svh;
+  }
+}
+
+@media (width >= theme(--breakpoint-wide)) {
+  :root {
+    --type-display: clamp(70px, 4.5vw, 120px);
+  }
+}

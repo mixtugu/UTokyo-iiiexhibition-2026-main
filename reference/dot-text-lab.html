@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOT TYPE LAB — ドット文字の実験室</title>
+  <link rel="stylesheet" href="dot-text-lab.css">
+  <script src="dot-text-lab.js" defer></script>
+</head>
+<body>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <header class="site-header">
+    <div class="identity"><span class="identity-mark" aria-hidden="true">⁙</span><span>DOT TYPE LAB <small>／ ドット文字の実験室</small></span></div>
+    <button id="toggle-controls" class="quiet-button" type="button" aria-controls="controls" aria-expanded="true">設定を隠す ↗</button>
+  </header>
+  <main>
+    <section id="controls" class="control-panel" aria-labelledby="controls-title">
+      <div class="panel-heading"><span class="eyebrow">01 / EXPERIMENT</span><h1 id="controls-title">文字を、点で描く。</h1><p>入力した言葉をドットの濃淡や抜けで表現します。値を動かすと、その場で変わります。</p></div>
+      <label class="text-label" for="phrase">表示する文字</label>
+      <textarea id="phrase" rows="2" maxlength="24" spellcheck="false">東京大学
+制作展</textarea>
+      <div class="mode-group" role="group" aria-label="文字の表現方法">
+        <button class="mode-button is-active" type="button" data-mode="dark" aria-pressed="true">濃いドット</button>
+        <button class="mode-button" type="button" data-mode="negative" aria-pressed="false">ドットを抜く</button>
+      </div>
+      <button id="reveal-toggle" class="reveal-button" type="button" aria-pressed="true">文字を消す ◌</button>
+      <div class="sliders">
+        <label for="spacing"><span>ドットの間隔</span><output id="spacing-value" for="spacing">9 px</output></label>
+        <input id="spacing" type="range" min="7" max="24" value="9">
+        <label for="size"><span>ドットの大きさ</span><output id="size-value" for="size">1.9 px</output></label>
+        <input id="size" type="range" min="0.8" max="4" step="0.1" value="1.9">
+        <label for="base"><span>周囲の濃さ</span><output id="base-value" for="base">17%</output></label>
+        <input id="base" type="range" min="3" max="75" value="17">
+        <label for="contrast"><span>文字の濃さ</span><output id="contrast-value" for="contrast">96%</output></label>
+        <input id="contrast" type="range" min="10" max="100" value="96">
+        <label for="font-size"><span>文字の大きさ</span><output id="font-size-value" for="font-size">138 px</output></label>
+        <input id="font-size" type="range" min="48" max="240" step="2" value="138">
+        <label for="gaps"><span>ドットの抜け</span><output id="gaps-value" for="gaps">4%</output></label>
+        <input id="gaps" type="range" min="0" max="45" value="4">
+      </div>
+      <div class="motion-heading"><span class="eyebrow">02 / MOTION</span><button id="motion-toggle" class="quiet-button" type="button" aria-pressed="false">一時停止 Ⅱ</button></div>
+      <p class="motion-description">小さなピクセルが隣同士でつながったり離れたりします。</p>
+      <div class="sliders">
+        <label for="motion-density"><span>つながりの量</span><output id="motion-density-value" for="motion-density">24%</output></label>
+        <input id="motion-density" type="range" min="0" max="100" value="24">
+        <label for="motion-speed"><span>変化の速さ</span><output id="motion-speed-value" for="motion-speed">35%</output></label>
+        <input id="motion-speed" type="range" min="0" max="100" value="35">
+      </div>
+      <div class="palette-group"><span>色</span><div class="palettes" role="group" aria-label="配色">
+        <button class="swatch is-active" type="button" data-palette="green" aria-label="グリーン" aria-pressed="true" style="--swatch:#5a9067"></button>
+        <button class="swatch" type="button" data-palette="blue" aria-label="ブルー" aria-pressed="false" style="--swatch:#648bad"></button>
+        <button class="swatch" type="button" data-palette="ink" aria-label="モノクロ" aria-pressed="false" style="--swatch:#4d5e5b"></button>
+      </div></div>
+      <div class="panel-actions"><button id="randomize" class="quiet-button" type="button">抜け方を変える ↻</button><button id="save" class="save-button" type="button">PNGで保存 ↓</button></div>
+    </section>
+  </main>
+  <div class="canvas-caption" aria-hidden="true"><span>LIVE PREVIEW</span><span>DOTS → TYPE</span></div>
+  <p id="status" class="visually-hidden" role="status"></p>
+</body>
+</html>

@@ -8,7 +8,7 @@ import announce from '../sections/announce.html?raw';
 import members from '../sections/members.html?raw';
 import access from '../sections/access.html?raw';
 import archives from '../sections/archives.html?raw';
-import { navigation } from '../content/navigation';
+import { populateNavigation } from '../components/navigation';
 import { sectionHeading } from '../components/section-heading';
 import { fragment, qsa } from '../lib/dom';
 
@@ -26,14 +26,5 @@ export function renderApp(root: HTMLElement): void {
       ),
     );
   }
-  for (const container of qsa('[data-navigation]', root)) {
-    for (const item of navigation.filter(
-      (item) => container.dataset.navigation !== 'header' || item.header,
-    )) {
-      const link = document.createElement('a');
-      link.href = `#${item.id}`;
-      link.textContent = item.label;
-      container.append(link);
-    }
-  }
+  populateNavigation(root);
 }

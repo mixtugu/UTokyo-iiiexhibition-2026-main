@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.45" fill="#82a98a" opacity=".48"/>
+    </pattern>
+    <pattern id="denser" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2" fill="#78a485" opacity=".28"/>
+    </pattern>
+    <mask id="interruptions">
+      <rect width="1200" height="720" fill="white"/>
+      <path d="M98 120c45-27 87-27 103-4 13 19-4 44-37 52-37 9-53-5-80 7-21 10-50-16-39-30 8-11 32-11 53-25Z" fill="black"/>
+      <path d="M1046 36c38-11 70 0 75 22 5 20-12 37-44 38-27 1-39-8-56-3-31 8-48-15-31-31 10-10 33-18 56-26Z" fill="black"/>
+      <path d="M70 561c32-24 70-24 89-3 21 24-2 54-40 58-37 4-64 31-91 7-17-16 13-40 42-62Z" fill="black"/>
+      <path d="M1090 517c44-29 74-26 94-6 19 20 4 43-30 50-25 5-31 25-61 26-30 1-60-22-46-43 7-12 23-14 43-27Z" fill="black"/>
+      <circle cx="1134" cy="145" r="17" fill="black"/>
+      <circle cx="143" cy="229" r="13" fill="black"/>
+      <circle cx="67" cy="443" r="15" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="1200" height="720" fill="#d4e5d2"/>
+  <g mask="url(#interruptions)">
+    <rect width="1200" height="720" fill="url(#dots)"/>
+    <path d="M0 509c64-48 139-31 181-2 49 33 83 123 190 123 57 0 101-21 161 1 66 25 108 87 198 87H0Z" fill="url(#denser)"/>
+    <path d="M996 0h204v445c-63-38-98-98-138-163-40-64-76-122-66-282Z" fill="url(#denser)"/>
+  </g>
+  <path d="M34 282C88 179 176 99 271 68 367 37 457 42 509 97 618 62 723 65 820 139c132-10 288 11 369 91 25 25 26 59 7 75-30 25-113 12-204-8-37-8-71-14-99-19-5 126-33 258-118 327-83 67-200 83-255-29-64 95-137 143-227 143-99 0-130-68-93-184 10-33 24-64 41-96-77 70-155 56-204 8-46-44-59-108-3-165Z" fill="#fff"/>
+  <path d="M821 281c113-59 253-44 379 22v330c-64 26-132 16-200-16-76-36-133-40-206-1-40-83-30-267 27-335Z" fill="#fff"/>
+</svg>

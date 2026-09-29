@@ -1,0 +1,335 @@
+/* Layout pass against Figma's “最新版ページ” (1440px artboard).
+   Keep spacing and type scales here so later feedback can be applied centrally. */
+:root{
+  --latest-gutter:clamp(24px,5.55vw,80px);
+  --latest-content:1184px;
+  --latest-body:clamp(15px,1.18vw,17px);
+  --latest-green:#2da426;
+  --latest-dark:#283227;
+}
+
+/* TOP: the design places black lettering and the green motif on white. */
+#top.hero,.birth-pin{background:#fff!important}
+.hero-title-ja,.hero-venue,.hero-dates,.hero-wordmark{filter:brightness(0)}
+.has-particle-logo .hero-brush{opacity:.9}
+.top-header{padding:24px var(--latest-gutter)}
+.top-header .brand{width:52px;height:52px}
+.top-header nav{width:min(386px,39vw);display:flex;flex-direction:column;align-items:stretch;gap:0}
+.top-header nav a{min-height:27px;height:27px;width:100%;padding:5px 0;justify-content:flex-start}
+.top-header nav a:nth-child(1){padding-left:0}
+.top-header nav a:nth-child(2){padding-left:18%}
+.top-header nav a:nth-child(3){padding-left:36%}
+.top-header nav a:nth-child(4){padding-left:54%}
+.top-header nav a:nth-child(5){padding-left:40%}
+.top-header nav a:nth-child(6){padding-left:25%}
+.top-header nav img{width:auto;max-width:100%;height:13px;object-fit:contain}
+.hero-scroll{color:#052d03}
+
+/* CONCEPT: the Figma copy is 20px on desktop, with generous line spacing. */
+#concept .story-copy{max-width:min(1075px,100%)}
+#concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{
+  font-family:'Zen Kaku Gothic Antique',sans-serif!important;
+  font-size:clamp(17px,1.39vw,20px);
+  font-weight:700;
+  line-height:3.87;
+  letter-spacing:.089em;
+  color:#fffdf5;
+  text-shadow:0 1px 10px #173a2840;
+}
+
+/* WORKS: retain the interactive orbit, but use the Figma type and proportions. */
+#works{position:relative;isolation:isolate;min-height:950px;padding:75px var(--latest-gutter) 28px;overflow:hidden;background:#fff}
+#works::after{content:'WORKS';position:absolute;right:-.5vw;bottom:-.14em;z-index:0;color:#e4f7e1;font:400 clamp(88px,11vw,150px)/1 'Barlow',sans-serif;letter-spacing:-.055em;pointer-events:none}
+#works>.wave-gallery{position:relative;z-index:1}
+#works>.section-top{font-size:13px;letter-spacing:.08em}
+#works .wave-toolbar{margin:20px auto 0;max-width:1280px}
+#works .wave-toolbar button{font-size:13px;line-height:1.4;min-height:44px}
+#works .wave-filters{gap:5px}
+#works .wave-filters button{padding:7px 14px;border:0!important;border-radius:0!important}
+#works .wave-filters button[aria-pressed=true]{background:var(--latest-green);color:#fff}
+#works .wave-view{margin-left:auto;padding:7px 12px;background:none;border:0!important;border-radius:0;font-weight:500}
+#works .wave-view::after{content:'●';margin-left:9px;color:#d9e1dc;font-size:8px}
+#works .spatial-gallery .wave-stage{height:clamp(520px,58svh,675px);margin:0 calc(-1 * var(--latest-gutter));overflow:hidden}
+#works .works-logo-guide{display:none}
+#works .spatial-gallery .wave-card{height:240px;aspect-ratio:1;border:0;border-radius:0;background:#fff;box-shadow:none}
+#works .spatial-gallery .wave-card img{height:100%;object-fit:cover}
+#works .spatial-gallery .wave-card small{display:none}
+#works .spatial-gallery .wave-caption{margin:0;min-height:82px}
+#works .spatial-gallery .wave-caption>span{font-size:14px;letter-spacing:.02em}
+#works .spatial-gallery .wave-caption h3{font-size:clamp(27px,2.36vw,34px);font-weight:700}
+#works .spatial-gallery .wave-controls{margin:0 0 14px}
+#works .spatial-gallery .wave-count{font:400 16px 'Barlow',sans-serif;letter-spacing:0}
+#works .wave-list.person-list{margin-top:26px}
+
+/* ANNOUNCE: 360px / 600px columns and a smaller title, as in the artboard. */
+#announce.announce{--announce-gap:64px;--announce-line:#ffffff55;background:var(--latest-dark);color:#fff;padding:34px var(--latest-gutter) 0}
+#announce .announce-pin>.section-top{max-width:var(--latest-content);margin:auto}
+#announce .announce-chapter{width:min(1024px,100%);margin:0 auto;grid-template-columns:minmax(0,360px) minmax(0,600px);gap:var(--announce-gap);padding:64px 0;border:0}
+#announce .announce-index{font-size:12px;line-height:1;letter-spacing:.14em;margin-bottom:30px}
+#announce .announce-intro{max-width:360px}
+#announce .announce-intro h3{margin:0 0 26px;font:600 clamp(31px,2.5vw,36px)/1.13 'Barlow',sans-serif;letter-spacing:.005em}
+#announce .announce-talk h3 br{display:none}
+#announce .announce-intro p{max-width:360px;font-size:15px;font-weight:500;line-height:1.96;letter-spacing:.035em}
+#announce .announce-list{min-height:360px;display:flex;flex-direction:column;border-top:0}
+#announce .event-notice{grid-template-columns:92px minmax(0,1fr) 18px;gap:20px;min-height:73px;padding:22px 0;font-size:13px;font-weight:500;line-height:1.5}
+#announce .event-notice time,#announce .notice-date{font-size:13px}
+#announce .talk-detail-action{align-self:flex-end;margin-top:auto;min-height:46px;padding:8px 16px;background:var(--latest-green);border:0;border-radius:0;color:#fff;font:700 16px/1.5 'Zen Kaku Gothic Antique',sans-serif}
+#announce .talk-detail-action:hover,#announce .talk-detail-action:focus-visible{background:#278820}
+#announce .fund-card{border:0;padding-top:43px}
+#announce .fund-card figure{aspect-ratio:600/344;max-height:none}
+#announce .fund-card img{filter:none}
+#announce .fund-card-bottom{padding:24px 0;border:0;align-items:flex-start}
+#announce .fund-card-bottom p{max-width:335px;margin:0;font:700 13px/1.6 'Zen Kaku Gothic Antique',sans-serif}
+#announce .fund-card-bottom a{min-height:46px;gap:0;padding:8px 16px;border:0;border-radius:0;background:var(--latest-green);color:#fff;font-size:16px;font-weight:700}
+#announce .fund-card-bottom a span{display:none}
+#announce .fund-card-bottom a:hover,#announce .fund-card-bottom a:focus-visible{background:#278820;color:#fff}
+
+/* ACCESS: map and date share the left column; location details stay on the right. */
+#access.access{position:relative;min-height:760px;padding:55px var(--latest-gutter) 110px;background:#fff;overflow:hidden}
+#access::after{content:'ACCESS';position:absolute;left:-.6vw;bottom:-.12em;z-index:0;color:#e5f8e3;font:400 clamp(76px,9vw,132px)/1 'Barlow',sans-serif;letter-spacing:-.045em;pointer-events:none}
+#access .access-information{position:relative;z-index:1}
+#access .access-information{width:min(var(--latest-content),100%);margin:0 auto;grid-template-columns:minmax(0,523fr) minmax(0,476fr);gap:clamp(44px,5.75vw,83px);align-items:start}
+#access .access-left{min-width:0}
+#access .access-map{width:min(100%,523px);aspect-ratio:523/258;background:transparent}
+#access .access-map img{position:static;width:100%;height:100%;max-width:100%;object-fit:contain}
+#access .access-date{margin:34px 0 0 47px}
+#access .access-details{padding-top:8px;min-width:0}
+#access .access-block{padding:24px 0;border-color:#304a4c29}
+#access .access-block h3{margin:0 0 14px;color:#000;font-size:22px;font-weight:500}
+#access .access-block p,#access .access-block li{font-size:var(--latest-body);font-weight:400;line-height:2}
+#access .access-block ul{margin-top:18px}
+#access .access-contact{overflow-wrap:anywhere}
+
+/* MEMBERS / ARCHIVES keep their existing transition; align their framing. */
+.journey-pin::before{background:radial-gradient(circle,#aab2ae28 1px,transparent 1.1px) center / clamp(66px,7.6vw,108px) clamp(66px,7.6vw,108px);opacity:var(--member-opacity,1)}
+#members::before{opacity:.16}
+.journey-pin .particle-original,.journey-pin .particle-field{width:min(1311px,96vw)}
+.journey-pin #archives .archive-stage{left:0;top:54%;width:min(1348px,100%);height:min(570px,66svh);transform:translateY(-50%)}
+#archives .archive-tabs{gap:5px;min-height:52px}
+#archives .archive-tabs button{border:0;padding:8px 16px;font-size:13px;font-weight:700}
+#archives .archive-tabs button[aria-pressed=true]{background:#54bc4e;color:#fff}
+#archives .archive-hint{font-size:12px}
+#archives .archive-column-year{font-size:16px}
+
+@media(max-width:900px){
+ .top-header nav{width:min(50vw,340px)}
+ #announce.announce{--announce-gap:36px}
+ #announce .announce-chapter{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)}
+ #access .access-information{gap:36px}
+ #access .access-date{margin-left:0}
+}
+@media(max-width:700px){
+ .top-header{padding:16px 18px}
+ .top-header .brand{width:50px;height:50px}
+ .top-header nav{width:58vw;gap:0}
+ .top-header nav a{height:25px;min-height:25px;padding:4px 0}
+ .top-header nav img{height:11px}
+ .hero-title-ja{filter:brightness(0)}
+ #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(16px,4.15vw,19px);line-height:2.75;letter-spacing:.06em}
+ #works{min-height:0;padding:40px 6% 30px}
+ #works .spatial-gallery .wave-stage{height:540px;margin-inline:-6.8%}
+ #works .wave-toolbar button{font-size:12px}
+ #works .wave-filters button{padding-inline:8px}
+ #works .spatial-gallery .wave-card{height:240px}
+ #announce.announce{padding:25px 6% 0}
+ #announce .announce-chapter{grid-template-columns:1fr;gap:28px;padding:36px 0}
+ #announce .announce-intro h3{font-size:34px}
+ #announce .announce-intro p{font-size:15px}
+ #announce .announce-list{min-height:260px}
+ #announce .talk-detail-action{margin-top:28px}
+ #announce .fund-card{padding-top:0}
+ #announce .fund-card-bottom{gap:20px;flex-wrap:wrap}
+ #announce .fund-card-bottom a{font-size:15px}
+ #access.access{padding:40px 6% 96px;min-height:0}
+ #access .access-information{grid-template-columns:1fr;gap:30px}
+ #access .access-details{padding-top:0}
+ #access .access-block h3{font-size:20px}
+ #access .access-block p,#access .access-block li{font-size:15px}
+ .journey-pin #archives .archive-stage{left:4%;width:92%;height:min(68svh,570px);top:54%}
+ #archives .archive-tabs button{padding:8px 10px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){#works .wave-card,#announce .talk-detail-action{transition:none}}
+
+
+/* “最新版ページ” is the source of truth for visible copy and desktop geometry. */
+body{font-family:'Zen Kaku Gothic Antique',sans-serif}
+main,footer{max-width:none!important}
+#works [hidden]{display:none!important}
+#access .access-block h3,#access .access-block p,#access .access-block li{font-family:'Zen Kaku Gothic Antique',sans-serif!important}
+#works:has(.is-list-mode){height:auto;min-height:0;padding-bottom:120px}
+#works .is-list-mode .wave-list{position:relative;margin:0;padding-top:180px}
+#works .person-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:18px;padding:76px 24px 110px}
+#works .person-list .person-card__title{position:relative;left:auto;top:auto;width:100%;transform:none;grid-column:1;grid-row:1;font-size:clamp(22px,2.2vw,36px);line-height:1.2}
+#works .person-card__art{position:relative;right:auto;top:auto;width:100%;max-height:none;grid-column:2;grid-row:1;transform:rotate(3deg)}
+#works .person-card:hover .person-card__art,#works .person-card:focus-visible .person-card__art{transform:rotate(0) scale(1.02)}
+body::after{display:none}
+#concept .section-top,#works>.section-top,#announce .section-top,#access>.section-top,#members .section-top,#archives .section-top{display:none!important}
+.hero-scroll{display:none!important}
+.top-header nav img{filter:brightness(0)}
+.birth-pin{background:#fff!important}
+#top.hero{background:linear-gradient(118deg,#e9e9e9 1%,#fff 98%)!important}
+.birth-intro #top{background:transparent!important}
+.hero-particles{opacity:.22}
+.has-particle-logo .hero-brush{opacity:1}
+.concept-liquid::after{background:transparent}
+#concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{text-shadow:none}
+#works .works-orbit-intro,#works .wave-stage-hint,#works .spatial-gallery.is-all-orbit .wave-stage::before{display:none!important}
+#works .wave-toolbar{max-width:1280px}
+#works .wave-toolbar button{min-height:24px}
+#works .wave-filters button{height:24px;padding:2px 16px;font-size:11px;font-weight:700;line-height:20px;letter-spacing:.047em}
+#works .wave-view{font-size:13px}
+#works .spatial-gallery .wave-card{width:240px;height:240px}
+#works .spatial-gallery .wave-card img{width:100%;height:100%}
+#works .spatial-gallery .wave-card:not(.is-current) img{animation:none}
+#works .spatial-gallery .wave-caption{min-height:0;text-align:left}
+#works .spatial-gallery .wave-caption>span{font:700 14px/30px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:0}
+#works .spatial-gallery .wave-caption h3{font:700 34px/1.2 'Barlow',sans-serif;margin:0}
+#works .spatial-gallery .wave-controls button{width:32px;height:30px;border:0;border-radius:0;background:transparent;color:#052d03;font:400 16px 'Barlow',sans-serif}
+#works .spatial-gallery .wave-controls{gap:11px}
+#works::after{content:'';right:0;bottom:0;width:625px;height:136px;background:url('assets/labels/works.svg') no-repeat right bottom;background-size:contain}
+#announce::after{content:'';position:absolute;right:0;bottom:0;width:649px;height:95px;background:url('assets/labels/announce.svg') no-repeat right bottom;pointer-events:none}
+#announce .announce-intro h3{height:auto;margin:30px 0 0;font-size:0;line-height:0}
+#announce .announce-intro h3 img{display:block;max-width:100%;height:auto}
+#announce #talk-heading img{width:264.43px}
+#announce #fund-heading img{width:215.38px}
+#announce .announce-intro p{font:500 15px/29.44px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.5152px}
+#announce .announce-list{height:360px;min-height:0}
+#announce .event-notice{height:73.2px;min-height:73.2px;padding:24px 0;grid-template-columns:92px 400px 18px;gap:20px;font-size:13px}
+#announce .event-notice .notice-title{border-left:0;padding-left:20px}
+#announce .fund-card figure{height:347px}
+#announce .fund-card img{height:344px;object-fit:cover}
+#announce .fund-card figcaption{position:absolute;right:0;bottom:0;background:#fff;color:#052d03;font:600 8px/8px 'Barlow',sans-serif;letter-spacing:.96px;padding:3px 5px}
+#announce .fund-card-bottom p{font-size:13px;line-height:1.45}
+#access::after{content:'';left:-1px;bottom:-12px;width:512px;height:97px;background:url('assets/labels/access.svg') no-repeat left bottom;background-size:contain}
+#members::after{content:'';position:absolute;right:-3px;bottom:0;width:558px;height:90px;background:url('assets/labels/members.svg') no-repeat right bottom;pointer-events:none}
+#archives::before{content:'';position:absolute;left:-8px;top:0;width:645px;height:103px;background:url('assets/labels/archives.svg') no-repeat left top;pointer-events:none}
+#archives .archive-hint{display:none}
+#archives .archive-tabs{gap:5px;min-height:24px}
+#archives .archive-tabs button{height:24px;min-height:24px;padding:2px 16px;border:0!important;color:#000;font:700 11px/20px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:0}
+#archives .archive-tabs button[aria-pressed=true]{background:#54bc4e;color:#fff}
+#archives .archive-column-link::before{background:#173a28;opacity:.27}
+#archives .archive-rail.has-active .archive-column-link:not(.is-active)::before{opacity:.78}
+#contents{min-height:120px;padding:0 40px 24px;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;background:#fff;border:0}
+#contents .footer-social{display:flex;align-items:center}
+#contents .footer-social img{display:block;width:48px;height:48px;object-fit:contain;margin:10px}
+#contents small{display:flex;width:182px;height:28px;align-items:center;justify-content:center;color:#000;font:600 15px/1 'Barlow',sans-serif;letter-spacing:.96px;white-space:nowrap}
+
+@media(min-width:1100px){
+ .top-header{height:172px;padding:24px 0 0 24px}
+ .top-header .brand{width:46.08px;height:51.72px}
+ .top-header nav{width:386px;padding-top:16px;gap:11px}
+ .top-header nav a{width:100%;height:12.74px;min-height:12.74px;padding:0;justify-content:flex-start}
+ .top-header nav a:nth-child(1){padding-left:0}
+ .top-header nav a:nth-child(2){padding-left:69px}
+ .top-header nav a:nth-child(3){padding-left:141px}
+ .top-header nav a:nth-child(4){padding-left:258px}
+ .top-header nav a:nth-child(5){padding-left:199px}
+ .top-header nav a:nth-child(6){padding-left:109px}
+ .top-header nav img{height:12.74px}
+ .hero-art .hero-brush{left:calc(50% - 588px);top:-253px;width:1211px;height:1211px;transform:none;filter:none;object-fit:contain}
+ .hero-title-ja{left:-10px;top:111px;width:246px;height:608px;object-fit:fill}
+ .hero-venue{left:calc(50% - 536px);top:412px;bottom:auto;width:206px;height:137px;object-fit:fill}
+ .hero-dates{right:calc(50% - 661px);top:425px;bottom:auto;width:181px;height:175px;object-fit:fill}
+ .hero-wordmark{right:1px;bottom:0;width:599.5px;height:62.32px;object-fit:fill}
+ #works{height:950px;min-height:950px;padding:0}
+ #works .wave-toolbar{position:absolute;left:80px;right:80px;top:110px;max-width:none;margin:0;height:30px;z-index:5}
+ #works .spatial-gallery .wave-stage{position:absolute;left:0;top:95px;width:100%;height:770px;margin:0;overflow:hidden}
+ #works .spatial-gallery .wave-caption{position:absolute;left:46px;top:790px;display:block;margin:0}
+ #works .spatial-gallery .wave-controls{position:absolute;left:603px;top:897px;margin:0}
+ #announce.announce{position:relative;min-height:1217px;padding:34px 0 0 128px}
+ #announce .announce-chapter{width:1213px;max-width:none;min-height:488px;grid-template-columns:360px 600px;gap:64px;margin:0;padding:64px 96px}
+ #announce .announce-fund{min-height:608px}
+ #announce .announce-intro{height:360px}
+ #announce .announce-fund .announce-intro{height:480px}
+ #announce .announce-intro p{margin:25px 0 0}
+ #announce .announce-fund .announce-intro p{margin-top:60px}
+ #announce .fund-card{padding-top:43.52px}
+ #access.access{height:762px;min-height:762px;padding:55px 128px 110px}
+ #access .access-information{width:1184px;max-width:100%;margin:0;grid-template-columns:645px 476.164px;gap:0}
+ #access .access-left{padding-top:46px;padding-left:39px}
+ #access .access-map{width:523px;height:258px;aspect-ratio:auto}
+ #access .access-date{width:476.164px;margin:34px 0 0 47px}
+ #access .access-details{width:476.164px;padding-top:55px}
+ #access .access-block p,#access .access-block li{font-size:17px;line-height:34px}
+ .journey-pin #archives .archive-stage{left:0;top:138px;width:1348px;height:564px;transform:none;margin:0}
+ #archives .archive-tabs{padding-left:47px;margin-bottom:40px}
+ #archives .archive-viewport{height:500px;flex:none}
+}
+
+@media(max-width:1099px){
+ #works .spatial-gallery .wave-controls{margin:10px auto 20px}
+ #announce .event-notice{grid-template-columns:92px minmax(0,1fr) 18px}
+ #access .access-left{padding-top:0}
+ #archives::before{width:min(645px,85vw);background-size:contain}
+}
+@media(max-width:700px){
+ .top-header nav{display:grid;width:min(220px,58vw);grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 6px;padding-top:0}
+ .top-header nav a,.top-header nav a:nth-child(n){width:auto;min-width:0;min-height:30px;height:30px;padding:4px 0;justify-content:flex-start}
+ .top-header nav img{max-width:100%;height:11px;object-position:left center}
+ .hero-composition::before{content:'';position:absolute;left:-5px;top:180px;width:140px;height:430px;background:url('assets/top/title-ja.svg') no-repeat left center;background-size:contain;filter:brightness(0)}
+ .hero-title-ja{visibility:hidden}
+ #works .wave-toolbar button{min-height:44px}
+ #works .spatial-gallery .wave-card{width:240px;height:240px}
+ #works::after{width:min(625px,80vw);background-size:contain}
+ #announce .announce-intro h3{margin-top:30px}
+ #announce .announce-chapter>*{min-width:0}
+ #announce .event-notice{height:auto;min-height:73px;grid-template-columns:78px minmax(0,1fr) 16px;gap:12px}
+ #announce .event-notice .notice-title{padding-left:8px}
+ #announce .fund-card,#announce .fund-card figure,#announce .fund-card-bottom{width:100%;min-width:0;max-width:100%}
+ #announce .fund-card figure{height:auto;aspect-ratio:600/344}
+ #announce .fund-card img{height:100%}
+ #announce::after{width:min(649px,80vw);background-size:contain}
+ #access .access-map{width:100%;height:auto;aspect-ratio:523/258}
+ #access .access-date{margin-left:0}
+ #access::after{width:min(512px,80vw);background-size:contain}
+ #members::after{width:min(558px,75vw);background-size:contain}
+ #contents{padding-right:16px}
+}
+
+/* Keep the 1440 reference proportions without capping the page width. */
+.sliding-selection{position:relative;isolation:isolate}
+.selection-highlight{position:absolute;left:0;top:0;z-index:-1;background:#54bc4e;pointer-events:none;transition:transform .32s cubic-bezier(.22,1,.36,1),width .32s cubic-bezier(.22,1,.36,1),height .32s}
+#works .sliding-selection button,#archives .sliding-selection button{background:transparent!important;transition:color .25s}
+@media(prefers-reduced-motion:reduce){.selection-highlight{transition:none}}
+#announce .announce-chapter>*{min-width:0}
+#announce .fund-card,#announce .fund-card figure,#announce .fund-card img,#announce .fund-card-bottom{width:100%;max-width:100%;min-width:0}
+#detail-image{max-height:none}
+@media(min-width:1100px){
+ .hero-art .hero-brush{left:9.17%;top:-17.57vw;width:84.1vw;height:84.1vw}
+ .hero-title-ja{left:-.69vw;top:7.71vw;width:17.08vw;height:42.22vw}
+ .hero-venue{left:12.78%;top:28.61vw;width:14.31vw;height:9.51vw}
+ .hero-dates{right:4.1%;top:29.51vw;width:12.57vw;height:12.15vw}
+ .hero-wordmark{width:41.63vw;height:4.33vw}
+ #works .wave-toolbar{left:5.56%;right:5.56%}
+ #works .spatial-gallery .wave-controls{left:41.875%}
+ #works .spatial-gallery .wave-caption{left:3.19%;max-width:40%;overflow-wrap:anywhere}
+ #announce.announce{padding-left:8.89%;padding-right:6.87%}
+ #announce .announce-chapter{width:100%;grid-template-columns:minmax(0,360fr) minmax(0,600fr);gap:clamp(28px,4.44vw,80px);padding-inline:clamp(32px,6.67vw,110px)}
+ #announce .announce-chapter>*{min-width:0}
+ #announce .event-notice{grid-template-columns:92px minmax(0,1fr) 18px;height:auto}
+ #announce .fund-card,#announce .fund-card figure,#announce .fund-card img{width:100%;max-width:100%}
+ #access.access{height:auto;padding-inline:8.89%}
+ #access .access-information{width:100%;grid-template-columns:minmax(0,645fr) minmax(0,476fr)}
+ #access .access-left{padding-left:2.71vw;padding-right:3vw;min-width:0}
+ #access .access-map{width:100%;height:auto;aspect-ratio:523/258}
+ #access .access-date{width:auto;margin-left:3.26vw}
+ #access .access-details{width:100%;min-width:0}
+ .journey-pin #archives .archive-stage{width:93.61%;height:min(564px,74svh);top:18%;}
+ #archives .archive-viewport{height:auto;flex:1;min-height:0}
+}
+#detail{box-sizing:border-box;width:min(1080px,calc(100vw - 32px));max-width:none;max-height:calc(100svh - 32px);min-height:min(608px,90svh);padding:64px;background:#f8f8f8;border:0;box-shadow:0 4px 7.55px #0000000d;color:#000}
+#detail .detail-grid{display:grid;grid-template-columns:minmax(0,360fr) minmax(0,528fr);gap:64px;align-items:start}
+#detail-image{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+#detail .detail-copy{display:flex;flex-direction:column;gap:16px;min-width:0}
+#detail .detail-type{display:flex;align-items:center;gap:8px;font:500 13px/29.44px 'Zen Kaku Gothic Antique',sans-serif}
+#detail .detail-type span{padding:2px 16px;border:1px solid #54bc4e;background:#fff;color:#54bc4e;font-size:11px;line-height:20px}
+#detail-title{margin:0;font:500 24px/29.44px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.5152px;overflow-wrap:anywhere}
+#detail-description{margin:0;font:500 15px/29.44px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.5152px;overflow-wrap:anywhere}
+#detail .detail-author{margin:0;color:#4c4c4c;font:400 15px/1.6 'Barlow','Zen Kaku Gothic Antique',sans-serif;letter-spacing:1.68px}
+#detail-number,#detail #next-work{display:none}
+#detail .close-detail{position:absolute;right:16px;top:12px;min-height:36px;background:transparent;color:#052d03}
+@media(max-width:700px){
+ #works .is-list-mode .wave-list{padding-top:32px}
+ #detail{padding:56px 24px 32px}
+ #detail .detail-grid{grid-template-columns:1fr;gap:28px}
+}

@@ -1,0 +1,174 @@
+/* Site-wide layout contracts. Backgrounds/scroll pins remain full bleed. */
+header {
+  height: var(--header-height);
+  padding-inline: var(--content-inset);
+}
+section,
+.news,
+.works,
+.access,
+.members,
+.archives {
+  padding-block: var(--section-space);
+  padding-inline: var(--content-inset);
+}
+.hero,
+.birth-intro #top {
+  padding-inline: var(--content-inset);
+}
+#concept.concept-story {
+  padding: 0;
+}
+.story-content {
+  padding-top: var(--section-space);
+  padding-inline: var(--content-inset);
+}
+.journey-pin > section {
+  padding: var(--section-space) var(--content-inset);
+}
+#contents {
+  padding: var(--footer-space) var(--content-inset);
+}
+.section-top {
+  gap: var(--content-gap);
+  flex-wrap: wrap;
+}
+.donation-content {
+  padding-block: var(--heading-gap);
+}
+.donation-content h2 {
+  margin-bottom: var(--heading-gap);
+}
+.donation-panel {
+  padding-block: var(--heading-gap);
+  gap: var(--content-gap);
+}
+#announce .donation-panel p {
+  max-width: var(--copy-max-width);
+  margin-bottom: var(--space-3);
+}
+#access .access-information {
+  gap: var(--content-gap);
+  margin-top: var(--heading-gap);
+}
+#access .access-block {
+  padding-block: var(--space-3);
+}
+#access .access-block h3 {
+  margin-bottom: var(--space-2);
+}
+#contents .footer-nav {
+  gap: var(--content-gap);
+  padding-block: var(--space-2);
+}
+#works .wave-toolbar {
+  gap: var(--content-gap);
+  margin-top: var(--heading-gap);
+}
+.wave-search,
+.wave-search label {
+  gap: var(--space-2);
+}
+.wave-search {
+  margin-top: var(--space-3);
+}
+.wave-list {
+  gap: var(--grid-gap);
+  margin-top: var(--heading-gap);
+}
+.wave-stage {
+  /* Geometry already adapts to clientWidth; percentage negative margins could
+     escape the shared gutter near the mobile/tablet boundary. */
+  margin-inline: 0;
+}
+
+/* Shared operation target. Artwork tiles keep their artistic size; the list
+   and keyboard gallery offer the equivalent full-size operation path. */
+nav a,
+.footer-nav a,
+.footer-small a,
+.brand,
+.footer-brand,
+.text-link,
+.close-detail,
+.donation-panel a,
+#archives .archive-catalog a,
+#works .wave-toolbar button,
+.wave-controls button,
+.spatial-back,
+.ui-button,
+.ui-link {
+  min-height: var(--control-min-size);
+  min-width: var(--control-min-size);
+}
+nav a,
+.footer-nav a,
+.footer-small a,
+.donation-panel a,
+.ui-button,
+.ui-link {
+  display: inline-flex;
+  align-items: center;
+}
+#works .wave-toolbar button,
+.wave-search input,
+.spatial-back,
+.ui-button,
+.ui-link {
+  padding: var(--control-padding-block) var(--control-padding-inline);
+}
+.menu-link {
+  width: max(var(--menu-size), var(--control-min-size));
+  height: max(var(--menu-size), var(--control-min-size));
+}
+#archives .archive-catalog a {
+  padding: var(--control-padding-block) var(--space-1);
+}
+.wave-search input {
+  min-height: var(--control-min-size);
+}
+.ui-button,
+.ui-link {
+  font: inherit;
+  font-size: var(--type-control);
+  line-height: var(--leading-note);
+  justify-content: center;
+  gap: var(--space-1);
+  color: var(--ink);
+  border: 1px solid currentColor;
+  background: transparent;
+  border-radius: var(--control-radius);
+  text-decoration: none;
+}
+.ui-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ui-link {
+  border: 0;
+  border-bottom: 1px solid;
+  border-radius: 0;
+}
+.detail-grid > img {
+  aspect-ratio: var(--work-image-ratio);
+  object-fit: var(--work-image-fit);
+  object-position: var(--work-image-position);
+}
+@media (width < theme(--breakpoint-tablet)) {
+  #works .wave-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (width < theme(--breakpoint-desktop)) and (width >= theme(--breakpoint-tablet)) {
+  header nav {
+    gap: var(--space-1);
+    font-size: var(--type-note);
+  }
+  header .brand {
+    gap: var(--space-1);
+  }
+  header .brand span {
+    font-size: var(--type-note);
+  }
+}
