@@ -1,10 +1,10 @@
-# Temporary reference photography
+# 仮の参考写真
 
-Source: https://layrid.tomoyaokada.com/
+出典: https://layrid.tomoyaokada.com/
 
-image01.webp through image05.webp are the reference site's category backgrounds,
-copied at the user's request for this local visual prototype. No license or
-publication permission is assumed. Obtain permission or replace before release.
+image01.webp から image05.webp は参考サイトのカテゴリ別背景画像で、
+このローカルビジュアルプロトタイプのためにユーザーの依頼で複製したものです。ライセンスや
+掲載許可は確認していません。公開前に許可を取得するか、別の素材に差し替えてください。
 
-The transition in concept-liquid.js is an independently written approximation,
-not the reference site's original source code.
+concept-liquid.js のトランジションは独自に実装した近似表現であり、
+参考サイトの元のソースコードではありません。

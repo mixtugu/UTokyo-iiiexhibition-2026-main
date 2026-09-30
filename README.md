@@ -1,14 +1,14 @@
 # iii Exhibition 2026
 
-현재 메인 화면은 `reference/preview.html` 통합판을 재현합니다. `npm run dev` 후 <http://127.0.0.1:4323/>에서 확인하세요. 원본의 스타일·소재·애니메이션을 적용했으며, Storybook의 **Reference → Exhibition**에서도 확인할 수 있습니다. 동기화 방법과 비교 검증은 [레퍼런스 재현 안내](docs/reference-reproduction.md)를 참고하세요.
+現在のメイン画面は `reference/preview.html` 統合版を再現しています。`npm run dev` 実行後 <http://127.0.0.1:4323/> で確認してください。オリジナルのスタイル・素材・アニメーションを適用しており、Storybook の **Reference → Exhibition** でも確認できます。同期方法と比較検証については [リファレンス再現ガイド](docs/reference-reproduction.md) を参照してください。
 
-아래의 컴포넌트·토큰 구조 설명은 보존된 이전 구현에 관한 내용입니다. 현재 메인 화면의 실행 경로는 위 안내를 기준으로 합니다.
+以下のコンポーネント・トークン構成の説明は、以前の実装を保存したものです。現在のメイン画面の実行方法は上記の案内を基準としてください。
 
-東京大学制作展 디자인·인터랙션 프로토타입입니다. **Node.js + TypeScript + Tailwind CSS + Vite**를 사용하며, 기존 통합 화면의 콘텐츠와 입자·스크롤 효과를 유지합니다. 브라우저 코드는 프레임워크에 의존하지 않는 TypeScript DOM 컴포넌트입니다. Node.js는 개발 서버, 빌드 및 검증에 사용하며 별도 API 서버는 없습니다.
+東京大学制作展のデザイン・インタラクションプロトタイプです。**Node.js + TypeScript + Tailwind CSS + Vite** を使用し、既存の統合画面のコンテンツとパーティクル・スクロール効果を維持しています。ブラウザコードはフレームワークに依存しない TypeScript の DOM コンポーネントです。Node.js は開発サーバー、ビルド、検証に使用し、別途 API サーバーはありません。
 
-## 시작하기
+## はじめに
 
-Node.js 24 사용을 권장합니다 (`.nvmrc`).
+Node.js 24 の使用を推奨します（`.nvmrc`）。
 
 ```sh
 nvm use
@@ -16,69 +16,69 @@ npm ci
 npm run dev
 ```
 
-<http://127.0.0.1:4323/>를 엽니다. `/preview.html`도 같은 화면을 제공합니다. `nvm`을 사용하지 않으면 Node.js 24를 설치한 후 `npm ci`부터 실행합니다. HTML 직접 실행이나 소스 폴더의 Python 서버는 TypeScript를 처리하지 못하므로 Vite를 사용하세요.
+<http://127.0.0.1:4323/> を開きます。`/preview.html` でも同じ画面を確認できます。`nvm` を使用しない場合は Node.js 24 をインストールしてから `npm ci` を実行してください。HTML の直接実行やソースフォルダの Python サーバーは TypeScript を処理できないため、Vite を使用してください。
 
-## 디자인 조정과 컴포넌트 카탈로그
+## デザイン調整とコンポーネントカタログ
 
-공통 디자인 설정은 [`src/design/tokens.css`](src/design/tokens.css)에 모았습니다. 좌우 여백, 최대폭, 8px 간격, 글자 크기·행간, 반응형 기준, 조작 영역, 이미지 크롭을 수정할 수 있습니다.
+共通のデザイン設定は [`src/design/tokens.css`](src/design/tokens.css) にまとめられています。左右の余白、最大幅、8px 間隔、文字サイズ・行間、レスポンシブ基準、操作領域、画像クロップを変更できます。
 
 ```sh
 npm run storybook
 ```
 
-<http://127.0.0.1:6006/>에서 실제 컴포넌트와 섹션을 확인하고 `Design / Tokens`의 Controls로 임시 조정합니다. 자세한 사용법은 [디자인 설정·Storybook 안내](docs/design-system.md)를 확인하세요.
+<http://127.0.0.1:6006/> で実際のコンポーネントとセクションを確認し、`Design / Tokens` の Controls で一時的に調整できます。詳しい使い方は [デザイン設定・Storybook ガイド](docs/design-system.md) を確認してください。
 
-## 명령어
+## コマンド
 
-| 명령                      | 용도                                            |
+| コマンド                  | 用途                                             |
 | ------------------------- | ----------------------------------------------- |
-| `npm run dev`             | 개발 서버와 변경 사항 자동 반영                 |
-| `npm run typecheck`       | 엄격한 TypeScript 검사                          |
-| `npm run build`           | 타입 검사 후 `dist/` 정적 사이트 생성           |
-| `npm run preview`         | 빌드한 사이트를 로컬에서 확인                   |
-| `npm run format`          | 소스·문서 형식 정리                             |
-| `npm run format:check`    | 형식 검사                                       |
-| `npm test`                | 빌드 결과를 대상으로 Playwright 브라우저 테스트 |
-| `npm run storybook`       | 컴포넌트 카탈로그 개발 서버 (6006)              |
-| `npm run storybook:build` | 카탈로그 정적 빌드 (`storybook-static/`)        |
-| `npm run test:storybook`  | 빌드한 카탈로그 브라우저 검사                   |
-| `npm run check`           | 형식·타입·빌드·브라우저 검사                    |
+| `npm run dev`             | 開発サーバーと変更内容の自動反映                 |
+| `npm run typecheck`       | 厳格な TypeScript チェック                       |
+| `npm run build`           | 型チェック後に `dist/` 静的サイトを生成          |
+| `npm run preview`         | ビルドしたサイトをローカルで確認                 |
+| `npm run format`          | ソース・ドキュメントの整形                       |
+| `npm run format:check`    | 整形チェック                                     |
+| `npm test`                | ビルド結果を対象にした Playwright ブラウザテスト |
+| `npm run storybook`       | コンポーネントカタログ開発サーバー（6006）       |
+| `npm run storybook:build` | カタログの静的ビルド（`storybook-static/`）      |
+| `npm run test:storybook`  | ビルドしたカタログのブラウザ検査                 |
+| `npm run check`           | 整形・型・ビルド・ブラウザ検査                   |
 
-테스트 최초 실행 전 `npx playwright install chromium`을 실행합니다. Linux CI에서는 `npx playwright install --with-deps chromium`을 사용합니다.
+テストの初回実行前に `npx playwright install chromium` を実行してください。Linux CI では `npx playwright install --with-deps chromium` を使用します。
 
-## 구조
+## 構成
 
 ```text
 src/
-  app/          화면 구성
-  components/   공통 제목, 카드, 헤더·푸터, 모달 마크업
-  design/       8px 디자인 토큰, 공통 레이아웃 계약
-  stories/      Storybook 컴포넌트·상태·설정 예제
-  content/      작품 데이터, 내비게이션, 아카이브 폴백·검증
+  app/          画面構成
+  components/   共通タイトル、カード、ヘッダー・フッター、モーダルマークアップ
+  design/       8px デザイントークン、共通レイアウト契約
+  stories/      Storybook コンポーネント・状態・設定サンプル
+  content/      作品データ、ナビゲーション、アーカイブフォールバック・検証
   features/     works, archives, hero, concept, members, scroll
-  lib/          공통 DOM·Canvas·수학 함수
-  sections/     섹션별 정적 콘텐츠
-  styles/       Tailwind 진입점, 기본 디자인, 타이포그래피
-  main.ts       명시적인 초기화 순서
-  types.ts      콘텐츠 타입
+  lib/          共通 DOM・Canvas・数学関数
+  sections/     セクション別の静的コンテンツ
+  styles/       Tailwind エントリーポイント、基本デザイン、タイポグラフィ
+  main.ts       明示的な初期化順序
+  types.ts      コンテンツ型
 public/
-  assets/       이미지, 아카이브 JSON, 출처 문서
-  design-concepts/ 실제 화면에서 사용하는 멤버 이미지
-  prototypes/   이전 개별 시안 (보존용 HTML·JS·CSS)
-  wireframe.html Figma 설명용 정적 화면
-scripts/        선택적 Python 소재 제작 도구
+  assets/       画像、アーカイブ JSON、出典資料
+  design-concepts/ 実際の画面で使用するメンバー画像
+  prototypes/   過去の個別デザイン案（保存用 HTML・JS・CSS）
+  wireframe.html Figma 説明用の静的画面
+scripts/        任意の Python 素材制作ツール
 
-docs/           구조·구현·검증·인수인계 안내, 디자인 시안
-tests/         브라우저 회귀 테스트
+docs/           構成・実装・検証・引き継ぎガイド、デザイン案
+tests/         ブラウザ回帰テスト
 ```
 
-- [구조와 의존성](docs/architecture.md)
-- [구현·콘텐츠 수정 안내](docs/implementation.md)
-- [테스트·빌드·배포 안내](docs/validation.md)
-- [기존 자료와 공개 전 확인사항](docs/handoff.md)
+- [構成と依存関係](docs/architecture.md)
+- [実装・コンテンツ修正ガイド](docs/implementation.md)
+- [テスト・ビルド・デプロイガイド](docs/validation.md)
+- [既存資料と公開前チェック事項](docs/handoff.md)
 
-기본 화면은 기존 `preview.html` 통합판입니다. 이전 `index.html` 개별 아카이브 시안은 `/prototypes/index.html`, 작품·콘셉트 시안은 `/prototypes/works.html`, `/prototypes/concept.html`에서 확인할 수 있습니다.
+デフォルトの画面は既存の `preview.html` 統合版です。以前の `index.html` 個別アーカイブ案は `/prototypes/index.html`、作品・コンセプト案は `/prototypes/works.html`、`/prototypes/concept.html` で確認できます。
 
-## 소재와 콘텐츠
+## 素材とコンテンツ
 
-작품 30개 중 실이미지는 2점이며 나머지는 임시 슬롯입니다. 회장 A/B 배정과 소개 문구도 임시입니다. 아카이브 29건의 출처·소재 권리는 [아카이브 안내](public/assets/archive/imported/README.md), [콘셉트 안내](public/assets/concept/README.md), [참고 자료 안내](public/assets/reference-layrid/README.md)를 확인하세요. 기존 자료의 상세 주의사항은 [인수인계 문서](docs/handoff.md)에 보존했습니다.
+作品30点のうち実画像は2点で、残りは仮スロットです。会場A/Bの割り当てと紹介文も仮のものです。アーカイブ29件の出典・素材の権利については [アーカイブガイド](public/assets/archive/imported/README.md)、[コンセプトガイド](public/assets/concept/README.md)、[参考資料ガイド](public/assets/reference-layrid/README.md) を確認してください。既存資料の詳細な注意事項は [引き継ぎ文書](docs/handoff.md) に保存しています。
