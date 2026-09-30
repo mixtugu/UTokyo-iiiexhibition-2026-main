@@ -1,7 +1,7 @@
-# Archive reference assets
+# アーカイブ参考素材
 
-Imported for this local design prototype at the user's request from the archive links on https://iiiexhibition.com/ on 2026-09-19.
+このローカルデザインプロトタイプのために、2026-09-19 にユーザーの依頼で https://iiiexhibition.com/ のアーカイブリンクから取得したものです。
 
-`catalog.json` records each exhibition title, destination URL and image source. Older key visuals are available in the official 2021 Extra site's `teaser_img/past_visuals` collection. Main 2025's og:image path still names the old canonical domain; its matching asset was retrieved from the actual archive host. Main 2024 uses its official background image; Extra 2025 and Extra 2022 use their official exhibition logo images. Existing 2023/2024 local reference assets are reused where available.
+`catalog.json` には各展示のタイトル、リンク先URL、画像の出典を記録しています。過去のキービジュアルの一部は、公式の2021 Extraサイトの `teaser_img/past_visuals` コレクションで確認できます。Main 2025 の og:image パスは旧正規ドメインのままですが、対応する画像は実際のアーカイブホストから取得しています。Main 2024 は公式の背景画像を使用し、Extra 2025 と Extra 2022 は公式の展示ロゴ画像を使用しています。既存の2023/2024ローカル参考素材は、利用可能な場合はそのまま再利用しています。
 
-Exhibition artwork copyrights remain with the original creators. Confirm publication permission before deploying. Downloaded candidate assets that are not referenced by the catalog are not used in the site.
+展示作品の著作権は各制作者に帰属します。公開前に掲載許可を確認してください。カタログから参照されていないダウンロード済みの候補素材は、サイトでは使用していません。
