@@ -2,10 +2,21 @@
  const root=document.querySelector('#announce'),dialog=document.querySelector('#announce-detail');
  if(!root||!dialog)return;
  document.body.append(dialog);
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ let closing=0;
+ function closeDetail(){
+  if(!dialog.open)return;
+  if(reducedMotion.matches){dialog.close();return;}
+  if(closing)return;
+  dialog.classList.add('is-closing');
+  closing=setTimeout(()=>{closing=0;dialog.close();},180);
+ }
+ dialog.addEventListener('close',()=>{clearTimeout(closing);closing=0;dialog.classList.remove('is-closing');});
+ dialog.addEventListener('cancel',event=>{event.preventDefault();closeDetail();});
  const notices={event:{title:'制作展トークイベントを開催します。',body:'11/14（土）14:00〜15:30に、トークイベントを開催します。\n\n登壇者・参加方法などの詳細は、決まり次第こちらでお知らせします。'},information:{title:'登壇者が確定。詳細ページが更新されました。',body:'登壇者・参加方法などの詳細は、決まり次第こちらでお知らせします。'}};
  root.querySelectorAll('[data-notice]').forEach(button=>button.addEventListener('click',()=>{const n=notices[button.dataset.notice];dialog.querySelector('#notice-heading').textContent=n.title;dialog.querySelector('#notice-body').textContent=n.body;dialog.showModal();}));
- dialog.querySelector('.notice-close').addEventListener('click',()=>dialog.close());
- dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dialog.close();});
+ dialog.querySelector('.notice-close').addEventListener('click',closeDetail);
+ dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))closeDetail();});
  root.classList.add('announce-normal-flow');
  const label=document.createElement('div');label.className='announce-fixed-label';label.setAttribute('aria-hidden','true');document.body.append(label);
  let queued=false;
