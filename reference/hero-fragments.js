@@ -11,7 +11,7 @@
  const ctx=canvas.getContext('2d'),source=document.createElement('canvas');source.width=source.height=560;
  const sg=source.getContext('2d',{willReadFrequently:true});
  const clamp=x=>Math.max(0,Math.min(1,x)),ease=x=>{x=clamp(x);return x*x*(3-2*x);};
- let tiles=[],ready=false,visible=true,raf=0,width=0,height=0,box={},progress=0;
+ let tiles=[],ready=false,visible=true,raf=0,width=0,height=0,box={},progress=0,lastPaint=0;
  const random=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x);};
  function layout(){
   const a=art.getBoundingClientRect(),b=image.getBoundingClientRect();width=a.width;height=a.height;
@@ -22,8 +22,11 @@
  }
  function draw(now){
   raf=0;if(!ready)return;
+  // The ink is decorative; drawing every second display frame is enough.
+  if(!reduced.matches&&now-lastPaint<30){if(visible&&!document.hidden)raf=requestAnimationFrame(draw);return;}
+  lastPaint=now;
   const j=journey.getBoundingClientRect(),cr=concept.getBoundingClientRect();
-  progress=reduced.matches?0:clamp(-j.top/(height*1.3));
+  progress=reduced.matches?0:clamp(-j.top/(height*.72));
   const leave=ease(progress/.72),merge=ease((height-cr.top)/(height*.8)),end=ease((height*.95-cr.bottom)/(height*.8));
   hero.style.opacity=String(1-ease((progress-.18)/.65));hero.inert=progress>.8;
   ctx.clearRect(0,0,width,height);
@@ -72,26 +75,6 @@
   if(visible&&!document.hidden&&!reduced.matches)raf=requestAnimationFrame(draw);
  }
  function update(){if(ready&&!raf)raf=requestAnimationFrame(draw);}
- let autoFrame=0,autoDone=false,intentAt=-Infinity,touchStartY=0;
- function cancelAuto(){cancelAnimationFrame(autoFrame);autoFrame=0;window.heroAutoScroll=false;}
- function followIntoConcept(){
-  if(autoFrame||autoDone||reduced.matches||performance.now()-intentAt>600||document.querySelector('dialog[open]'))return;
-  const top=journey.getBoundingClientRect().top;
-  if(top>0||-top<innerHeight*.30||-top>innerHeight*.95)return;
-  autoDone=true;window.heroAutoScroll=true;dispatchEvent(new Event('hero-auto-scroll'));
-  const first=concept.querySelector('.story-copy p').getBoundingClientRect();
-  const from=scrollY,to=first.top+scrollY+first.height/2-innerHeight*.42,start=performance.now();
-  function step(now){const t=clamp((now-start)/1450);scrollTo({top:from+(to-from)*ease(t),behavior:'instant'});if(t<1)autoFrame=requestAnimationFrame(step);else cancelAuto();}
-  autoFrame=requestAnimationFrame(step);
- }
- addEventListener('wheel',e=>{if(e.deltaY<0)cancelAuto();else if(!e.ctrlKey&&!e.metaKey)intentAt=performance.now();},{passive:true});
- addEventListener('touchstart',e=>{touchStartY=e.touches[0]?.clientY||0;cancelAuto();},{passive:true});
- addEventListener('touchmove',e=>{const y=e.touches[0]?.clientY||0;if(y<touchStartY)intentAt=performance.now();else{intentAt=-Infinity;cancelAuto();}touchStartY=y;},{passive:true});
- addEventListener('keydown',e=>{if(['ArrowDown','PageDown',' '].includes(e.key))intentAt=performance.now();else cancelAuto();});
- addEventListener('pointerdown',cancelAuto,{passive:true});
- addEventListener('hashchange',()=>{cancelAuto();intentAt=-Infinity;});
- addEventListener('resize',cancelAuto);reduced.addEventListener('change',cancelAuto);
- addEventListener('scroll',()=>{if(scrollY<20)autoDone=false;followIntoConcept();},{passive:true});
  image.decode().then(()=>{
   sg.drawImage(image,0,0,560,560);const pixels=sg.getImageData(0,0,560,560).data;
   for(let y=0;y<560;y+=4)for(let x=0;x<560;x+=4){const i=(y*560+x)*4;if(pixels[i+3]<16)continue;const n=tiles.length;tiles.push({x,y,seed:random(n),r:random(n+700),q:random(n+1700),color:`rgba(${pixels[i]},${pixels[i+1]},${pixels[i+2]},${pixels[i+3]/255})`});}

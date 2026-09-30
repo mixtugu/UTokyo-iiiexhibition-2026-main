@@ -56,3 +56,28 @@ html[data-prototype="works"] #announce,html[data-prototype="works"] #access,html
 html[data-prototype="announce"] #access,html[data-prototype="announce"] #members,html[data-prototype="announce"] #archives,
 html[data-prototype="members-archives"] #announce,html[data-prototype="members-archives"] #access{display:none!important}
 @media(prefers-reduced-motion:reduce){.members-flow-particles{display:none}.selection-highlight{transition:none}}
+
+.birth-intro{height:150svh}
+.skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:12px 18px;background:#fff;color:#052d03;transform:translateY(-150%);font:600 16px/1.3 'Zen Kaku Gothic Antique',sans-serif}
+.skip-link:focus-visible{transform:translateY(0);outline:3px solid #278820;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.birth-intro{height:100svh}}
+
+#contents .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:6px;transition:opacity .2s ease}
+#contents .footer-social a:hover{opacity:.65}
+#contents .footer-social a:focus-visible{outline:2px solid #278820;outline-offset:2px}
+#contents .footer-social img{margin:0}
+
+/* A soft edge and a short reveal keep the notice readable without a sudden pop. */
+#announce .event-notice[data-notice="event"]{height:auto;min-height:73px;grid-template-columns:92px minmax(0,1fr) 18px;margin-bottom:12px;padding:16px 18px;border:1px solid #ffffff55;border-radius:8px;background:#ffffff0a}
+#announce .event-notice[data-notice="event"]:hover{background:#ffffff12}
+#announce-detail{border-radius:10px}
+#announce-detail[open]{animation:announce-detail-in .42s cubic-bezier(.16,1,.3,1) both}
+#announce-detail[open]::backdrop{animation:announce-backdrop-in .3s ease-out both}
+#announce-detail.is-closing{animation:announce-detail-out .18s ease-in forwards}
+#announce-detail.is-closing::backdrop{animation:announce-backdrop-out .18s ease-in forwards}
+@keyframes announce-detail-in{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes announce-detail-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(8px) scale(.99)}}
+@keyframes announce-backdrop-in{from{opacity:0}to{opacity:1}}
+@keyframes announce-backdrop-out{from{opacity:1}to{opacity:0}}
+@media(max-width:600px){#announce .event-notice[data-notice="event"]{grid-template-columns:78px minmax(0,1fr) 16px;padding:14px 12px}}
+@media(prefers-reduced-motion:reduce){#announce-detail[open],#announce-detail[open]::backdrop,#contents .footer-social a{animation:none;transition:none}}
