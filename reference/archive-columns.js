@@ -1,9 +1,9 @@
 (() => {
  const records = [
   ['本展','2025','あることないこと','https://2025-main.pages.dev/','main-2025-visual.jpg'],
-  ['本展','2024','付いて離れて','https://2024-main.pages.dev/','main-2024-visual.webp'],
+  ['本展','2024','付いて離れて','https://2024-main.pages.dev/','main-2024-visual.jpg'],
   ['本展','2023','學藝運動','https://iii-exhibition2023-main.vercel.app/','../main-2023.png'],
-  ['本展','2022','Emulsion','https://archive.iiiexhibition.com/log/i3e24','main-2022-visual.webp'],
+  ['本展','2022','Emulsion','https://archive.iiiexhibition.com/log/i3e24','main-2022-visual.jpg'],
   ['本展','2021','キョリブレーション','https://archive.iiiexhibition.com/log/i3e23','main-2021.png'],
   ['本展','2020','弛む','https://archive.iiiexhibition.com/log/i3e22','main-2020-visual.png'],
   ['本展','2019','ああ言えばこう言う。こう言えばどう言う？','https://archive.iiiexhibition.com/log/i3e21','main-2019-visual.png'],
@@ -40,7 +40,7 @@
  // Keep the particles outside the clipped photo strip so its rectangle can dissolve.
  const particleCanvas=document.createElement('canvas');particleCanvas.className='archive-switch-particles';particleCanvas.setAttribute('aria-hidden','true');document.body.append(particleCanvas);
  const particleContext=particleCanvas.getContext('2d');
- const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)'),touchDevice=matchMedia('(hover: none) and (pointer: coarse), (max-width: 767px)');
  let active=null,currentGroup=null,switching=false,pendingGroup=null;
  const groupLoads=new Map();
  function expand(column){
@@ -191,7 +191,7 @@
  async function switchGroup(group){
   if(switching){pendingGroup=group;return;}
   if(group===currentGroup)return;
-  if(reducedMotion.matches){show(group);return;}
+  if(reducedMotion.matches||touchDevice.matches){show(group);return;}
   switching=true;root.setAttribute('aria-busy','true');
   await preloadGroup(group);
   rail.classList.add('is-forming');
@@ -244,6 +244,6 @@
  rail.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'||event.pointerType==='pen')expand(null);});
  root.addEventListener('focusout',event=>{if(!root.contains(event.relatedTarget)&&matchMedia('(hover: hover)').matches)expand(null);});
  show('本展');
- preloadGroup('番外展');
- preloadGroup('本展');
+ // Decoding every archive image at startup exhausts memory on iOS Safari.
+ new IntersectionObserver((entries,observer)=>{if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();preloadGroup('番外展');}},{rootMargin:'50% 0px'}).observe(root);
 })();

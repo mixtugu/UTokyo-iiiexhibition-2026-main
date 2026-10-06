@@ -32,21 +32,30 @@
       if(vortex&&vortex.width&&vortex.height)g.drawImage(vortex,0,0,w,h);
       g.fillStyle='rgba(15,24,24,.32)';g.fillRect(0,0,w,h);
       glyphs=[];
+      // Repeated characters share one stamp; a canvas per glyph exhausts Safari's canvas memory.
+      const stamps=new Map();
       section.querySelectorAll('.story-copy p').forEach(p=>{
         const style=getComputedStyle(p);g.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;g.fillStyle='#fffdf5';g.textBaseline='top';
         const walk=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let node;
         while(node=walk.nextNode())for(let i=0;i<node.length;i++){
           const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+1);
           const r=range.getBoundingClientRect();if(r.bottom>0&&r.top<h&&node.textContent[i].trim()){
-            const stamp=document.createElement('canvas');stamp.width=Math.ceil(r.width+8);stamp.height=Math.ceil(r.height+8);
-            const ink=stamp.getContext('2d');ink.font=g.font;ink.fillStyle='#fffdf5';ink.textBaseline='top';ink.fillText(node.textContent[i],4,4);
-            const pixels=ink.getImageData(0,0,stamp.width,stamp.height).data,dots=[];
-            for(let yy=0;yy<stamp.height;yy+=2)for(let xx=0;xx<stamp.width;xx+=2)if(pixels[(yy*stamp.width+xx)*4+3]>24)dots.push({x:xx,y:yy,j:Math.random()});
-            glyphs.push({stamp,dots,x:r.left-4,y:r.top-4,fromY:scrollY,delay:.04+Math.random()*.24,dx:(Math.random()-.5)*90,dy:-20-Math.random()*45});
+            const sw=Math.ceil(r.width+8),sh=Math.ceil(r.height+8),key=`${g.font}|${node.textContent[i]}|${sw}x${sh}`;
+            let cached=stamps.get(key);
+            if(!cached){
+              const stamp=document.createElement('canvas');stamp.width=sw;stamp.height=sh;
+              const ink=stamp.getContext('2d');ink.font=g.font;ink.fillStyle='#fffdf5';ink.textBaseline='top';ink.fillText(node.textContent[i],4,4);
+              const pixels=ink.getImageData(0,0,sw,sh).data,points=[];
+              for(let yy=0;yy<sh;yy+=2)for(let xx=0;xx<sw;xx+=2)if(pixels[(yy*sw+xx)*4+3]>24)points.push({x:xx,y:yy});
+              cached={stamp,points};stamps.set(key,cached);
+            }
+            const dots=cached.points.map(point=>({x:point.x,y:point.y,j:Math.random()}));
+            glyphs.push({stamp:cached.stamp,dots,x:r.left-4,y:r.top-4,fromY:scrollY,delay:.04+Math.random()*.24,dx:(Math.random()-.5)*90,dy:-20-Math.random()*45});
           }
         }
       });
-      grainSource=sample;
+      // willReadFrequently keeps `sample` on the CPU; draw grains from a GPU copy.
+      grainSource=document.createElement('canvas');grainSource.width=w;grainSource.height=h;grainSource.getContext('2d').drawImage(sample,0,0);
       const pixels=g.getImageData(0,0,w,h).data;grains=[];
       const cards=[...document.querySelectorAll('#works .wave-card')].filter(el=>!el.hidden&&getComputedStyle(el).opacity!=='0').map(el=>el.getBoundingClientRect());
       const targetSample=document.createElement('canvas');targetSample.width=targetSample.height=32;const tg=targetSample.getContext('2d',{willReadFrequently:true});
@@ -140,7 +149,8 @@
     gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
     const a=gl.getAttribLocation(program,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
     loc=Object.fromEntries(['firstImage','secondImage','viewport','firstSize','secondSize','progress'].map(k=>[k,gl.getUniformLocation(program,k)]));
-    textures=images.map(img=>{const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);
+    const shared=new Map();
+    textures=images.map(img=>{if(shared.has(img.src))return shared.get(img.src);const tex=gl.createTexture();shared.set(img.src,tex);gl.bindTexture(gl.TEXTURE_2D,tex);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);

@@ -15,6 +15,7 @@
  section.append(ui);
  const stage=ui.querySelector('.wave-stage'),list=ui.querySelector('.wave-list');list.classList.add('person-list');
  const caption=ui.querySelector('.wave-caption'),controls=ui.querySelector('.wave-controls');
+ const captionVenue=caption.querySelector('span'),captionTitle=caption.querySelector('h3'),countLabel=ui.querySelector('.wave-count'),prevButton=ui.querySelector('.wave-prev'),nextButton=ui.querySelector('.wave-next');
  let ids=works.map((_,i)=>i),current=0,listMode=false,drag=null,suppressUntil=0,venue='all',focused=false,hovered=-1;
  const centerTitle=document.createElement('div');centerTitle.className='orbit-title';centerTitle.setAttribute('aria-hidden','true');stage.append(centerTitle);
  let orbitAngle=0,orbitFrame=0,orbitTime=0,orbitVisible=false;
@@ -40,24 +41,31 @@
   item.onclick=()=>{if(w.placeholder)return;current=ids.indexOf(i);render();openWork(i);};list.append(item);
   return b;
  });
+ // The orbit renders every frame; unchanged DOM writes would still invalidate style.
+ const assign=(el,key,value)=>{if(el[key]!==value)el[key]=value;};
+ const attr=(el,name,value)=>{if(el.getAttribute(name)!==value)el.setAttribute(name,value);};
+ const css=(el,name,value)=>{if(el.style[name]!==value)el.style[name]=value;};
+ let stageWidth=0,stageHeight=0,logoSize='';
+ function measure(){stageWidth=stage.clientWidth;stageHeight=stage.clientHeight;}
  function render(){
-  const mobile=stage.clientWidth<600;
-  const width=stage.clientWidth||700,height=stage.clientHeight||600;
+  const mobile=stageWidth<600;
+  const width=stageWidth||700,height=stageHeight||600;
   const count=ids.length;
   const allMode=venue==='all';
   const visibleRadius=allMode?count:4;
   ui.classList.toggle('is-list-mode',listMode);
   ui.classList.toggle('is-all-orbit',allMode);
-  logoGuide.hidden=!allMode;
-  stage.style.setProperty('--works-logo-size',Math.min(width*.72,height*.75)+'px');
+  assign(logoGuide,'hidden',!allMode);
+  const nextLogoSize=Math.min(width*.72,height*.75)+'px';
+  if(nextLogoSize!==logoSize){logoSize=nextLogoSize;stage.style.setProperty('--works-logo-size',logoSize);}
   cards.forEach((b,i)=>{
-   const n=ids.indexOf(i),chosen=n===current,included=n>=0;list.children[i].hidden=!included||works[i].placeholder;
+   const n=ids.indexOf(i),chosen=n===current,included=n>=0;assign(list.children[i],'hidden',!included||!!works[i].placeholder);
    let offset=n-current;
    if(offset>count/2)offset-=count;
    if(offset<-count/2)offset+=count;
    const interactive=included&&!works[i].placeholder&&!listMode&&(!allMode||Math.abs(offset)<=visibleRadius);
-   b.hidden=false;b.inert=!interactive;b.setAttribute('aria-hidden',String(!interactive));b.style.pointerEvents=interactive?'auto':'none';
-   b.classList.toggle('is-current',chosen);if(!works[i].placeholder)b.setAttribute('aria-label',works[i].title+'・'+venueName(works[i])+'の詳細を開く');
+   assign(b,'hidden',false);assign(b,'inert',!interactive);attr(b,'aria-hidden',String(!interactive));css(b,'pointerEvents',interactive?'auto':'none');
+   b.classList.toggle('is-current',chosen);if(!works[i].placeholder)attr(b,'aria-label',works[i].title+'・'+venueName(works[i])+'の詳細を開く');
    b.removeAttribute('aria-pressed');b.removeAttribute('aria-current');
    // A/B keep the original 15-card ring size; only "all" uses a denser, full-depth ring.
    const angle=Math.PI/2-offset*Math.PI*2/Math.max(1,count)+orbitAngle;
@@ -68,18 +76,18 @@
    let scale=size/240*(.88+depth*.2)*(allMode?.67:1);
    if(chosen||hovered===i)scale*=1.3;
    b.style.transform=`translate(-50%,-50%) translate3d(${x}px,${y}px,0) perspective(900px) rotateY(${-Math.cos(angle)*12}deg) rotateZ(-4deg) scale(${scale})`;
-   b.style.zIndex=hovered===i?50:chosen?40:Math.round(depth*30)+1;
-   b.style.opacity=included&&!listMode&&(!allMode||Math.abs(offset)<=visibleRadius)?'1':'0';
-   b.tabIndex=interactive?0:-1;
+   css(b,'zIndex',String(hovered===i?50:chosen?40:Math.round(depth*30)+1));
+   css(b,'opacity',included&&!listMode&&(!allMode||Math.abs(offset)<=visibleRadius)?'1':'0');
+   assign(b,'tabIndex',interactive?0:-1);
   });
   const titleId=hovered>=0&&ids.includes(hovered)?hovered:focused?ids[current]:undefined;
   const titleText='';
   if(centerTitle.textContent!==titleText)centerTitle.textContent=titleText;
   centerTitle.classList.toggle('is-visible',!!titleText);
-  const id=titleId===undefined?ids[current]:titleId;caption.querySelector('span').textContent=id===undefined||works[id].placeholder?'':venueName(works[id]);caption.querySelector('h3').textContent=id===undefined?'':works[id].title;
-  ui.querySelector('.wave-count').textContent=String(current+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0');
-  ui.querySelector('.wave-prev').disabled=ui.querySelector('.wave-next').disabled=count<=1;
-  stage.hidden=listMode||!count;caption.hidden=controls.hidden=listMode||!count;list.hidden=!listMode||!count;
+  const id=titleId===undefined?ids[current]:titleId;assign(captionVenue,'textContent',id===undefined||works[id].placeholder?'':venueName(works[id]));assign(captionTitle,'textContent',id===undefined?'':works[id].title);
+  assign(countLabel,'textContent',String(current+1).padStart(2,'0')+' / '+String(ids.length).padStart(2,'0'));
+  assign(prevButton,'disabled',count<=1);assign(nextButton,'disabled',count<=1);
+  assign(stage,'hidden',listMode||!count);assign(caption,'hidden',listMode||!count);assign(controls,'hidden',listMode||!count);assign(list,'hidden',!listMode||!count);
  }
  function move(delta){if(!ids.length)return;current=(current+delta+ids.length)%ids.length;render();cards[ids[current]].focus({preventScroll:true});}
  ui.querySelector('.wave-prev').onclick=()=>move(-1);ui.querySelector('.wave-next').onclick=()=>move(1);
@@ -112,7 +120,7 @@
  function detailNext(){next.disabled=ids.indexOf(selected)>=ids.length-1;}
  new MutationObserver(detailNext).observe(document.querySelector('#detail-title'),{childList:true});
  next.onclick=()=>{const n=ids.indexOf(selected);if(n>=0&&n<ids.length-1){current=n+1;render();openWork(ids[current]);detailNext();}};
- new ResizeObserver(render).observe(stage);render();
+ new ResizeObserver(()=>{measure();render();}).observe(stage);measure();render();
  stage.addEventListener('pointerleave',()=>{hovered=-1;render();});
  function orbitTick(now){orbitFrame=0;const delta=Math.min(50,now-orbitTime);orbitTime=now;if(!orbitVisible||document.hidden||orbitReduced.matches)return;if(!listMode&&!drag&&!focused&&hovered<0&&!dialog.open&&!window.conceptAutoScroll){orbitAngle+=delta*Math.PI*2/240000;render();}orbitFrame=requestAnimationFrame(orbitTick);}
  function startOrbit(){cancelAnimationFrame(orbitFrame);orbitTime=performance.now();if(orbitVisible&&!document.hidden&&!orbitReduced.matches)orbitFrame=requestAnimationFrame(orbitTick);}

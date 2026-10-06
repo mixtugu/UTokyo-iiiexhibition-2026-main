@@ -17,6 +17,9 @@
     { x: 1380, y: 336 }
   ];
   const motionReduced = matchMedia('(prefers-reduced-motion: reduce)');
+  // Phones show the finished drawing instead of animating it.
+  const touchDevice = matchMedia('(hover: none) and (pointer: coarse), (max-width: 767px)');
+  const staticMarker = () => motionReduced.matches || touchDevice.matches;
   const clamp = (number) => Math.max(0, Math.min(1, number));
   const ease = (number) => { const t = clamp(number); return t * t * (3 - 2 * t); };
   const points = paths.map((path) => {
@@ -161,9 +164,17 @@
   }
 
   function prepareMarkerTexture(route, index, extension = 20, scratchCount = 54) {
+    // Only allocate the stroke's own bounds instead of a full-size canvas per route.
+    const pad = markerWidth + 18 + extension + 30;
+    const xs = route.map((point) => point.x), ys = route.map((point) => point.y);
+    const left = Math.max(0, Math.floor((Math.min(...xs) - pad) * scale));
+    const top = Math.max(0, Math.floor((Math.min(...ys) - pad) * scale));
+    const right = Math.min(canvas.width, Math.ceil((Math.max(...xs) + pad) * scale));
+    const bottom = Math.min(canvas.height, Math.ceil((Math.max(...ys) + pad) * scale));
     const markerTexture = document.createElement('canvas');
-    markerTexture.width = canvas.width; markerTexture.height = canvas.height;
+    markerTexture.width = Math.max(1, right - left); markerTexture.height = Math.max(1, bottom - top);
     const textureContext = markerTexture.getContext('2d');
+    textureContext.translate(-left, -top);
     textureContext.save();
     textureContext.lineCap = 'butt';
     textureContext.lineJoin = 'round';
@@ -199,7 +210,7 @@
     traceOffset(textureContext, route, -markerWidth * .36);
     textureContext.stroke();
     textureContext.restore();
-    return markerTexture;
+    return { canvas: markerTexture, left, top };
   }
 
   const markerTextures = markerRoutes.map(({ points: route, index }) => prepareMarkerTexture(route, index));
@@ -324,7 +335,7 @@
       }
       trailMaskContext.restore();
       trailContext.clearRect(0, 0, markerTrail.width, markerTrail.height);
-      trailContext.drawImage(markerTextures[index], 0, 0);
+      trailContext.drawImage(markerTextures[index].canvas, markerTextures[index].left, markerTextures[index].top);
       trailContext.globalCompositeOperation = 'destination-in';
       trailContext.drawImage(trailMask, 0, 0);
       trailContext.globalCompositeOperation = 'source-over';
@@ -423,7 +434,7 @@
     cancelAnimationFrame(frame);
     if (!ready) return;
     finished=false;
-    if (motionReduced.matches) { render(totalDuration); finished=true;dispatchEvent(new Event('members-marker-complete'));return; }
+    if (staticMarker()) { render(totalDuration); finished=true;dispatchEvent(new Event('members-marker-complete'));return; }
     startedAt = performance.now();
     playhead=0;playbackRate=2.6;
     frame = requestAnimationFrame(tick);
@@ -436,6 +447,7 @@
     restart();
   });
   motionReduced.addEventListener('change', restart);
+  touchDevice.addEventListener('change', restart);
   const nameSlots=[
     {x:15+1311*.0845,y:112+633*.2157,w:1311*.7706,h:633*.7112},
     {x:15+1311*.0557,y:112+633*.1106,w:1311*.8888,h:633*.8888},
@@ -461,7 +473,7 @@
       }
     };
     window.dispatchEvent(new Event('members-marker-ready'));
-    if (window.membersMarkerAutoStart !== false || motionReduced.matches) restart();
+    if (window.membersMarkerAutoStart !== false || staticMarker()) restart();
   }).catch(() => {
     canvas.setAttribute('aria-label', 'メンバーの画像を読み込めませんでした');
   });

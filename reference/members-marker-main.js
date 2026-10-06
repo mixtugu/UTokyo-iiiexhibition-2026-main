@@ -4,7 +4,8 @@
  if(!art)return;
  window.membersMarkerAutoStart=false;
  const canvas=document.createElement('canvas');
- canvas.id='marker-canvas';canvas.width=1200;canvas.height=673;
+ // Phones get a canvas sized to the screen; the marker keeps about 20 canvases at this size.
+ canvas.id='marker-canvas';canvas.width=Math.min(1200,Math.max(480,Math.round(innerWidth*Math.min(devicePixelRatio||1,2))));canvas.height=Math.round(canvas.width*673/1200);
  canvas.setAttribute('role','img');
  canvas.setAttribute('aria-label','緑のマーカーで3つの曲線が描かれ、メンバーの名前と3つの点が現れます');
  art.append(canvas);
