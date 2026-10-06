@@ -81,3 +81,13 @@ html[data-prototype="members-archives"] #announce,html[data-prototype="members-a
 @keyframes announce-backdrop-out{from{opacity:1}to{opacity:0}}
 @media(max-width:600px){#announce .event-notice[data-notice="event"]{grid-template-columns:78px minmax(0,1fr) 16px;padding:14px 12px}}
 @media(prefers-reduced-motion:reduce){#announce-detail[open],#announce-detail[open]::backdrop,#contents .footer-social a{animation:none;transition:none}}
+
+/* Phones list the members as plain text instead of the marker drawing. */
+#members .member-list{display:none}
+@media(max-width:767px){
+ #members.members-natural{display:block;min-height:0;padding:72px 7% 120px}
+ #members.members-natural .member-art{display:none}
+ #members .member-list{display:grid;gap:28px;margin:0;font-family:'Zen Kaku Gothic Antique',sans-serif}
+ #members .member-list dt{margin:0 0 10px;color:#64B64E;font-size:15px;font-weight:700;letter-spacing:.06em}
+ #members .member-list dd{display:inline-block;margin:0 1.1em 6px 0;color:var(--ink);font-size:14px;line-height:1.7}
+}

@@ -78,7 +78,7 @@
  #archives .archive-column-detail strong{text-align:left;font-size:18px}
  #archives .archive-hint{font-size:11px}
 }
-@media(prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce),(hover:none) and (pointer:coarse),(max-width:767px){
  #archives .archive-column-link,#archives .archive-column-link img,#archives .archive-column-link::before,#archives .archive-column-detail,
  #archives .archive-stage>svg,#archives .archive-columns{transition:none}
 }
