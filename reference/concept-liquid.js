@@ -56,9 +56,9 @@
       // willReadFrequently keeps `sample` on the CPU; draw grains from a GPU copy.
       grainSource=document.createElement('canvas');grainSource.width=w;grainSource.height=h;grainSource.getContext('2d').drawImage(sample,0,0);
       const pixels=g.getImageData(0,0,w,h).data;grains=[];
-      const cards=[...document.querySelectorAll('#works .wave-card')].filter(el=>!el.hidden&&getComputedStyle(el).opacity!=='0').map(el=>el.getBoundingClientRect());
+      const cards=[...document.querySelectorAll('#works .works-desktop-card, #works .works-mobile-feature, #works .works-mobile-card')].filter(el=>!el.hidden&&getComputedStyle(el).opacity!=='0').map(el=>el.getBoundingClientRect());
       const targetSample=document.createElement('canvas');targetSample.width=targetSample.height=32;const tg=targetSample.getContext('2d',{willReadFrequently:true});
-      const photo=document.querySelector('#works .wave-card img');if(photo?.complete&&photo.naturalWidth)tg.drawImage(photo,0,0,32,32);
+      const photo=document.querySelector('#works .works-desktop-card img, #works .works-mobile-feature img, #works .works-mobile-card img');if(photo?.complete&&photo.naturalWidth)tg.drawImage(photo,0,0,32,32);
       const colors=tg.getImageData(0,0,32,32).data;
       for(let y=0;y<h;y+=8)for(let x=0;x<w;x+=8){const k=(y*w+x)*4;
         const s=Math.sin(x*12.7+y*3.1),q=(Math.sin(x*4.7+y*17.3)+1)/2,v=(s+1)/2,card=cards[grains.length%Math.max(1,cards.length)];
@@ -83,7 +83,7 @@
       else{const tint=smooth((spread-.55)/.45),color=p.c.map((c,i)=>Math.round(c+(p.tc[i]-c)*tint));dg.fillStyle=`rgb(${color.join(',')})`;dg.fillRect(x,y,size,size);}
     }
     // Text first floats as recognizable individual characters, then becomes fine ink grains.
-    const targets=[...document.querySelectorAll('#works .wave-card')].filter(el=>!el.hidden);
+    const targets=[...document.querySelectorAll('#works .works-desktop-card, #works .works-mobile-feature, #works .works-mobile-card')].filter(el=>!el.hidden);
     const targetRect=targets[0]?.getBoundingClientRect();
     for(const letter of glyphs){
       const age=clamp((amount-letter.delay)/(.92-letter.delay)),float=smooth(age/.42),peel=smooth((age-.20)/.35),travel=smooth((age-.30)/.70);
@@ -158,8 +158,9 @@
     frame=0;
     const r=section.getBoundingClientRect(),h=pin.clientHeight;
     const down=scrollY>lastScroll;lastScroll=scrollY;
-    if(r.bottom>h*1.4||(!down&&r.bottom>1&&!exitStart))exitDone=false;
-    if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.6){
+    // Re-arm only after returning well into CONCEPT; a small nudge up from WORKS must not replay the exit.
+    if(r.bottom>h*1.4||(!down&&r.bottom>h*.75&&!exitStart))exitDone=false;
+    if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.5){
       exitStart=now;exitFrom=scrollY;exitTo=document.querySelector('#works').getBoundingClientRect().top+scrollY;
       window.conceptAutoScroll=true;dispatchEvent(new Event('concept-auto-scroll'));
     }

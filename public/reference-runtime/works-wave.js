@@ -9,10 +9,13 @@
  }
  // One dummy slot represents an invited work until the exhibition data is ready.
  Object.assign(works[8],{title:'招待作品タイトル',author:'',placeholder:false,venue:'invite',image:'assets/works/memory-landscapes.png',description:'ダミーテキストです。招待作品の情報が入ります。'});
+ // Temporarily hidden until the confirmed works are ready: the cards stay in code, only the notice shows.
+ const worksPublished=false;
  const section=document.querySelector('#works');
  section.querySelector('.rings').remove();section.querySelector('.works-bottom').remove();section.querySelector('#work-list').remove();
  const ui=document.createElement('div');ui.className='wave-gallery spatial-gallery';
  section.append(ui);
+ const upcoming=document.createElement('p');upcoming.className='works-upcoming';upcoming.textContent='作品は順次追加予定です。';section.append(upcoming);
 
  // Desktop catalog: four columns, with invited works spanning two columns.
  const desktopRoot=document.createElement('div');
@@ -23,7 +26,7 @@
  const desktopPagination=desktopRoot.querySelector('.works-desktop-pagination');
  const desktopPageSize=11;
  let desktopVenue='all',desktopPage=0;
- const desktopVenueName=w=>w.venue==='invite'?'招待':w.venue==='1'?'会場2':'会場1';
+ const desktopVenueName=w=>w.venue==='invite'?'招待':w.venue==='1'?'会場B':'会場A';
  function desktopTags(work){
   const row=document.createElement('span');row.className='works-desktop-tags';
   const place=document.createElement('span');place.className='works-desktop-tag is-solid';place.textContent=desktopVenueName(work);
@@ -52,6 +55,7 @@
   return card;
  }
  function renderDesktop(){
+  if(!worksPublished){desktopGrid.replaceChildren();desktopPagination.replaceChildren();return;}
   const items=works.map((work,index)=>({work,index})).filter(({work})=>desktopVenue==='all'||work.venue===desktopVenue);
   const pageCount=Math.max(1,Math.ceil(items.length/desktopPageSize));
   desktopPage=Math.min(desktopPage,pageCount-1);
@@ -85,7 +89,7 @@
  let mobileVenue='all',mobileTrigger=null,listScroll=0;
  const mobileTitle=w=>w.title||'Memory Landscapes';
  const mobileImage=w=>w.placeholder?dummyImage:w.image;
- const mobileChip=w=>w.venue==='invite'?'招待':w.venue==='1'?'会場2':'会場1';
+ const mobileChip=w=>w.venue==='invite'?'招待':w.venue==='1'?'会場B':'会場A';
  function tagRow(work,solid){
   const row=document.createElement('span');row.className='works-mobile-tags';
   const view=document.createElement('span');view.className='works-mobile-tag';view.textContent='じっくり';
@@ -94,6 +98,7 @@
  }
  function renderMobileList(){
   mobileList.replaceChildren();
+  if(!worksPublished)return;
   const items=works.map((w,i)=>({w,i})).filter(({w})=>mobileVenue==='all'||w.venue===mobileVenue);
   const featured=mobileVenue==='all'?items[0]:null;
   const gridItems=featured?items.slice(1):items;

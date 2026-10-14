@@ -3,3 +3,5 @@
 #access .access-block ul{list-style:none;padding-left:0}
 #access .access-block li{padding-left:1.4em;text-indent:-1.4em}
 #access .access-block li::before{content:'・';display:inline-block;width:1.4em;text-indent:0;text-align:center}
+#access .access-block .access-venue-building{font-weight:500}
+#access .access-block .access-venue-rooms{padding-left:1em}

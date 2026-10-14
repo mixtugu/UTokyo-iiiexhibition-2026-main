@@ -56,7 +56,30 @@ test('all reference sections, canvases and image assets load without errors', as
   expect(errors).toEqual([]);
 });
 
-test('venue filters, real-work list, dialog navigation and focus return match the reference', async ({
+test('works stay hidden behind the upcoming notice until they are published', async ({
+  page,
+  isMobile,
+}) => {
+  await ready(page, '/preview.html?prototype=works');
+  const prefix = isMobile ? 'mobile' : 'desktop';
+  await expect(page.locator(`[data-${prefix}-venue]`)).toHaveText([
+    'ALL',
+    '会場A',
+    '会場B',
+    '招待作品',
+  ]);
+  await expect(page.locator('.works-upcoming')).toHaveText(
+    '作品は順次追加予定です。',
+  );
+  await expect(
+    page.locator(
+      '.works-desktop-card, .works-mobile-card, .works-mobile-feature',
+    ),
+  ).toHaveCount(0);
+});
+
+// Re-enable together with `worksPublished` in reference/works-wave.js.
+test.skip('venue filters, real-work list, dialog navigation and focus return match the reference', async ({
   page,
   isMobile,
 }) => {
@@ -122,23 +145,15 @@ test('venue filters, real-work list, dialog navigation and focus return match th
   await page.locator('.close-detail').click();
 });
 
-test('announcement dialogs open and close with keyboard focus restored', async ({
+test('announcements retain the fund without cancelled talk event links', async ({
   page,
 }) => {
   await ready(page, '/preview.html?prototype=announce');
-  const trigger = page.locator('[data-notice="event"]').first();
-  await trigger.click();
-  await expect(page.locator('#announce-detail')).toBeVisible();
-  await expect(page.locator('#notice-body')).toContainText('11/14');
-  await page.keyboard.press('Escape');
-  await expect(trigger).toBeFocused();
-  await trigger.click();
-  await expect(page.locator('#announce-detail .talk-register')).toHaveAttribute(
-    'href',
-    'https://iii-exhibition2026-talkevent.peatix.com/',
-  );
-  await page.locator('.notice-close').click();
-  await expect(page.locator('#announce-detail')).not.toBeVisible();
+  await expect(page.locator('.announce-fund')).toBeVisible();
+  await expect(page.locator('.announce-talk, #announce-detail')).toHaveCount(0);
+  await expect(
+    page.locator('#announce a[href*="talkevent.peatix"]'),
+  ).toHaveCount(0);
 });
 
 test('archive categories show all 30 records and support keyboard and touch previews', async ({
@@ -172,16 +187,18 @@ test('section review routes and direct anchors initialize the same runtime', asy
     await expect(page.locator('.top-header')).toBeHidden();
   }
   await ready(page, '/preview.html#archives');
-  // The supplied normal-motion page lands at the members/archive boundary.
+  // Normal motion lands at the start of the members → archives journey; members may be taller than the screen.
   await expect
     .poll(() =>
-      page
-        .locator('#archives')
-        .evaluate(
-          (element) =>
-            Math.abs(element.getBoundingClientRect().top) <= innerHeight + 1 &&
-            scrollY > 0,
-        ),
+      page.evaluate(() => {
+        const members = document.querySelector('#members');
+        const archives = document.querySelector('#archives');
+        if (!members || !archives || scrollY <= 0) return false;
+        return (
+          Math.abs(members.getBoundingClientRect().top) <= 2 ||
+          Math.abs(archives.getBoundingClientRect().top) <= innerHeight + 1
+        );
+      }),
     )
     .toBe(true);
 });
