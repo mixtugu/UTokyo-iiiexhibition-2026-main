@@ -22,15 +22,15 @@
  .top-header .brand{display:none}
  .top-header:not(.is-menu-open){position:absolute;inset:0 0 auto;width:100%;height:100svh;padding:0;background:transparent;border:0;pointer-events:none}
  .top-header:not(.is-menu-open) nav{position:absolute;inset:0;display:block;width:auto;padding:0;pointer-events:none}
- .top-header:not(.is-menu-open) nav a:nth-child(n){position:absolute;display:block;width:max-content;height:auto;min-height:0;padding:5px;pointer-events:auto;transform:none}
- .top-header:not(.is-menu-open) nav img{width:auto;max-width:none;height:calc(7.5 * var(--fv-unit));filter:brightness(0)}
- .top-header:not(.is-menu-open) nav a::before{content:'';position:absolute;left:0;top:50%;width:calc(4.5 * var(--fv-unit));height:calc(4.5 * var(--fv-unit));border-radius:50%;background:var(--fv-green);transform:translate(-100%,-50%)}
+ .top-header:not(.is-menu-open) nav a:nth-child(n){position:absolute;display:block;width:max-content;height:auto;min-height:0;padding:5px;margin-left:-24px;pointer-events:auto;transform:none}
+ .top-header:not(.is-menu-open) nav img{width:auto;max-width:none;height:clamp(11px,calc(10 * var(--fv-unit)),16px);filter:brightness(0)}
+ .top-header:not(.is-menu-open) nav a::before{content:'';position:absolute;left:0;top:50%;width:clamp(5px,calc(5.5 * var(--fv-unit)),8px);height:clamp(5px,calc(5.5 * var(--fv-unit)),8px);border-radius:50%;background:var(--fv-green);transform:translate(-100%,-50%)}
  .top-header:not(.is-menu-open) nav a:nth-child(1){left:calc(100% - 302 * var(--fv-unit));top:calc(18 * var(--fv-unit))}
  .top-header:not(.is-menu-open) nav a:nth-child(2){left:calc(100% - 239 * var(--fv-unit));top:calc(41 * var(--fv-unit))}
- .top-header:not(.is-menu-open) nav a:nth-child(3){left:calc(100% - 177 * var(--fv-unit));top:calc(50 * var(--fv-unit))}
- .top-header:not(.is-menu-open) nav a:nth-child(4){left:calc(100% - 87 * var(--fv-unit));top:calc(73 * var(--fv-unit))}
- .top-header:not(.is-menu-open) nav a:nth-child(5){left:calc(100% - 134 * var(--fv-unit));top:calc(96 * var(--fv-unit))}
- .top-header:not(.is-menu-open) nav a:nth-child(6){left:calc(100% - 203 * var(--fv-unit));top:calc(119 * var(--fv-unit))}
+ .top-header:not(.is-menu-open) nav a:nth-child(3){left:calc(100% - 177 * var(--fv-unit));top:calc(50 * var(--fv-unit) + 16px)}
+ .top-header:not(.is-menu-open) nav a:nth-child(4){left:calc(100% - 87 * var(--fv-unit));top:calc(73 * var(--fv-unit) + 16px)}
+ .top-header:not(.is-menu-open) nav a:nth-child(5){left:calc(100% - 134 * var(--fv-unit));top:calc(96 * var(--fv-unit) + 16px)}
+ .top-header:not(.is-menu-open) nav a:nth-child(6){left:calc(100% - 203 * var(--fv-unit));top:calc(119 * var(--fv-unit) + 16px)}
  .top-header:not(.is-menu-open) nav a:hover{opacity:.62;transform:none}
  .top-header:not(.is-menu-open) nav a:focus-visible{outline:1px solid var(--fv-green);outline-offset:3px}
 }
