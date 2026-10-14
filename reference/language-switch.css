@@ -34,7 +34,8 @@ html[lang=en] #announce .talk-facts dt{white-space:nowrap;font-size:14px}
 #announce .fund-card-bottom{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
 #announce .fund-card-bottom p{flex:1 1 300px;max-width:none;line-height:1.7}
 @media(max-width:700px){
- .hero-composition .hero-title-ja{top:60px!important;width:72vw!important;height:auto!important}
+ .hero-composition .hero-title-ja{left:4vw!important;top:60px!important;width:72vw!important;height:auto!important}
+ .hero-composition .hero-wordmark{left:4vw;top:calc(60px + 34.97vw + 14px);bottom:auto;width:58.5vw}
  .top-menu-toggle{top:53px}
  html[lang=en] .hero-venue-list{font-size:clamp(11px,3.15vw,14px);width:92vw;bottom:14svh}
  html[lang=en] .hero-venue-building{font-size:1.05em;white-space:nowrap}
@@ -50,3 +51,7 @@ html[lang=en] .member-list dd{overflow-wrap:normal;word-break:normal}
 
 /* Keep the original reservation artwork on the Japanese first view only. */
 html[lang=en] .hero-composition .hero-ticket{display:none}
+
+/* Let talk details determine their own height before the next chapter. */
+#announce .announce-talk .announce-intro{height:auto}
+#announce .announce-fund{margin-top:24px}
