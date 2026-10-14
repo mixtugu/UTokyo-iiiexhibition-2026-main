@@ -1,3 +1,6 @@
 /2026/main    /  301
 /2026/main/   /  301
 /2026/main/*  /  301
+/2026/beginning    https://utokyo-iiiexhibition-2026-beginning.pages.dev/  302
+/2026/beginning/   https://utokyo-iiiexhibition-2026-beginning.pages.dev/  302
+/2026/beginning/*  https://utokyo-iiiexhibition-2026-beginning.pages.dev/:splat  302
