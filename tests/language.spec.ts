@@ -7,7 +7,7 @@ test('hero language choice persists through sections and dynamic works', async (
   const control = page.locator('body > .language-switch');
   await control.getByRole('button', { name: 'EN', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('.hero-ticket')).toHaveCount(0);
+  await expect(page.locator('.hero-ticket')).toBeHidden();
   await page.locator('#announce').scrollIntoViewIfNeeded();
   await expect(control).toBeHidden();
   await expect(page.locator('.event-updates-heading')).toHaveText(
@@ -34,4 +34,5 @@ test('hero language choice persists through sections and dynamic works', async (
   await expect(page.locator('.event-updates-heading')).toHaveText(
     'イベントのお知らせ',
   );
+  await expect(page.locator('.hero-ticket')).toBeVisible();
 });

@@ -47,3 +47,6 @@ html[lang=en] #announce .talk-facts dt{white-space:nowrap;font-size:14px}
 }
 
 html[lang=en] .member-list dd{overflow-wrap:normal;word-break:normal}
+
+/* Keep the original reservation artwork on the Japanese first view only. */
+html[lang=en] .hero-composition .hero-ticket{display:none}
