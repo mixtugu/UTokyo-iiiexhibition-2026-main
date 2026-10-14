@@ -200,7 +200,7 @@ body::after{display:none}
 #announce .fund-card img{height:344px;object-fit:cover}
 #announce .fund-card figcaption{position:absolute;right:0;bottom:0;background:#fff;color:#052d03;font:600 8px/8px 'Barlow',sans-serif;letter-spacing:.96px;padding:3px 5px}
 #announce .fund-card-bottom p{font-size:13px;line-height:1.45}
-#access::after{content:'';left:-1px;bottom:-12px;width:512px;height:97px;background:url('assets/labels/access.svg') no-repeat left bottom;background-size:contain}
+#access::after{content:'';left:-1px;bottom:0;width:512px;height:97px;background:url('assets/labels/access.svg') no-repeat left bottom;background-size:contain}
 #members::after{content:'';position:absolute;right:-3px;bottom:0;width:558px;height:90px;background:url('assets/labels/members.svg') no-repeat right bottom;pointer-events:none}
 #archives::before{content:'';position:absolute;left:-8px;top:0;width:645px;height:103px;background:url('assets/labels/archives.svg') no-repeat left top;pointer-events:none}
 #archives .archive-hint{display:none}
