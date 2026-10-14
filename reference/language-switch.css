@@ -1,0 +1,49 @@
+/* Shared desktop/mobile language control, beside the floating menu. */
+.language-switch{position:absolute;top:12px;right:12px;z-index:1100;display:flex;align-items:center;gap:1px;padding:0;border:0;border-radius:0;background:transparent;color:#183b29;font:600 12px/1 'Barlow',sans-serif;box-shadow:none}
+.language-switch button{min-width:34px;min-height:32px;padding:6px;border:0;border-radius:3px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.language-switch button[aria-pressed=true]{background:transparent;color:#183b29;text-decoration:underline;text-underline-offset:4px}
+.language-switch button:focus-visible{outline:2px solid #183b29;outline-offset:2px}
+html[lang=en] .talk-facts>div{grid-template-columns:90px minmax(0,1fr)}
+html[lang=en] .story-copy p{overflow-wrap:normal;word-break:normal;line-height:1.9}
+html[lang=en] .member-list dt,html[lang=en] .access-details p{overflow-wrap:anywhere}
+html[lang=en] #announce .event-notice{grid-template-columns:92px minmax(0,1fr) 18px}
+html[lang=en] #announce .event-notice .notice-title{overflow-wrap:normal}
+html[lang=en] .works-desktop-filters,html[lang=en] .works-mobile-filters{flex-wrap:wrap}
+@media(max-width:700px){
+ .language-switch{top:8px;right:8px;font-size:11px}
+ .language-switch button{min-width:32px;min-height:32px}
+ html[lang=en] #announce .talk-facts>div{grid-template-columns:80px minmax(0,1fr)}
+ html[lang=en] .story-copy br{display:none}
+}
+
+.language-switch-dialog{position:static;width:max-content;margin:18px 0 0 auto;box-shadow:none}
+@media(max-width:700px){
+ html[lang=en] .hero-venue-list{width:92vw;font-size:3vw}
+ html[lang=en] .hero-venue-list li{white-space:normal}
+ html[lang=en] .hero-venue-tag{width:5em}
+}
+/* Section-only previews also reserve room for the floating controls. */
+html[data-prototype=works] #works{padding-top:72px}
+
+.language-switch[hidden]{display:none}
+#announce .announce-talk{padding-bottom:64px;min-height:fit-content}
+#announce .announce-fund{padding-top:48px}
+html[lang=en] #announce .talk-facts>div{grid-template-columns:100px minmax(0,1fr);gap:18px}
+html[lang=en] #announce .talk-facts dt{white-space:nowrap;font-size:14px}
+#announce .talk-register{margin-bottom:18px}
+#announce .fund-card-bottom{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+#announce .fund-card-bottom p{flex:1 1 300px;max-width:none;line-height:1.7}
+@media(max-width:700px){
+ .hero-composition .hero-title-ja{top:60px!important;width:72vw!important;height:auto!important}
+ .top-menu-toggle{top:53px}
+ html[lang=en] .hero-venue-list{font-size:clamp(11px,3.15vw,14px);width:92vw;bottom:14svh}
+ html[lang=en] .hero-venue-building{font-size:1.05em;white-space:nowrap}
+ html[lang=en] .hero-venue-list li{display:flex;flex-wrap:nowrap;white-space:nowrap;line-height:1.7}
+ html[lang=en] .hero-venue-tag{width:auto;min-width:48px;white-space:nowrap;font-size:9px;margin-right:8px;line-height:1.4}
+ html[lang=en] #works .works-mobile-tag{min-width:0;white-space:nowrap;height:auto;min-height:22px;padding:4px 6px;font-size:10px;letter-spacing:0;box-sizing:border-box}
+ html[lang=en] #works .works-mobile-tags{gap:5px;flex-wrap:wrap}
+ html[lang=en] #announce .talk-facts>div{grid-template-columns:90px minmax(0,1fr);gap:12px}
+ #announce .fund-card-bottom p{flex-basis:100%}
+}
+
+html[lang=en] .member-list dd{overflow-wrap:normal;word-break:normal}

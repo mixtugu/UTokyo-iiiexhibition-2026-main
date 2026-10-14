@@ -16,7 +16,8 @@
     "flow-refinement.css",
     "mobile-top.css",
     "access-venues.css",
-    "fv-top.css"
+    "fv-top.css",
+    "language-switch.css"
   ],
   "scripts": [
     "figma-export.js",
@@ -34,7 +35,8 @@
     "concept-liquid.js",
     "announce-flow.js",
     "prototype-review.js",
-    "mobile-menu.js"
+    "mobile-menu.js",
+    "i18n.js"
   ],
   "sha256": {
     "preview.css": "ea2916200dafb377483a898c9c86ad23dbf2e31396374c2a73d213ece3f652b5",
@@ -53,6 +55,7 @@
     "mobile-top.css": "9c351f9a8ac5520047a3600a12d55da47f8e2b4e590b269dd76f7a576c9ad9a3",
     "access-venues.css": "5013e62a3c31445ebae592d8b7f2dab52355dc5c7f618c403dc73f0e5d1628c7",
     "fv-top.css": "e5455eb5d84e2f26b480971285e7035635e42cf0b9e9d355b1bc8a9560e1d5e9",
+    "language-switch.css": "324635cbe459d0516ebd08c10e6718a19c92c2bb9703ef60f329765ab4a49ec6",
     "figma-export.js": "cc252e5844ada720759b4769d76698f8f4d741e7cf74a67a383e994113b88d84",
     "preview.js": "f0dbb1068b5cb84a4ee335a9ca5d6fc3e68e1143515fa1ace2001042d90e95a0",
     "archive-columns.js": "cd61fdbf33918b199496a1e639cdce3b03fdf7945dcaa68f5b458bfd6baaf7c6",
@@ -68,6 +71,7 @@
     "concept-liquid.js": "098ddbcefc2593777266d0c886dc01ab5c3b02426a86a52f65652e1cd0417c9b",
     "announce-flow.js": "f6100ec03d361535654713963ebe7ceb109b0dc67f8822adbb97a7083dbf17de",
     "prototype-review.js": "b73efc200541ced50f0d05a72daabb13655850f82b923cabc029e3c9af54a2b0",
-    "mobile-menu.js": "9028f1e2e57c22ee657d943e6a5f7d044b368ca7f1e360629376f6824e1e75d3"
+    "mobile-menu.js": "9028f1e2e57c22ee657d943e6a5f7d044b368ca7f1e360629376f6824e1e75d3",
+    "i18n.js": "ba466195c6747e740fa7939402e4d8f830636fccb979611b4e6e353c892072fe"
   }
 }
