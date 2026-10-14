@@ -122,23 +122,15 @@ test('venue filters, real-work list, dialog navigation and focus return match th
   await page.locator('.close-detail').click();
 });
 
-test('announcement dialogs open and close with keyboard focus restored', async ({
+test('announcements retain the fund without cancelled talk event links', async ({
   page,
 }) => {
   await ready(page, '/preview.html?prototype=announce');
-  const trigger = page.locator('[data-notice="event"]').first();
-  await trigger.click();
-  await expect(page.locator('#announce-detail')).toBeVisible();
-  await expect(page.locator('#notice-body')).toContainText('11/14');
-  await page.keyboard.press('Escape');
-  await expect(trigger).toBeFocused();
-  await trigger.click();
-  await expect(page.locator('#announce-detail .talk-register')).toHaveAttribute(
-    'href',
-    'https://iii-exhibition2026-talkevent.peatix.com/',
-  );
-  await page.locator('.notice-close').click();
-  await expect(page.locator('#announce-detail')).not.toBeVisible();
+  await expect(page.locator('.announce-fund')).toBeVisible();
+  await expect(page.locator('.announce-talk, #announce-detail')).toHaveCount(0);
+  await expect(
+    page.locator('#announce a[href*="talkevent.peatix"]'),
+  ).toHaveCount(0);
 });
 
 test('archive categories show all 30 records and support keyboard and touch previews', async ({

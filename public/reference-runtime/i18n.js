@@ -1,4 +1,8 @@
 const exhibitionTranslations = {
+ "来場予約": "Reserve your visit",
+ "制作展のグリーンのモチーフをあしらった黒いパーカーの前面と背面": "Front and back of the black hoodie featuring the exhibition’s green motif",
+ "ご支援のお知らせ": "Support the exhibition",
+ "作品は順次追加予定です。": "More works will be added.",
  "昨年度より、制作展当日にご寄付していただいた方に、金額に応じて返礼品をお渡ししております。": "Since last year, visitors who donate during the exhibition receive a thank-you gift based on their donation amount.",
  "サイト全体 ↗": "Full website ↗",
  "東京大学制作展 2026": "UTokyo iii Exhibition 2026",
@@ -210,7 +214,7 @@ const exhibitionMemberNames = {
   // A component may replace its text when opening a dialog or changing a filter.
   if(original===undefined||(current!==original&&current!==english(original)&&current!==exhibitionMemberNames[original.trim()]))original=current;
   originals.set(node,original);
-  const next=language==='en'?(node.parentElement?.closest('.member-list dd')?original.replace(original.trim(),exhibitionMemberNames[original.trim()]||original.trim()):english(original)):original;
+  const next=language==='en'?(node.parentElement?.closest('.member-list dd,.member-venue-additions dd')?original.replace(original.trim(),exhibitionMemberNames[original.trim()]||original.trim()):english(original)):original;
   if(current!==next)node.nodeValue=next;
  }
  const observer=new MutationObserver(records=>{
