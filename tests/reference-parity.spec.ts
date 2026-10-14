@@ -98,7 +98,13 @@ for (const viewport of [
         expect(changed, `${section}: differing pixels`).toBe(0);
       }
       for (const page of [original, actual]) {
-        await page.locator('.wave-view').click();
+        await page
+          .locator(
+            viewport.width >= 700
+              ? '[data-desktop-venue="0"]'
+              : '[data-mobile-venue="0"]',
+          )
+          .click();
         await page
           .locator('#works')
           .evaluate((element) =>

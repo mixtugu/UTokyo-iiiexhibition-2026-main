@@ -6,15 +6,19 @@
   const sourceWidth = 1675;
   const sourceHeight = 939;
   const scale = canvas.width / sourceWidth;
+  // The artwork lays the 1675x939 routes out inside a 1200px-wide frame.
+  const artworkWidth = 1200, contentTop = 245, contentHeight = 760;
+  const routeY = (y) => (contentTop + y * contentHeight / sourceHeight) * sourceWidth / artworkWidth;
   const green = '#20a35f';
   const markerWidth = 52;
   const paths = [...document.querySelectorAll('.name-route')];
   const groupStarts = [.42, .76, 1.10];
   const textDelay = .36;
-  const finalDots = [
-    { x: 580, y: 65 },
-    { x: 1050, y: 166 },
-    { x: 1380, y: 336 }
+  // The three brush stamps in the artwork, revealed last (1200px-wide frame).
+  const stampRegions = [
+    { x: 318, y: 54, width: 165, height: 190, cx: 400, cy: 145 },
+    { x: 675, y: 142, width: 177, height: 188, cx: 763, cy: 237 },
+    { x: 866, y: 205, width: 183, height: 179, cx: 958, cy: 296 }
   ];
   const motionReduced = matchMedia('(prefers-reduced-motion: reduce)');
   // Phones show the finished drawing instead of animating it.
@@ -25,8 +29,9 @@
   const points = paths.map((path) => {
     const length = path.getTotalLength();
     const samples = [];
-    for (let distance = 0; distance < length; distance += 4) samples.push(path.getPointAtLength(distance));
-    samples.push(path.getPointAtLength(length));
+    const at = (distance) => { const point = path.getPointAtLength(distance); return { x: point.x, y: routeY(point.y) }; };
+    for (let distance = 0; distance < length; distance += 4) samples.push(at(distance));
+    samples.push(at(length));
     return samples;
   });
   const nextStart = [...groupStarts];
@@ -59,7 +64,9 @@
   const trailMaskContext = trailMask.getContext('2d');
   let ready = false;
   let finished = false;
-  const dotImages = finalDots.map((_,i)=>{const image=new Image();image.src=`assets/members-dot-${i+1}.png`;return image;});
+  const fullArtwork = document.createElement('canvas');
+  fullArtwork.width = canvas.width; fullArtwork.height = canvas.height;
+  const fullContext = fullArtwork.getContext('2d', { willReadFrequently: true });
   let startedAt = 0, playhead = 0, playbackRate = 2.6;
   let frame = 0;
 
@@ -215,94 +222,6 @@
 
   const markerTextures = markerRoutes.map(({ points: route, index }) => prepareMarkerTexture(route, index));
 
-  function irregularDrop(target, radius, seed, fillStyle, roughness = 1) {
-    const random = seededRandom(seed);
-    target.beginPath();
-    for (let point = 0; point <= 72; point++) {
-      const angle = point / 72 * Math.PI * 2;
-      const wobble = 1 + roughness * (.055 * Math.sin(angle * 5 + seed) + .035 * Math.sin(angle * 11 - seed * .4));
-      const edge = radius * (wobble + (random() - .5) * .025 * roughness);
-      const x = Math.cos(angle) * edge, y = Math.sin(angle) * edge;
-      if (point === 0) target.moveTo(x, y);
-      else target.lineTo(x, y);
-    }
-    target.closePath();
-    target.fillStyle = fillStyle;
-    target.fill();
-  }
-
-  function makeInkDrop(index) {
-    const random = seededRandom(2771 + index * 7919);
-    // Three related drops, but with distinct paper absorption and pigment density.
-    const style = {
-      stretchX: [1.16, .86, 1.04][index] + (random() - .5) * .08,
-      stretchY: [.84, 1.14, .96][index] + (random() - .5) * .08,
-      rotation: [-.32, .4, -.12][index] + (random() - .5) * .12,
-      roughness: [.65, 1.3, .95][index] + random() * .16,
-      bleedRadius: [29, 26, 33][index] + random() * 2,
-      coreRadius: [17, 14, 18][index] + random() * 1.5,
-      bleedOpacity: [.75, 1.15, .9][index] + random() * .12,
-      coreOpacity: [.95, .72, .84][index] + random() * .08,
-      fiberCount: [145, 95, 185][index] + Math.floor(random() * 18),
-      duration: [.65, .48, .78][index] + random() * .04,
-      bloomDelay: [.18, .28, .11][index]
-    };
-    const makeLayer = () => {
-      const layer = document.createElement('canvas');
-      layer.width = 100; layer.height = 100;
-      const ink = layer.getContext('2d');
-      ink.translate(50, 50);
-      return { layer, ink };
-    };
-    const bloom = makeLayer();
-    bloom.ink.rotate(style.rotation);
-    bloom.ink.scale(style.stretchX, style.stretchY);
-    const diffusion = bloom.ink.createRadialGradient(-2, -3, 5, 0, 0, style.bleedRadius + 4);
-    diffusion.addColorStop(0, `rgba(125, 225, 116, ${.16 * style.bleedOpacity})`);
-    diffusion.addColorStop(.52, `rgba(105, 214, 126, ${.11 * style.bleedOpacity})`);
-    diffusion.addColorStop(1, 'rgba(105, 214, 126, 0)');
-    bloom.ink.fillStyle = diffusion;
-    bloom.ink.beginPath();
-    bloom.ink.arc(0, 0, style.bleedRadius + 4, 0, Math.PI * 2);
-    bloom.ink.fill();
-    irregularDrop(bloom.ink, style.bleedRadius * .78, 601 + index * 41,
-      `rgba(104, 207, 78, ${.065 * style.bleedOpacity})`, style.roughness);
-    const fibers = seededRandom(934 + index * 71);
-    for (let fiber = 0; fiber < style.fiberCount; fiber++) {
-      const angle = fibers() * Math.PI * 2;
-      const radius = style.coreRadius * .8 + fibers() * (style.bleedRadius - style.coreRadius * .5);
-      const length = .7 + fibers() * (2.5 + style.roughness * 2);
-      bloom.ink.strokeStyle = `rgba(64, 184, 58, ${(.025 + fibers() * .085) * style.bleedOpacity})`;
-      bloom.ink.lineWidth = .35 + fibers() * .75;
-      bloom.ink.beginPath();
-      bloom.ink.moveTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-      bloom.ink.lineTo(Math.cos(angle) * (radius + length), Math.sin(angle) * (radius + length));
-      bloom.ink.stroke();
-    }
-    const core = makeLayer();
-    core.ink.rotate(style.rotation);
-    core.ink.scale(style.stretchX, style.stretchY);
-    irregularDrop(core.ink, style.coreRadius + 4, 319 + index * 53,
-      `rgba(104, 207, 78, ${.18 * style.coreOpacity})`, style.roughness * .8);
-    const pigment = core.ink.createRadialGradient(-3, -4, 1, 0, 0, style.coreRadius + 2);
-    pigment.addColorStop(0, `rgba(104, 207, 78, ${.86 * style.coreOpacity})`);
-    pigment.addColorStop(.58, `rgba(83, 198, 136, ${.73 * style.coreOpacity})`);
-    pigment.addColorStop(1, `rgba(164, 222, 87, ${.32 * style.coreOpacity})`);
-    irregularDrop(core.ink, style.coreRadius, 117 + index * 29, pigment, style.roughness);
-    const patches = seededRandom(451 + index * 101);
-    for (let patch = 0; patch < 7 + index * 3; patch++) {
-      const angle = patches() * Math.PI * 2;
-      const radius = patches() * style.coreRadius * .75;
-      core.ink.fillStyle = `rgba(64, 184, 58, ${.035 + patches() * .1})`;
-      core.ink.beginPath();
-      core.ink.arc(Math.cos(angle) * radius, Math.sin(angle) * radius, 1 + patches() * 3, 0, Math.PI * 2);
-      core.ink.fill();
-    }
-    return { bloom: bloom.layer, core: core.layer, style };
-  }
-
-  const inkDrops = finalDots.map((_, index) => makeInkDrop(index));
-
   function addTipGlow(target, route, progress) {
     if (progress >= 1) return;
     const tip = route[Math.ceil(progress * (route.length - 1))];
@@ -382,34 +301,16 @@
   }
 
   function drawFinalDots(time) {
-    finalDots.forEach((dot, index) => {
-      const asset=dotImages[index];
-      if(asset.complete && asset.naturalWidth){
-        const progress=ease((time-dotStart-index*.19)/.6);
-        if(progress<=0)return;
-        context.save();context.globalAlpha=progress;
-        const slot=[{x:526.03,y:5.02},{x:765.02,y:100.99},{x:951.97,y:179.98}][index];
-        const ratio=canvas.width/1440,top=(canvas.height-760*ratio)/2;
-        const width=219.89*ratio,height=194.56*ratio,growth=.9+.1*progress;
-        context.drawImage(asset,slot.x*ratio+width*(1-growth)/2,top+slot.y*ratio+height*(1-growth)/2,width*growth,height*growth);
-        context.restore();return;
-      }
-      const { bloom, core, style } = inkDrops[index];
-      const progress = clamp((time - dotStart - index * .19) / style.duration);
+    const ratio = canvas.width / artworkWidth;
+    stampRegions.forEach((stamp, index) => {
+      const progress = ease((time - dotStart - index * .19) / .6);
       if (progress <= 0) return;
-      const x = dot.x * scale, y = dot.y * scale;
+      const growth = .78 + .22 * progress;
+      const width = stamp.width * ratio * growth, height = stamp.height * ratio * growth;
       context.save();
-      context.translate(x, y);
-      const spread = ease((progress - style.bloomDelay) / (1 - style.bloomDelay));
-      context.globalAlpha = spread;
-      context.save();
-      context.scale(.68 + spread * .32, .68 + spread * .32);
-      context.drawImage(bloom, -50, -50);
-      context.restore();
-      context.globalAlpha = ease(progress * (2.1 + style.coreOpacity * .5));
-      const coreScale = .3 + .7 * ease(progress / (.55 + style.bloomDelay * .35));
-      context.scale(coreScale, coreScale);
-      context.drawImage(core, -50, -50);
+      context.globalAlpha = progress;
+      context.drawImage(fullArtwork, stamp.x * ratio, stamp.y * ratio, stamp.width * ratio, stamp.height * ratio,
+        stamp.cx * ratio - width / 2, stamp.cy * ratio - height / 2, width, height);
       context.restore();
     });
   }
@@ -448,15 +349,23 @@
   });
   motionReduced.addEventListener('change', restart);
   touchDevice.addEventListener('change', restart);
-  const nameSlots=[
-    {x:15+1311*.0845,y:112+633*.2157,w:1311*.7706,h:633*.7112},
-    {x:15+1311*.0557,y:112+633*.1106,w:1311*.8888,h:633*.8888},
-    {x:15+1311*.1684,y:112+633*.313,w:1311*.1383,h:633*.1322}
-  ];
-  const nameImages=nameSlots.map((_,i)=>{const image=new Image();image.src=`assets/members-names-${i+1}.svg`;return image;});
-  Promise.all([...nameImages,...dotImages].map(image=>image.decode())).then(() => {
-    const ratio=canvas.width/1440,top=(canvas.height-760*ratio)/2;
-    nameImages.forEach((image,i)=>{const slot=nameSlots[i];artworkContext.drawImage(image,slot.x*ratio,top+slot.y*ratio,slot.w*ratio,slot.h*ratio);});
+  // Fade the artwork's white paper to transparency so it sits on the page background.
+  function removeWhite(target) {
+    const pixels = target.getImageData(0, 0, canvas.width, canvas.height);
+    for (let index = 0; index < pixels.data.length; index += 4) {
+      const distance = Math.max(255 - pixels.data[index], 255 - pixels.data[index + 1], 255 - pixels.data[index + 2]);
+      pixels.data[index + 3] = Math.round(pixels.data[index + 3] * clamp((distance - 3) / 20));
+    }
+    target.putImageData(pixels, 0, 0);
+  }
+  const image = new Image();
+  image.src = 'assets/members-artwork-brush.png';
+  image.decode().then(() => {
+    fullContext.drawImage(image, 0, 0, canvas.width, canvas.height);
+    removeWhite(fullContext);
+    artworkContext.drawImage(fullArtwork, 0, 0);
+    const ratio = canvas.width / artworkWidth;
+    for (const stamp of stampRegions) artworkContext.clearRect(stamp.x * ratio, stamp.y * ratio, stamp.width * ratio, stamp.height * ratio);
     ready = true;
     window.membersMarkerPrototype = {
       canvas,

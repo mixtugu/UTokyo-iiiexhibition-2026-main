@@ -112,3 +112,19 @@
 #announce .event-notice:focus-visible,#announce .fund-card-bottom a:focus-visible{
  outline-color:#f3f8ee;
 }
+
+/* Event essentials and registration remain visible outside the detail dialog. */
+#announce .announce-talk .announce-list{height:auto;min-height:0}
+#announce .event-updates-heading{margin:0 0 20px;font:600 14px/1.6 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.06em;color:#cbd6d0}
+@media(min-width:701px){
+ #announce .announce-talk .announce-list{padding-top:42px}
+ #announce .announce-talk .event-updates-heading{display:flex;align-items:center;min-height:34.01px}
+}
+#announce .talk-facts{margin:24px 0;display:grid;gap:14px;font-size:15px;line-height:1.8}
+#announce .talk-facts>div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px}
+#announce .talk-facts dt{font-weight:700;color:#fff}
+#announce .talk-facts dd{margin:0;overflow-wrap:anywhere}
+#announce .talk-register,#announce-detail .talk-register{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:14px 20px;border-radius:8px;background:#54bc4e;color:#fff;font:600 15px/1.5 'Zen Kaku Gothic Antique',sans-serif;text-align:center;text-decoration:none;box-sizing:border-box}
+#announce .talk-register:hover,#announce-detail .talk-register:hover{background:#278820}
+#announce .talk-register:focus-visible,#announce-detail .talk-register:focus-visible{outline:2px solid #278820;outline-offset:4px}
+@media(max-width:600px){#announce .talk-facts>div{grid-template-columns:60px minmax(0,1fr);gap:8px}#announce .talk-register,#announce-detail .talk-register{width:100%}}

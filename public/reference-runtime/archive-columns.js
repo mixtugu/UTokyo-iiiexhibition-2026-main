@@ -15,6 +15,7 @@
   ['本展','2013','mosaic','https://archive.iiiexhibition.com/log/i3e15','main-2013-visual.png'],
   ['本展','2012','いとをかし','https://archive.iiiexhibition.com/log/i3e14','main-2012-visual.png'],
   ['本展','2011','Re:','https://archive.iiiexhibition.com/log/i3e13','main-2011-visual.jpg'],
+  ['番外展','2026','たゆたう','https://iiiexhibition.com/2026/beginning','extra-2026-visual.jpg'],
   ['番外展','2025','あることないこと','https://iii-exhibition2025-beginning.pages.dev','extra-2025-visual.png'],
   ['番外展','2024','なにいう展','https://iii-exhibition-2024-web.vercel.app/','../extra-2024.png'],
   ['番外展','2023','voidage','https://iii-exhibition2023.vercel.app/','../extra-2023.jpg'],

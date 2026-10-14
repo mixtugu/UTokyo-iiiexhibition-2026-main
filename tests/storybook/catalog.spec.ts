@@ -119,9 +119,9 @@ test('reference stories run the actual exhibition and keep review navigation ins
 }) => {
   await page.goto(story('reference-exhibition--works'));
   const exhibition = page.frameLocator('iframe[title="Reference exhibition"]');
-  await expect(exhibition.locator('.wave-card')).toHaveCount(30);
-  await exhibition.locator('.wave-view').click();
-  await expect(exhibition.locator('.wave-list button:visible')).toHaveCount(2);
+  await expect(exhibition.locator('.works-desktop')).toBeVisible();
+  await expect(exhibition.locator('.works-desktop-card')).toHaveCount(11);
+  await expect(exhibition.locator('.wave-stage')).toHaveCount(0);
   await exhibition
     .locator('.prototype-review-bar a', { hasText: 'ANNOUNCE' })
     .click();

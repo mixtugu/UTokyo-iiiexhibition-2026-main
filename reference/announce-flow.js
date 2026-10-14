@@ -13,7 +13,8 @@
  }
  dialog.addEventListener('close',()=>{clearTimeout(closing);closing=0;dialog.classList.remove('is-closing');});
  dialog.addEventListener('cancel',event=>{event.preventDefault();closeDetail();});
- const notices={event:{title:'制作展トークイベントを開催します。',body:'11/14（土）14:00〜15:30に、トークイベントを開催します。\n\n登壇者・参加方法などの詳細は、決まり次第こちらでお知らせします。'},information:{title:'登壇者が確定。詳細ページが更新されました。',body:'登壇者・参加方法などの詳細は、決まり次第こちらでお知らせします。'}};
+ const eventBody='2026/11/14（土）14:00〜15:30（日本時間）\n\n会場：東京大学 工学部2号館\n東京都文京区本郷7丁目3−1\n\n参加登録：Peatixから事前にチケットをお申し込みください。\n\n登壇者・イベント内容は後日公開します。';
+ const notices={event:{title:'東京大学制作展 2026 トークイベント',body:eventBody}};
  root.querySelectorAll('[data-notice]').forEach(button=>button.addEventListener('click',()=>{const n=notices[button.dataset.notice];dialog.querySelector('#notice-heading').textContent=n.title;dialog.querySelector('#notice-body').textContent=n.body;dialog.showModal();}));
  dialog.querySelector('.notice-close').addEventListener('click',closeDetail);
  dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))closeDetail();});

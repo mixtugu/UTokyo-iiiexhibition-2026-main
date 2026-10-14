@@ -10,8 +10,10 @@
   "concept-story.js",
   "smooth-scroll.js",
   "hero-fragments.js",
+  "fv-flow-particles.js",
   "concept-liquid.js",
   "announce-flow.js",
   "prototype-review.js",
-  "mobile-menu.js"
+  "mobile-menu.js",
+  "i18n.js"
 ]

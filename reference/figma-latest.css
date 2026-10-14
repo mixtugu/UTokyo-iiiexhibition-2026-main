@@ -37,6 +37,9 @@
   text-shadow:0 1px 10px #173a2840;
 }
 
+/* Mobile-only phrase breaks keep the narrow layout from splitting words. */
+@media(min-width:701px){#concept .story-copy .sp-br{display:none}}
+
 /* WORKS: retain the interactive orbit, but use the Figma type and proportions. */
 #works{position:relative;isolation:isolate;min-height:950px;padding:75px var(--latest-gutter) 28px;overflow:hidden;background:#fff}
 #works::after{content:'WORKS';position:absolute;right:-.5vw;bottom:-.14em;z-index:0;color:#e4f7e1;font:400 clamp(88px,11vw,150px)/1 'Barlow',sans-serif;letter-spacing:-.055em;pointer-events:none}
@@ -125,7 +128,8 @@
  .top-header nav a{height:25px;min-height:25px;padding:4px 0}
  .top-header nav img{height:11px}
  .hero-title-ja{filter:brightness(0)}
- #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(16px,4.15vw,19px);line-height:2.75;letter-spacing:.06em}
+ #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(14px,4.6vw,20px);line-height:2.6;letter-spacing:.06em;word-break:keep-all;overflow-wrap:anywhere}
+ html[lang=en] #concept .story-copy p,html[lang=en] .birth-content #concept.liquid-ready .story-copy p{line-height:2;letter-spacing:.03em;word-break:normal;overflow-wrap:normal;text-wrap:balance}
  #works{min-height:0;padding:40px 6% 30px}
  #works .spatial-gallery .wave-stage{height:540px;margin-inline:-6.8%}
  #works .wave-toolbar button{font-size:12px}
@@ -200,7 +204,7 @@ body::after{display:none}
 #announce .fund-card img{height:344px;object-fit:cover}
 #announce .fund-card figcaption{position:absolute;right:0;bottom:0;background:#fff;color:#052d03;font:600 8px/8px 'Barlow',sans-serif;letter-spacing:.96px;padding:3px 5px}
 #announce .fund-card-bottom p{font-size:13px;line-height:1.45}
-#access::after{content:'';left:-1px;bottom:-12px;width:512px;height:97px;background:url('assets/labels/access.svg') no-repeat left bottom;background-size:contain}
+#access::after{content:'';left:-1px;bottom:0;width:512px;height:97px;background:url('assets/labels/access.svg') no-repeat left bottom;background-size:contain}
 #members::after{content:'';position:absolute;right:-3px;bottom:0;width:558px;height:90px;background:url('assets/labels/members.svg') no-repeat right bottom;pointer-events:none}
 #archives::before{content:'';position:absolute;left:-8px;top:0;width:645px;height:103px;background:url('assets/labels/archives.svg') no-repeat left top;pointer-events:none}
 #archives .archive-hint{display:none}
@@ -332,4 +336,88 @@ body::after{display:none}
  #works .is-list-mode .wave-list{padding-top:32px}
  #detail{padding:56px 24px 32px}
  #detail .detail-grid{grid-template-columns:1fr;gap:28px}
+}
+
+/* Desktop catalog. Works is list-only. */
+.works-desktop,.works-mobile{display:none}
+@media(min-width:701px){
+ #works:has(.works-desktop){height:auto;min-height:100svh;padding:0 0 70px;overflow:visible;background:#fff}
+ #works:has(.works-desktop)::after{display:none}
+ #works>.wave-gallery:has(.works-desktop){height:auto;min-height:0}
+ #works .works-desktop{display:block}
+ #works .works-desktop-panel{overflow:hidden;background:#fff}
+ #works .works-desktop-filters{display:flex;align-items:center;justify-content:flex-start;gap:16px;height:138px;padding:0 56px}
+ #works .works-desktop-filters button{height:24px;min-height:24px;padding:2px 13px;border:0;color:#111;font:700 11px/20px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.04em;white-space:nowrap}
+ #works .works-desktop-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:auto;border-top:1px solid #67c15b;border-left:1px solid #67c15b}
+ #works .works-desktop-card{--works-pad-top:16px;--works-pad-bottom:22px;--works-media-h:clamp(244px,27vw,320px);--works-title-size:clamp(18px,1.55vw,25px);--works-title-lh:1.25;--works-line-gap:8px;--works-invite-size:clamp(22px,2.05vw,32px);--works-card-h:calc(var(--works-pad-top) + var(--works-media-h) + var(--works-title-size) * var(--works-title-lh) + var(--works-line-gap) + 1px + var(--works-pad-bottom) + 1px);position:relative;display:grid;grid-template-rows:auto auto auto auto;align-content:start;height:var(--works-card-h);min-width:0;margin:0;padding:var(--works-pad-top) 20px var(--works-pad-bottom);border:0;border-right:1px solid #67c15b;border-bottom:1px solid #67c15b;background:#fff;color:#111;text-align:left;font-family:inherit;overflow:hidden}
+ #works button.works-desktop-card{cursor:pointer}
+ #works button.works-desktop-card:focus-visible{z-index:2;outline:1px dashed #052d03;outline-offset:-6px}
+ #works .works-desktop-card:not(.is-invited):not(.is-placeholder){grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto auto}
+ #works .works-desktop-tags{z-index:1;display:flex;flex-direction:column;align-items:flex-start;align-self:start;gap:6px;grid-column:1;grid-row:1;width:max-content;margin:0 8px 0 0}
+ #works .works-desktop-card:not(.is-invited):not(.is-placeholder) .works-desktop-media{grid-column:2;grid-row:1;justify-content:flex-end}
+ #works .works-desktop-card:not(.is-invited):not(.is-placeholder) .works-desktop-title,#works .works-desktop-card:not(.is-invited):not(.is-placeholder) .works-desktop-author{grid-column:1 / -1}
+ #works .works-desktop-tag{display:inline-flex;align-items:center;justify-content:center;width:fit-content;min-width:0;height:22px;padding:0 8px;border:1px solid #54bc4e;background:#fff;color:#54bc4e;font:700 11px/1 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.05em;white-space:nowrap}
+ #works .works-desktop-tag.is-solid{border-color:#111;background:#111;color:#fff}
+ #works .works-desktop-media{display:flex;align-items:flex-start;justify-content:center;grid-row:2;min-height:0}
+ #works .works-desktop-card:not(.is-invited) .works-desktop-media{height:var(--works-media-h)}
+ #works .works-desktop-media img{display:block;width:auto;max-width:100%;height:clamp(180px,15.5vw,204px);object-fit:contain;object-position:top center}
+ #works .works-desktop-title{display:block;grid-row:3;margin-top:0;font:400 var(--works-title-size)/var(--works-title-lh) 'Barlow',sans-serif;letter-spacing:.01em;overflow-wrap:anywhere}
+ #works .works-desktop-author{display:block;grid-row:4;width:14px;height:0;margin-top:var(--works-line-gap);border-bottom:1px solid #111}
+ #works .works-desktop-card.is-placeholder .works-desktop-media{grid-row:1/3}
+ #works .works-desktop-card.is-placeholder .works-desktop-media img{width:auto;height:clamp(180px,15.5vw,204px);opacity:.2}
+ #works .works-desktop-card.is-placeholder .works-desktop-title{font-size:clamp(18px,1.55vw,25px)}
+ #works .works-desktop-card.is-invited{grid-column:span 2;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:20px}
+ #works .works-desktop-card.is-invited .works-desktop-tags{grid-column:1;grid-row:1;margin-bottom:12px}
+ #works .works-desktop-card.is-invited .works-desktop-media{align-self:stretch;justify-content:flex-start;grid-column:1;grid-row:2;height:auto;min-height:0}
+ #works .works-desktop-card.is-invited .works-desktop-media img{width:auto;max-width:none;height:100%}
+ #works .works-desktop-card.is-invited .works-desktop-title{position:absolute;right:0;bottom:calc(100% - (var(--works-media-h) + var(--works-title-size) * var(--works-title-lh)));left:0;min-width:0;grid-column:2;grid-row:1 / -1;font-size:var(--works-invite-size)}
+ #works .works-desktop-card.is-invited .works-desktop-author{position:absolute;top:calc(var(--works-media-h) + var(--works-title-size) * var(--works-title-lh) + var(--works-line-gap));left:0;grid-column:2;grid-row:1 / -1;margin:0}
+ #works .works-desktop-pagination{display:flex;align-items:center;justify-content:center;gap:28px;height:112px}
+ #works .works-desktop-pagination button{min-width:20px;min-height:28px;padding:4px;border:0;background:transparent;color:#111;font:500 10px/1 'Barlow',sans-serif}
+ #works .works-desktop-pagination button[aria-current=page]{font-weight:700;text-decoration:underline;text-underline-offset:4px}
+}
+@media(min-width:701px) and (max-width:900px){
+ #works .works-desktop-filters{height:110px;padding-inline:30px}
+ #works .works-desktop-grid{grid-auto-rows:auto}
+ #works .works-desktop-card{--works-pad-top:14px;--works-pad-bottom:18px;padding:14px 14px 18px}
+}
+
+/* Phone catalog. */
+@media(max-width:700px){
+ #works{height:auto;min-height:0;overflow:visible;padding:28px 0 80px}
+ #works::after{display:none}
+ #works>.wave-gallery{height:auto;min-height:0}
+ #works .works-mobile{display:block}
+ #works .works-mobile-filters{display:flex;justify-content:flex-start;align-items:center;gap:16px;margin:4px 0 26px;padding:0 16px}
+ #works .works-mobile-filters button{height:auto;min-height:28px;padding:4px 10px;color:#111;font:700 13px/20px 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.04em;white-space:nowrap}
+ #works .works-mobile-list{border:1px solid #67c15b}
+ #works .works-mobile-feature,#works .works-mobile-card,#works .works-mobile-back{font-family:inherit;cursor:pointer}
+ #works .works-mobile-feature,#works .works-mobile-card{display:block;width:100%;margin:0;padding:0;border:0;background:#fff;color:#1a1a1a;text-align:center}
+ #works .works-mobile-feature{border-bottom:1px solid #67c15b}
+ #works .works-mobile-frame{display:block;padding:16px 14px 0;border:0}
+ #works .works-mobile-tags{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 36px}
+ #works .works-mobile-feature .works-mobile-tags,#works .works-mobile-detail .works-mobile-tags{justify-content:flex-start;gap:10px}
+ #works .works-mobile-feature .works-mobile-tags{margin-bottom:52px}
+ #works .works-mobile-tag{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:22px;padding:0 8px;border:1px solid #54bc4e;background:#fff;color:#54bc4e;font:700 11px/1 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.06em}
+ #works .works-mobile-tag.is-solid{border-color:#111;background:#111;color:#fff}
+ #works .works-mobile-feature img,#works .works-mobile-card img,#works .works-mobile-detail-image{display:block;width:100%;height:auto}
+ #works .works-mobile-feature img{width:56%;margin:0 auto}
+ #works .works-mobile-feature-title{display:block;margin:36px 8px 40px;color:#111;font:500 22px/1.25 'Barlow',sans-serif;letter-spacing:.01em}
+ #works .works-mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;background:#fff}
+ #works .works-mobile-grid.is-filtered{margin-top:0}
+ #works .works-mobile-card{display:flex;flex-direction:column;align-items:stretch;padding:14px 10px 22px;border-right:1px solid #67c15b;border-bottom:1px solid #67c15b}
+ #works .works-mobile-card:nth-child(2n){border-right:0}
+ #works .works-mobile-card:last-child,#works .works-mobile-card:nth-child(odd):nth-last-child(2){border-bottom:0}
+ #works .works-mobile-card img{width:68%;aspect-ratio:1;height:auto;object-fit:contain;margin:0 auto}
+ #works .works-mobile-card-title{display:block;margin-top:20px;color:#111;font:500 15px/1.3 'Barlow',sans-serif}
+ #works .works-mobile-detail{padding:0}
+ #works .works-mobile-detail-image{width:100%;border-top:1px solid #67c15b;border-bottom:1px solid #67c15b}
+ #works .works-mobile-detail-tags{margin:20px 18px 28px}
+ #works .works-mobile-detail-tags .works-mobile-tags{margin:0}
+ #works .works-mobile-detail h3{margin:0 18px 6px;color:#46a83d;font:400 22px/1.3 'Barlow',sans-serif;text-align:left}
+ #works .works-mobile-detail-meta{margin:0 18px 0;color:#46a83d;font:400 13px/1.7 'Zen Kaku Gothic Antique',sans-serif;text-align:left}
+ #works .works-mobile-detail-body{margin:28px 18px 80px;color:#46a83d;font:400 13px/1.95 'Zen Kaku Gothic Antique',sans-serif;text-align:left}
+ #works .works-mobile-back{display:flex;align-items:center;justify-content:center;min-width:148px;min-height:42px;margin:0 auto 12px;padding:8px 28px;border:1px solid #67c15b;border-radius:999px;background:#fff;color:#46a83d;font:500 13px/1 'Zen Kaku Gothic Antique',sans-serif}
+ #works .works-mobile-empty{margin:28px 0;text-align:center;font:400 13px/1.7 'Zen Kaku Gothic Antique',sans-serif}
+ #works .works-mobile-feature:focus-visible,#works .works-mobile-card:focus-visible,#works .works-mobile-back:focus-visible{outline:1px dashed #052d03;outline-offset:3px}
 }

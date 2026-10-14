@@ -22,7 +22,8 @@
     const works=document.querySelector('#works'),announce=document.querySelector('#announce'),access=document.querySelector('#access');
     if(!works||!announce||!access)return null;
     const w=works.getBoundingClientRect(),a=announce.getBoundingClientRect();
-    if(w.top<100&&w.top>-innerHeight*.4&&!works.querySelector('.is-list-mode'))return announce;
+    // The phone catalog is taller than the screen, so a small scroll should stay inside Works.
+    if(w.top<100&&w.top>-innerHeight*.4&&!works.querySelector('.is-list-mode')&&w.height<=innerHeight*1.2)return announce;
     // Keep both announcement chapters readable instead of skipping the fund.
     if(a.top<=40&&a.bottom>40){
       const fund=announce.querySelector('.announce-fund');
