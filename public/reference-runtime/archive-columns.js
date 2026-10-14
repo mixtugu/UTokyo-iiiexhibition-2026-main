@@ -18,7 +18,7 @@
   ['番外展','2026','たゆたう','https://iiiexhibition.com/2026/beginning','extra-2026-visual.jpg'],
   ['番外展','2025','あることないこと','https://iii-exhibition2025-beginning.pages.dev','extra-2025-visual.png'],
   ['番外展','2024','なにいう展','https://iii-exhibition-2024-web.vercel.app/','../extra-2024.png'],
-  ['番外展','2023','voidage','https://iii-exhibition2023.vercel.app/','../extra-2023.jpg'],
+  ['番外展','2023','voidage','https://iii-exhibition2023.vercel.app/','extra-2023-voidage.png'],
   ['番外展','2022','Emulsion','https://archive.iiiexhibition.com/log/iiiEx2022','extra-2022-visual.png'],
   ['番外展','2021','0PUNK','https://archive.iiiexhibition.com/log/iiiEx2021','extra-2021-visual.jpg'],
   ['番外展','2020','WHO ZIPS YOU?','https://archive.iiiexhibition.com/log/iiiEx2020','extra-2020-visual.png'],
