@@ -37,6 +37,9 @@
   text-shadow:0 1px 10px #173a2840;
 }
 
+/* Mobile-only phrase breaks keep the narrow layout from splitting words. */
+@media(min-width:701px){#concept .story-copy .sp-br{display:none}}
+
 /* WORKS: retain the interactive orbit, but use the Figma type and proportions. */
 #works{position:relative;isolation:isolate;min-height:950px;padding:75px var(--latest-gutter) 28px;overflow:hidden;background:#fff}
 #works::after{content:'WORKS';position:absolute;right:-.5vw;bottom:-.14em;z-index:0;color:#e4f7e1;font:400 clamp(88px,11vw,150px)/1 'Barlow',sans-serif;letter-spacing:-.055em;pointer-events:none}
@@ -125,7 +128,7 @@
  .top-header nav a{height:25px;min-height:25px;padding:4px 0}
  .top-header nav img{height:11px}
  .hero-title-ja{filter:brightness(0)}
- #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(17.5px,4.7vw,20px);line-height:2.6;letter-spacing:.06em}
+ #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(14px,4.6vw,20px);line-height:2.6;letter-spacing:.06em;word-break:keep-all;overflow-wrap:anywhere}
  #works{min-height:0;padding:40px 6% 30px}
  #works .spatial-gallery .wave-stage{height:540px;margin-inline:-6.8%}
  #works .wave-toolbar button{font-size:12px}
