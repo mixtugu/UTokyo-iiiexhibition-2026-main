@@ -125,7 +125,7 @@
  .top-header nav a{height:25px;min-height:25px;padding:4px 0}
  .top-header nav img{height:11px}
  .hero-title-ja{filter:brightness(0)}
- #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(16px,4.15vw,19px);line-height:2.75;letter-spacing:.06em}
+ #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(17.5px,4.7vw,20px);line-height:2.6;letter-spacing:.06em}
  #works{min-height:0;padding:40px 6% 30px}
  #works .spatial-gallery .wave-stage{height:540px;margin-inline:-6.8%}
  #works .wave-toolbar button{font-size:12px}
