@@ -21,7 +21,9 @@ test('all reference sections, canvases and image assets load without errors', as
       errors.push(`${response.status()} ${response.url()}`);
   });
   await ready(page);
-  await expect(page.locator('#works .works-desktop, #works .works-mobile')).toHaveCount(2);
+  await expect(
+    page.locator('#works .works-desktop, #works .works-mobile'),
+  ).toHaveCount(2);
   await expect(page.locator('.archive-column-link')).toHaveCount(15);
   for (const id of [
     'top',
@@ -93,15 +95,11 @@ test('venue filters, real-work list, dialog navigation and focus return match th
   await page.locator('[data-desktop-venue="0"]').click();
   await expect(
     page.locator('.works-desktop-card:not(.is-placeholder)').first(),
-  ).toContainText(
-    'Memory Landscapes',
-  );
+  ).toContainText('Memory Landscapes');
   await page.locator('[data-desktop-venue="1"]').click();
   await expect(
     page.locator('.works-desktop-card:not(.is-placeholder)').first(),
-  ).toContainText(
-    'Mollusk',
-  );
+  ).toContainText('Mollusk');
   await page.locator('[data-desktop-venue="invite"]').click();
   await expect(page.locator('.works-desktop-card.is-invited')).toContainText(
     '招待作品タイトル',
