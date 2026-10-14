@@ -158,8 +158,9 @@
     frame=0;
     const r=section.getBoundingClientRect(),h=pin.clientHeight;
     const down=scrollY>lastScroll;lastScroll=scrollY;
-    if(r.bottom>h*1.4||(!down&&r.bottom>1&&!exitStart))exitDone=false;
-    if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>0){
+    // Re-arm only after returning well into CONCEPT; a small nudge up from WORKS must not replay the exit.
+    if(r.bottom>h*1.4||(!down&&r.bottom>h*.75&&!exitStart))exitDone=false;
+    if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.5){
       exitStart=now;exitFrom=scrollY;exitTo=document.querySelector('#works').getBoundingClientRect().top+scrollY;
       window.conceptAutoScroll=true;dispatchEvent(new Event('concept-auto-scroll'));
     }

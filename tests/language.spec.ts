@@ -20,10 +20,11 @@ test('hero language choice persists through sections and dynamic works', async (
     .locator('[data-mobile-venue="invite"], [data-desktop-venue="invite"]')
     .filter({ visible: true })
     .first();
-  await filter.click();
-  await expect(
-    page.locator('.works-desktop-grid:visible, .works-mobile-list:visible'),
-  ).toContainText('Invited work (placeholder)');
+  await expect(filter).toHaveText('Invited Works');
+  // Works are hidden until published; the notice carries the translation instead.
+  await expect(page.locator('.works-upcoming')).toHaveText(
+    'Works will be added progressively.',
+  );
   await page.goto('/');
   await control.getByRole('button', { name: 'JA', exact: true }).click();
   await expect(page.locator('.announce-fund')).toContainText(

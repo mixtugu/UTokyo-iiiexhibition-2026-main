@@ -41,3 +41,15 @@
  .hero-composition .hero-dates{opacity:1}
  .hero-composition .hero-ticket{right:1vw;bottom:3.8svh;left:auto;top:auto;width:50.6vw;height:auto}
 }
+
+/* Venue list as live text (JA/EN), replacing the outlined venue SVG on every screen size. */
+.hero-composition .hero-venue{display:none}
+.hero-venue-list li{padding-left:.9em}
+.hero-venue-floor{display:inline-block;min-width:2.3em;margin-right:.5em}
+@media(min-width:701px){
+ .hero-venue-list{position:absolute;left:calc(35 * var(--fv-unit));top:calc(var(--fv-y) + 420 * var(--fv-unit));z-index:4;display:block;color:#000;font:400 calc(21 * var(--fv-unit))/1.55 'Zen Kaku Gothic Antique',sans-serif;letter-spacing:.02em;pointer-events:none}
+ .hero-venue-list>div+div{margin-top:calc(14 * var(--fv-unit))}
+ .hero-venue-building{margin:0;font-size:1.08em;font-weight:700;line-height:1.5}
+ .hero-venue-list ul{margin:0;padding:0;list-style:none}
+ .hero-venue-list li{display:flex;align-items:baseline;white-space:nowrap}
+}
