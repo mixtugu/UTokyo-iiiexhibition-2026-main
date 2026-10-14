@@ -129,6 +129,7 @@
  .top-header nav img{height:11px}
  .hero-title-ja{filter:brightness(0)}
  #concept .story-copy p,.birth-content #concept.liquid-ready .story-copy p{font-size:clamp(14px,4.6vw,20px);line-height:2.6;letter-spacing:.06em;word-break:keep-all;overflow-wrap:anywhere}
+ html[lang=en] #concept .story-copy p,html[lang=en] .birth-content #concept.liquid-ready .story-copy p{line-height:2;letter-spacing:.03em;word-break:normal;overflow-wrap:normal;text-wrap:balance}
  #works{min-height:0;padding:40px 6% 30px}
  #works .spatial-gallery .wave-stage{height:540px;margin-inline:-6.8%}
  #works .wave-toolbar button{font-size:12px}

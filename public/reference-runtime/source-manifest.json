@@ -50,7 +50,7 @@
     "archive-columns.css": "732699c5f198641be83594d8d9fc01845266067e6e04fa4efc82adddfeeb7427",
     "members-marker-main.css": "9a10a683a27de4e80bfc6d400b2afd4b7fa2ab69e943d859b59188d8598d3586",
     "prototype-review.css": "7762d8936bce8b83c7ac5b0b203ee67721f17afdcbb3d1dd1f156639af642bbf",
-    "figma-latest.css": "c9c17e4cfa9e3f63d5c69fb581998942e2df3b0bd8303e7fe740009a7c063a59",
+    "figma-latest.css": "a3e0fdaef5a4c54be0e962b0871e9166052cddc09762cdbba2c52fb13d7c0b9a",
     "flow-refinement.css": "a16bd567939fd242ea086f2cbbf74d17a657eceebc9ca771c509dbd0e501fa0d",
     "mobile-top.css": "9c351f9a8ac5520047a3600a12d55da47f8e2b4e590b269dd76f7a576c9ad9a3",
     "access-venues.css": "5013e62a3c31445ebae592d8b7f2dab52355dc5c7f618c403dc73f0e5d1628c7",
@@ -72,6 +72,6 @@
     "announce-flow.js": "f6100ec03d361535654713963ebe7ceb109b0dc67f8822adbb97a7083dbf17de",
     "prototype-review.js": "b73efc200541ced50f0d05a72daabb13655850f82b923cabc029e3c9af54a2b0",
     "mobile-menu.js": "9028f1e2e57c22ee657d943e6a5f7d044b368ca7f1e360629376f6824e1e75d3",
-    "i18n.js": "7ef454fe3c6e12f6d2c33a85536a8b903a6bc42a073d05f67748b1cf0f09a50d"
+    "i18n.js": "3e7e8b772869623fb50c2aad788139e6860e4951f6691174c66c9a9bd793d6d8"
   }
 }
