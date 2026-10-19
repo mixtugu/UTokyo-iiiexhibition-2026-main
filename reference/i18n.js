@@ -133,7 +133,7 @@ const exhibitionTranslations = {
 const exhibitionMemberNames = {
  "ウォンカム 真生路": "Michael Wong Kam",
  "猪原 大智": "Taichi Inohara",
- "寶 靖童": "Jingtong Dou",
+ "竇 靖童": "Jingtong Dou",
  "竇 靖童": "Jingtong Dou",
  "今若 広美": "Hiromi Imawaka",
  "杉本 隆平": "Ryuhei Sugimoto",
