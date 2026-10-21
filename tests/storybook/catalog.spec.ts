@@ -84,9 +84,9 @@ test('dialog story supports open, next, close and focus return', async ({
     exact: true,
   });
   await trigger.click();
-  await expect(page.locator('#detail-title')).toHaveText('Memory Landscapes');
+  await expect(page.locator('#detail-title')).toHaveText('vi-Vinci');
   await page.locator('#next-work').click();
-  await expect(page.locator('#detail-title')).toHaveText('Mollusk');
+  await expect(page.locator('#detail-title')).toHaveText('MoHeat');
   await page.keyboard.press('Escape');
   await expect(trigger).toBeFocused();
 });

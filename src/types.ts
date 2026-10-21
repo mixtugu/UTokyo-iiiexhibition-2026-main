@@ -5,6 +5,7 @@ export interface Work {
   author?: string;
   venue?: string;
   placeholder?: boolean;
+  invited?: boolean;
 }
 
 export interface Archive {

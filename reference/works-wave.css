@@ -58,3 +58,6 @@
 @keyframes wave-breathe{from{transform:translateY(-3px) scale(1.025)}to{transform:translateY(3px) scale(1.025)}}
 @media(max-width:700px){.wave-toolbar{gap:5px;font-size:10px}.wave-toolbar button{padding:9px}.wave-card{width:60vw;max-width:300px}.wave-stage{height:360px;margin-inline:-9%}.wave-list{gap:15px}.wave-list span{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.wave-card{transition:none}.wave-card img{animation:none!important}}
+
+/* Preserve supplied paragraphs in confirmed artwork descriptions. */
+#detail-description,.works-mobile-detail-body{white-space:pre-wrap}
