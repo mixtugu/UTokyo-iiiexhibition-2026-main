@@ -24,7 +24,7 @@ test('all reference sections, canvases and image assets load without errors', as
   await expect(
     page.locator('#works .works-desktop, #works .works-mobile'),
   ).toHaveCount(2);
-  await expect(page.locator('.archive-column-link')).toHaveCount(15);
+  await expect(page.locator('.archive-column-link')).toHaveCount(30);
   for (const id of [
     'top',
     'concept',
@@ -167,14 +167,13 @@ test('archive categories show all 30 records and support keyboard and touch prev
   else await first.focus();
   await expect(first).toHaveClass(/is-active/);
   await expect(first).toHaveAttribute('target', '_blank');
-  await page.locator('[data-group="番外展"]').click();
-  await expect(page.locator('.archive-column-link')).toHaveCount(15);
-  await expect(page.locator('[data-group="番外展"]')).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await page.locator('[data-group="本展"]').click();
-  await expect(page.locator('.archive-column-link')).toHaveCount(15);
+  await expect(page.locator('.archive-group')).toHaveCount(2);
+  await expect(
+    page.locator('[data-group="本展"] .archive-column-link'),
+  ).toHaveCount(15);
+  await expect(
+    page.locator('[data-group="番外展"] .archive-column-link'),
+  ).toHaveCount(15);
 });
 
 test('section review routes and direct anchors initialize the same runtime', async ({

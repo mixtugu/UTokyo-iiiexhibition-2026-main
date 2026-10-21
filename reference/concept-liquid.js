@@ -158,8 +158,7 @@
     frame=0;
     const r=section.getBoundingClientRect(),h=pin.clientHeight;
     const down=scrollY>lastScroll;lastScroll=scrollY;
-    // Re-arm only after returning well into CONCEPT; a small nudge up from WORKS must not replay the exit.
-    if(r.bottom>h*1.4||(!down&&r.bottom>h*.75&&!exitStart))exitDone=false;
+    // The exit plays once per page view; scrolling back into CONCEPT never re-arms it.
     if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.5){
       exitStart=now;exitFrom=scrollY;exitTo=document.querySelector('#works').getBoundingClientRect().top+scrollY;
       window.conceptAutoScroll=true;dispatchEvent(new Event('concept-auto-scroll'));
@@ -211,7 +210,7 @@
     ready=true;update();
   }).catch(e=>console.warn('Reference backgrounds unavailable',e));
   addEventListener('scroll',update,{passive:true});addEventListener('resize',update);reduced.addEventListener('change',update);
-  function interrupt(){lastIntent=-Infinity;exitStart=0;exitDone=false;window.conceptAutoScroll=false;dissolve(0);update();}
+  function interrupt(){lastIntent=-Infinity;if(exitStart)exitDone=true;exitStart=0;window.conceptAutoScroll=false;dissolve(0);update();}
   addEventListener('wheel',e=>{if(e.deltaY<0)interrupt();else if(e.deltaY>0)lastIntent=performance.now();},{passive:true});
   addEventListener('touchstart',e=>{touchY=e.touches[0]?.clientY||0;},{passive:true});
   addEventListener('touchmove',e=>{const y=e.touches[0]?.clientY||0;if(y<touchY)lastIntent=performance.now();else interrupt();touchY=y;},{passive:true});
