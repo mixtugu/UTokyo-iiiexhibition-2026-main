@@ -461,7 +461,7 @@
     "group": "BEGINNING / EXTRA",
     "year": "2026",
     "title": "たゆたう",
-    "url": "https://iiiexhibition.com/2026/beginning",
+    "url": "https://utokyo-iiiexhibition-2026-beginning.pages.dev/",
     "image": "assets/archive/imported/extra-2026-visual.jpg",
     "candidates": [],
     "imageSource": "https://www.u-tokyo.ac.jp/content/400289464.jpg"
@@ -539,7 +539,7 @@
     "year": "2023",
     "title": "voidage",
     "url": "https://iii-exhibition2023.vercel.app/",
-    "image": "assets/archive/extra-2023.jpg",
+    "image": "assets/archive/imported/extra-2023-voidage.png",
     "candidates": [
       [
         20,

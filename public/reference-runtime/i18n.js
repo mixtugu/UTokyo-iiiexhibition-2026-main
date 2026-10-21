@@ -1,4 +1,8 @@
 const exhibitionTranslations = {
+ "来場予約": "Reserve your visit",
+ "制作展のグリーンのモチーフをあしらった黒いパーカーの前面と背面": "Front and back of the black hoodie featuring the exhibition’s green motif",
+ "ご支援のお知らせ": "Support the exhibition",
+ "作品は順次追加予定です。": "Works will be added progressively.",
  "昨年度より、制作展当日にご寄付していただいた方に、金額に応じて返礼品をお渡ししております。": "Since last year, visitors who donate during the exhibition receive a thank-you gift based on their donation amount.",
  "サイト全体 ↗": "Full website ↗",
  "東京大学制作展 2026": "UTokyo iii Exhibition 2026",
@@ -47,6 +51,8 @@ const exhibitionTranslations = {
  "基金ページを見る": "Support the Creators Fund",
  "11月12日（木）– 11月16日（月）": "Thu, Nov 12 – Mon, Nov 16, 2026",
  "11:00〜19:00（初日13:00開始/最終日17:00終了）": "11:00–19:00 JST (opens at 13:00 on Nov 12; closes at 17:00 on Nov 16)",
+ "A 工学部2号館": "A. Engineering Bldg.2",
+ "B 情報学環本館": "B. iii Main Building",
  "工学部2号館": "Engineering Building No. 2",
  "情報学環本館": "iii Main Building",
  "情報学環オープンスタジオ": "iii Open Studio",
@@ -127,7 +133,7 @@ const exhibitionTranslations = {
 const exhibitionMemberNames = {
  "ウォンカム 真生路": "Michael Wong Kam",
  "猪原 大智": "Taichi Inohara",
- "寶 靖童": "Jingtong Dou",
+ "竇 靖童": "Jingtong Dou",
  "竇 靖童": "Jingtong Dou",
  "今若 広美": "Hiromi Imawaka",
  "杉本 隆平": "Ryuhei Sugimoto",
@@ -210,7 +216,7 @@ const exhibitionMemberNames = {
   // A component may replace its text when opening a dialog or changing a filter.
   if(original===undefined||(current!==original&&current!==english(original)&&current!==exhibitionMemberNames[original.trim()]))original=current;
   originals.set(node,original);
-  const next=language==='en'?(node.parentElement?.closest('.member-list dd')?original.replace(original.trim(),exhibitionMemberNames[original.trim()]||original.trim()):english(original)):original;
+  const next=language==='en'?(node.parentElement?.closest('.member-list dd,.member-venue-additions dd')?original.replace(original.trim(),exhibitionMemberNames[original.trim()]||original.trim()):english(original)):original;
   if(current!==next)node.nodeValue=next;
  }
  const observer=new MutationObserver(records=>{
