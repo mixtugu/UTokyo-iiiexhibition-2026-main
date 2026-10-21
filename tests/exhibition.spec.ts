@@ -56,93 +56,108 @@ test('all reference sections, canvases and image assets load without errors', as
   expect(errors).toEqual([]);
 });
 
-test('works stay hidden behind the upcoming notice until they are published', async ({
+test('confirmed works show supplied images, authors, descriptions and invitation filters', async ({
   page,
   isMobile,
 }) => {
   await ready(page, '/preview.html?prototype=works');
   const prefix = isMobile ? 'mobile' : 'desktop';
-  await expect(page.locator(`[data-${prefix}-venue]`)).toHaveText([
-    'ALL',
-    '会場A',
-    '会場B',
-    '招待作品',
-  ]);
-  await expect(page.locator('.works-upcoming')).toHaveText(
-    '作品は順次追加予定です。',
+  const cards = page.locator(
+    isMobile
+      ? '.works-mobile-card, .works-mobile-feature'
+      : 'button.works-desktop-card',
   );
-  await expect(
-    page.locator(
-      '.works-desktop-card, .works-mobile-card, .works-mobile-feature',
-    ),
-  ).toHaveCount(0);
-});
-
-// Re-enable together with `worksPublished` in reference/works-wave.js.
-test.skip('venue filters, real-work list, dialog navigation and focus return match the reference', async ({
-  page,
-  isMobile,
-}) => {
-  await ready(page, '/preview.html?prototype=works');
+  await expect(cards).toHaveCount(3);
   if (isMobile) {
-    await expect(page.locator('.works-mobile')).toBeVisible();
-    await expect(page.locator('.wave-stage')).toHaveCount(0);
-    await expect(page.locator('.works-mobile-feature')).toBeVisible();
-    await page.locator('[data-mobile-venue="0"]').click();
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(0);
-    await expect(page.locator('.works-mobile-card').first()).toContainText(
-      'Memory Landscapes',
+    await expect(page.locator('.works-mobile-feature')).toHaveText([
+      /MoHeat/,
+      /forming patterns/,
+    ]);
+    await expect(page.locator('.works-mobile-card')).toHaveText(/vi-Vinci/);
+    await expect(page.locator('.works-mobile-grid')).toHaveCSS(
+      'grid-template-columns',
+      /^(?:\d+(?:\.\d+)?px ){1}\d+(?:\.\d+)?px$/,
     );
-    await page.locator('[data-mobile-venue="1"]').click();
-    await expect(page.locator('.works-mobile-card').first()).toContainText(
-      'Mollusk',
+  } else {
+    await expect(page.locator('.works-desktop-grid')).toHaveCSS(
+      'grid-template-columns',
+      /^(?:\d+(?:\.\d+)?px ){3}\d+(?:\.\d+)?px$/,
     );
-    await page.locator('[data-mobile-venue="all"]').click();
-    const trigger = page.locator('.works-mobile-feature');
-    await trigger.click();
-    await expect(page.locator('.works-mobile-detail')).toBeVisible();
-    await expect(page.locator('.works-mobile-detail h3')).toHaveText(
-      'Memory Landscapes',
-    );
-    await expect(page.locator('.works-mobile-detail-body')).toContainText(
-      'ダミーテキストです',
-    );
-    await page.locator('.works-mobile-back').click();
-    await expect(page.locator('.works-mobile-list')).toBeVisible();
-    await expect(trigger).toBeFocused();
-    return;
+    await expect(
+      page.locator('.works-desktop-card.is-invited').first(),
+    ).toHaveCSS('grid-column-start', 'span 2');
   }
-  await expect(page.locator('.works-desktop')).toBeVisible();
-  await expect(page.locator('.works-desktop-card')).toHaveCount(11);
-  await expect(page.locator('.wave-stage')).toHaveCount(0);
-  await page.locator('[data-desktop-venue="0"]').click();
-  await expect(
-    page.locator('.works-desktop-card:not(.is-placeholder)').first(),
-  ).toContainText('Memory Landscapes');
-  await page.locator('[data-desktop-venue="1"]').click();
-  await expect(
-    page.locator('.works-desktop-card:not(.is-placeholder)').first(),
-  ).toContainText('Mollusk');
-  await page.locator('[data-desktop-venue="invite"]').click();
-  await expect(page.locator('.works-desktop-card.is-invited')).toContainText(
-    '招待作品タイトル',
-  );
-  await page.locator('[data-desktop-venue="all"]').click();
-  const trigger = page
-    .locator('button.works-desktop-card:not(.is-placeholder)')
-    .first();
-  await trigger.click();
-  await expect(page.locator('#detail-title')).toHaveText('Memory Landscapes');
-  await expect(page.locator('#next-work')).toBeHidden();
-  await page.keyboard.press('Escape');
-  await expect(trigger).toBeFocused();
-  await page.locator('[data-desktop-venue="1"]').click();
-  await page
-    .locator('button.works-desktop-card:not(.is-placeholder)')
-    .first()
-    .click();
-  await expect(page.locator('#detail-title')).toHaveText('Mollusk');
-  await page.locator('.close-detail').click();
+  await page.locator(`[data-${prefix}-venue="0"]`).click();
+  await expect(cards).toHaveCount(3);
+  if (isMobile)
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+  await page.locator(`[data-${prefix}-venue="invite"]`).click();
+  await expect(cards).toHaveCount(2);
+  if (isMobile) {
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+    await expect(page.locator('.works-mobile-card')).toHaveCount(0);
+  }
+  await expect(cards).toContainText(['MoHeat', 'forming patterns']);
+  await page.locator(`[data-${prefix}-venue="1"]`).click();
+  await expect(cards).toHaveCount(0);
+  await page.locator(`[data-${prefix}-venue="all"]`).click();
+  const catalog = [
+    ['vi-Vinci', '三上日向汰', 'vi-vinci.png', 'ベストプレゼンテーション賞'],
+    ['MoHeat', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
+    [
+      'forming patterns',
+      '上條陽斗',
+      'forming-patterns.png',
+      'それと認知の結びつきを探っている。',
+    ],
+  ];
+  for (const [title, author, image, description] of catalog) {
+    const trigger = cards.filter({ hasText: title });
+    await trigger.click();
+    const detail = page.locator(isMobile ? '.works-mobile-detail' : '#detail');
+    await expect(detail).toBeVisible();
+    if (isMobile) {
+      await expect(detail.locator('.works-mobile-detail-image')).toHaveCSS(
+        'width',
+        await detail.evaluate((el) => `${el.clientWidth}px`),
+      );
+      await expect(detail.locator('h3')).toHaveCSS('color', 'rgb(70, 168, 61)');
+    } else {
+      await expect(detail.locator('.detail-copy > .detail-venue')).toHaveCount(
+        0,
+      );
+      await expect(detail.locator('.detail-type')).toHaveText(
+        '鑑賞タイプじっくり',
+      );
+    }
+    await expect(detail.locator(isMobile ? 'h3' : '#detail-title')).toHaveText(
+      title,
+    );
+    await expect(
+      detail.locator(isMobile ? '.works-mobile-detail-meta' : '.detail-author'),
+    ).toHaveText(author);
+    await expect(
+      detail.locator(
+        isMobile ? '.works-mobile-detail-body' : '#detail-description',
+      ),
+    ).toContainText(description);
+    const picture = detail.locator(
+      isMobile ? '.works-mobile-detail-image' : '#detail-image',
+    );
+    await expect(picture).toHaveAttribute('src', `assets/works/${image}`);
+    await expect
+      .poll(() =>
+        picture.evaluate(
+          (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+        ),
+      )
+      .toBe(true);
+    if (isMobile && title !== 'vi-Vinci')
+      await expect(detail).toContainText('招待作品');
+    if (isMobile) await page.locator('.works-mobile-back').click();
+    else await page.keyboard.press('Escape');
+    await expect(trigger).toBeFocused();
+  }
 });
 
 test('announcements retain the fund without cancelled talk event links', async ({

@@ -81,4 +81,4 @@ tests/         ブラウザ回帰テスト
 
 ## 素材とコンテンツ
 
-作品30点のうち実画像は2点で、残りは仮スロットです。会場A/Bの割り当てと紹介文も仮のものです。アーカイブ29件の出典・素材の権利については [アーカイブガイド](public/assets/archive/imported/README.md)、[コンセプトガイド](public/assets/concept/README.md)、[参考資料ガイド](public/assets/reference-layrid/README.md) を確認してください。既存資料の詳細な注意事項は [引き継ぎ文書](docs/handoff.md) に保存しています。
+公開画面には、会場Aの vi-Vinci、MoHeat、forming patterns の3作品を掲載しています。MoHeat と forming patterns は招待作品です。作品情報は `reference/preview.js`、画像は `reference/assets/works/` に保存し、`npm run reference:sync` で公開用ファイルへ反映します。従来のコンポーネントライブラリは `src/content/works.json` を使用します。アーカイブ29件の出典・素材の権利については [アーカイブガイド](public/assets/archive/imported/README.md)、[コンセプトガイド](public/assets/concept/README.md)、[参考資料ガイド](public/assets/reference-layrid/README.md) を確認してください。既存資料の詳細な注意事項は [引き継ぎ文書](docs/handoff.md) に保存しています。
