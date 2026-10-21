@@ -46,6 +46,9 @@ export function createWorkDialog(
       title.textContent = work.title;
       number.textContent = `WORK / ${String(index + 1).padStart(2, '0')}`;
       description.textContent = work.description;
+      qs('#detail-author', dialog).textContent = work.author ?? '';
+      qs('#detail-invited', dialog).hidden = !work.invited;
+      note.hidden = !work.placeholder;
       note.textContent = work.placeholder
         ? '未提供作品の仮枠です。正式な作品ではありません。'
         : '画像・作品情報は試作用です。会場分類は仮です。';

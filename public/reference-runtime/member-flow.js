@@ -7,7 +7,8 @@
  let navigatingUntil=0;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
  canvas.className='members-flow-particles';canvas.setAttribute('aria-hidden','true');document.body.append(canvas);
- let started=false,done=false,running=false,requested=false,frame=0,particles=[],start=0;
+ // Both the MEMBERS entry and the ARCHIVE transition play once per page view.
+ let entryPlayed=false,started=false,done=false,running=false,requested=false,frame=0,particles=[],start=0;
  const clamp=x=>Math.max(0,Math.min(1,x));
  let peelSource=null;
  let entryTimer=0;
@@ -26,7 +27,7 @@
    const p=clamp((now-at)/720),t=1-Math.pow(1-p,3);
    scrollTo({top:from+(to-from)*t,behavior:'instant'});
    if(p<1){entryFrame=requestAnimationFrame(settle);return;}
-   entryFrame=0;started=true;done=false;requested=false;art.style.visibility='';art.style.opacity='1';marker.restart();
+   entryFrame=0;entryPlayed=true;started=true;requested=false;art.style.visibility='';art.style.opacity='1';marker.restart();
   }
   entryFrame=requestAnimationFrame(settle);
   // Never retain scroll control if the marker cannot finish loading/rendering.
@@ -77,13 +78,14 @@
   const downward=scrollY>lastY+1;lastY=scrollY;
   if(entryActive)return;
   const navigating=performance.now()<navigatingUntil;
-  if(!navigating&&!started&&!running&&downward&&performance.now()>entryCooldown&&r.top<innerHeight*.65&&r.top>-innerHeight*.25){enterMembers();return;}
+  if(!navigating&&!entryPlayed&&!started&&!running&&downward&&performance.now()>entryCooldown&&r.top<innerHeight*.65&&r.top>-innerHeight*.25){enterMembers();return;}
   const inPosition=r.top<=innerHeight*.18&&r.top>=-innerHeight*.25&&r.bottom>=innerHeight*.65;
-  if(!started&&inPosition&&!entryTimer){entryTimer=setTimeout(()=>{entryTimer=0;const b=members.getBoundingClientRect();if(b.top<=innerHeight*.18&&b.top>=-innerHeight*.25&&b.bottom>=innerHeight*.65){started=true;art.style.visibility='';art.style.opacity='1';marker.restart();}},180);}
+  if(entryPlayed){art.style.visibility='';art.style.opacity='1';if(!marker.finished&&!started)marker.complete();}
+  if(!started&&!entryPlayed&&inPosition&&!entryTimer){entryTimer=setTimeout(()=>{entryTimer=0;const b=members.getBoundingClientRect();if(b.top<=innerHeight*.18&&b.top>=-innerHeight*.25&&b.bottom>=innerHeight*.65){entryPlayed=true;started=true;art.style.visibility='';art.style.opacity='1';marker.restart();}},180);}
   if(!inPosition){clearTimeout(entryTimer);entryTimer=0;}
-  if(!running&&(r.bottom<=0||r.top>=innerHeight)){marker.pause();started=false;requested=false;art.style.visibility='hidden';}
+  if(!running&&(r.bottom<=0||r.top>=innerHeight)){marker.pause();started=false;requested=false;if(!entryPlayed)art.style.visibility='hidden';}
   if(!navigating&&started&&a.top<innerHeight*.95&&!done&&!running){requested=true;if(marker.finished)begin();}
-  if(a.top>=innerHeight){if(running){cancelAnimationFrame(frame);running=false;window.memberAutoScroll=false;ctx.clearRect(0,0,canvas.width,canvas.height);}done=false;requested=false;art.style.visibility=started?'':'hidden';art.style.opacity='1';gallery.style.opacity='1';}
+  if(a.top>=innerHeight){if(running){cancelAnimationFrame(frame);running=false;window.memberAutoScroll=false;ctx.clearRect(0,0,canvas.width,canvas.height);}requested=false;art.style.visibility=started||entryPlayed?'':'hidden';art.style.opacity='1';gallery.style.opacity='1';}
  }
  addEventListener('scroll',update,{passive:true});addEventListener('resize',update);
  addEventListener('members-marker-ready',update);addEventListener('members-marker-complete',()=>{if(entryActive){releaseEntry();return;}if(requested&&!reduced.matches&&!touch.matches&&performance.now()>=navigatingUntil)begin();});update();
