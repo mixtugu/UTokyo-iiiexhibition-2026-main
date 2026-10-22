@@ -120,7 +120,8 @@ test('reference stories run the actual exhibition and keep review navigation ins
   await page.goto(story('reference-exhibition--works'));
   const exhibition = page.frameLocator('iframe[title="Reference exhibition"]');
   await expect(exhibition.locator('.works-desktop')).toBeVisible();
-  await expect(exhibition.locator('.works-desktop-card')).toHaveCount(11);
+  // The count follows the published works list, so only require that cards render.
+  await expect(exhibition.locator('.works-desktop-card').first()).toBeVisible();
   await expect(exhibition.locator('.wave-stage')).toHaveCount(0);
   await exhibition
     .locator('.prototype-review-bar a', { hasText: 'ANNOUNCE' })
@@ -129,6 +130,9 @@ test('reference stories run the actual exhibition and keep review navigation ins
     'data-prototype',
     'announce',
   );
-  await exhibition.locator('[data-notice="event"]').first().click();
-  await expect(exhibition.locator('#announce-detail')).toBeVisible();
+  // The talk event was cancelled; the announce review now shows only the fund.
+  await expect(exhibition.locator('.announce-fund')).toBeVisible();
+  await expect(
+    exhibition.locator('.announce-talk, #announce-detail'),
+  ).toHaveCount(0);
 });
