@@ -49,6 +49,7 @@ const exhibitionTranslations = {
  "昨年度より、制作展当日にご寄付していただいた方に、": "Since last year, visitors who donate during the exhibition",
  "金額に応じて返礼品をお渡ししております。": "receive a thank-you gift based on their donation amount.",
  "基金ページを見る": "Support the Creators Fund",
+ "Googleマップで見る": "Open in Google Maps",
  "11月12日（木）– 11月16日（月）": "Thu, Nov 12 – Mon, Nov 16, 2026",
  "11:00〜19:00（初日13:00開始/最終日17:00終了）": "11:00–19:00 JST (opens at 13:00 on Nov 12; closes at 17:00 on Nov 16)",
  "A 工学部2号館": "A. Engineering Bldg.2",
@@ -194,7 +195,7 @@ const exhibitionMemberNames = {
  const updateVisibility=()=>{switcher.hidden=scrollY>8||Boolean(document.documentElement.dataset.prototype);};
  addEventListener('scroll',updateVisibility,{passive:true});updateVisibility();
  const controls=[switcher];
- const assetPairs=[['.hero-venue','assets/top/venue-en.svg'],['.hero-dates','assets/top/dates-en.svg'],['.access-map img','assets/access/campus-map-en.svg']];
+ const assetPairs=[['.hero-ticket','assets/top/reservation-ticket-en.webp'],['.hero-venue','assets/top/venue-en.svg'],['.hero-dates','assets/top/dates-en.svg'],['.access-map img','assets/access/campus-map-en.svg']];
  const imageOriginals=new WeakMap();
  const translations=exhibitionTranslations;
  const fragments=Object.keys(translations).filter(key=>(key.length>=5||/^会場[0-3]$/.test(key))&&!key.includes('\n')).sort((a,b)=>b.length-a.length);
