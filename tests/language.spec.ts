@@ -33,7 +33,7 @@ test('hero language choice persists through sections and dynamic works', async (
   await control.getByRole('button', { name: 'JA', exact: true }).click();
   await expect(page.locator('.hero-ticket')).toHaveAttribute(
     'src',
-    'assets/top/reservation-ticket.png',
+    'assets/top/reservation-ticket-ja.webp',
   );
   await expect(page.locator('.announce-fund')).toContainText(
     '基金ページを見る',
