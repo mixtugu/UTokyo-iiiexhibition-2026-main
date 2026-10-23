@@ -194,7 +194,7 @@ const exhibitionMemberNames = {
  const updateVisibility=()=>{switcher.hidden=scrollY>8||Boolean(document.documentElement.dataset.prototype);};
  addEventListener('scroll',updateVisibility,{passive:true});updateVisibility();
  const controls=[switcher];
- const assetPairs=[['.hero-venue','assets/top/venue-en.svg'],['.hero-dates','assets/top/dates-en.svg'],['.access-map img','assets/access/campus-map-en.svg']];
+ const assetPairs=[['.hero-ticket','assets/top/reservation-ticket-en.webp'],['.hero-venue','assets/top/venue-en.svg'],['.hero-dates','assets/top/dates-en.svg'],['.access-map img','assets/access/campus-map-en.svg']];
  const imageOriginals=new WeakMap();
  const translations=exhibitionTranslations;
  const fragments=Object.keys(translations).filter(key=>(key.length>=5||/^会場[0-3]$/.test(key))&&!key.includes('\n')).sort((a,b)=>b.length-a.length);
