@@ -96,6 +96,9 @@
 #access .access-map{width:min(100%,523px);aspect-ratio:523/258;background:transparent}
 #access .access-map img{position:static;width:100%;height:100%;max-width:100%;object-fit:contain}
 #access .access-date{margin:34px 0 0 47px}
+#access .access-map-link{margin:14px 0 0 47px;font-size:14px}
+#access .access-map-link a{display:inline-block;padding:12px 0;line-height:20px;color:#052D03;background:linear-gradient(currentColor,currentColor) left bottom 11px/100% 1px no-repeat}
+#access .access-map-link a span{margin-left:6px}
 #access .access-details{padding-top:8px;min-width:0}
 #access .access-block{padding:24px 0;border-color:#304a4c29}
 #access .access-block h3{margin:0 0 14px;color:#000;font-size:22px;font-weight:500}
@@ -120,6 +123,7 @@
  #announce .announce-chapter{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)}
  #access .access-information{gap:36px}
  #access .access-date{margin-left:0}
+ #access .access-map-link{margin-left:0}
 }
 @media(max-width:700px){
  .top-header{padding:16px 18px}
@@ -253,6 +257,7 @@ body::after{display:none}
  #access .access-left{padding-top:46px;padding-left:39px}
  #access .access-map{width:523px;height:258px;aspect-ratio:auto}
  #access .access-date{width:476.164px;margin:34px 0 0 47px}
+ #access .access-map-link{margin-left:47px}
  #access .access-details{width:476.164px;padding-top:55px}
  #access .access-block p,#access .access-block li{font-size:17px;line-height:34px}
  .journey-pin #archives .archive-stage{left:0;top:138px;width:1348px;height:564px;transform:none;margin:0}
@@ -285,6 +290,7 @@ body::after{display:none}
  #announce::after{width:min(649px,80vw);background-size:contain}
  #access .access-map{width:100%;height:auto;aspect-ratio:523/258}
  #access .access-date{margin-left:0}
+ #access .access-map-link{margin-left:0}
  #access::after{width:min(512px,80vw);background-size:contain}
  #members::after{width:min(558px,75vw);background-size:contain}
  #contents{padding-right:16px}
@@ -317,6 +323,7 @@ body::after{display:none}
  #access .access-left{padding-left:2.71vw;padding-right:3vw;min-width:0}
  #access .access-map{width:100%;height:auto;aspect-ratio:523/258}
  #access .access-date{width:auto;margin-left:3.26vw}
+ #access .access-map-link{margin-left:3.26vw}
  #access .access-details{width:100%;min-width:0}
  .journey-pin #archives .archive-stage{width:93.61%;height:min(564px,74svh);top:18%;}
  #archives .archive-viewport{height:auto;flex:1;min-height:0}
