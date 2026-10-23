@@ -7,6 +7,10 @@ test('hero language choice persists through sections and dynamic works', async (
   const control = page.locator('body > .language-switch');
   await control.getByRole('button', { name: 'EN', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('.hero-ticket')).toHaveAttribute(
+    'src',
+    'assets/top/reservation-ticket-en.webp',
+  );
   await expect(page.locator('.hero-ticket')).toBeVisible();
   await page.locator('#announce').scrollIntoViewIfNeeded();
   await expect(control).toBeHidden();
@@ -27,6 +31,10 @@ test('hero language choice persists through sections and dynamic works', async (
   );
   await page.goto('/');
   await control.getByRole('button', { name: 'JA', exact: true }).click();
+  await expect(page.locator('.hero-ticket')).toHaveAttribute(
+    'src',
+    'assets/top/reservation-ticket.png',
+  );
   await expect(page.locator('.announce-fund')).toContainText(
     '基金ページを見る',
   );
