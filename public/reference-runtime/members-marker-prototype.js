@@ -16,9 +16,9 @@
   const textDelay = .36;
   // The three brush stamps in the artwork, revealed last (1200px-wide frame).
   const stampRegions = [
-    { x: 318, y: 54, width: 165, height: 190, cx: 400, cy: 145 },
-    { x: 675, y: 142, width: 177, height: 188, cx: 763, cy: 237 },
-    { x: 866, y: 205, width: 183, height: 179, cx: 958, cy: 296 }
+    { x: 384, y: 96, width: 141, height: 128, cx: 454, cy: 160 },
+    { x: 709, y: 168, width: 146, height: 139, cx: 782, cy: 237 },
+    { x: 893, y: 206, width: 143, height: 134, cx: 964, cy: 273 }
   ];
   const motionReduced = matchMedia('(prefers-reduced-motion: reduce)');
   // Phones show the finished drawing instead of animating it.
@@ -359,7 +359,7 @@
     target.putImageData(pixels, 0, 0);
   }
   const image = new Image();
-  image.src = 'assets/members-artwork-brush.png';
+  image.src = 'assets/members-artwork-brush.webp';
   image.decode().then(() => {
     fullContext.drawImage(image, 0, 0, canvas.width, canvas.height);
     removeWhite(fullContext);
