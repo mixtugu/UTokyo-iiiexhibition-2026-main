@@ -163,8 +163,9 @@
       exitStart=now;exitFrom=scrollY;exitTo=document.querySelector('#works').getBoundingClientRect().top+scrollY;
       window.conceptAutoScroll=true;dispatchEvent(new Event('concept-auto-scroll'));
     }
-    if((r.top>h*1.85||r.bottom<0)&&!exitStart){layer.style.opacity=0;dissolve(0);return;}
-    const show=smooth((h*1.85-r.top)/(h*1.1));
+    // Start below the FV so the TOP background stays plain white until the hero scrolls.
+    if((r.top>h*1.45||r.bottom<0)&&!exitStart){layer.style.opacity=0;dissolve(0);return;}
+    const show=smooth((h*1.45-r.top)/(h*.9));
     // Fade the full image: a moving crop exposes a hard horizontal seam.
     layer.style.clipPath='none';
     layer.style.transform='none';
