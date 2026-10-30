@@ -1,0 +1,14 @@
+/* Phone FV (SP mockup): oversized SP logo bleeding off both edges, dates beside the title, venue and ticket at the bottom.
+   Loaded last so it wins over the earlier phone FV rules, in both languages. */
+@media(max-width:700px){
+ .hero-art .hero-brush{left:-30vw;top:17vw;width:150vw;height:199.8vw;object-fit:contain;transform:none}
+ .hero-composition .hero-title-ja{left:-1.3vw!important;top:8vw!important;width:79vw!important;height:auto!important}
+ .hero-composition .hero-wordmark,html[lang=en] .hero-composition .hero-wordmark{left:0;right:auto;top:48.2vw;bottom:auto;width:58.5vw}
+ .hero-composition .hero-dates,html[lang=en] .hero-composition .hero-dates{left:auto;right:4.3vw;top:34vw;bottom:auto;width:29vw;max-width:none;height:auto}
+ html[lang=en] .hero-composition .hero-dates{width:33vw}
+ .hero-venue-list,html[lang=en] .hero-venue-list{left:4vw;bottom:8vw;width:auto;font-size:3.4vw;line-height:1.5}
+ html[lang=en] .hero-venue-list{font-size:3vw}
+ .hero-venue-list>div+div{margin-top:.4em}
+ .hero-venue-building,html[lang=en] .hero-venue-building{font-size:1.1em;font-weight:500}
+ .hero-reservation{left:auto;right:1.6vw;bottom:7.3vw;width:34vw}
+}
