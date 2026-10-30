@@ -5,7 +5,7 @@
  --fv-y:calc((100svh - 808 * var(--fv-unit))/2);
  --fv-green:#3fc43b;
 }
-.birth-pin{background:linear-gradient(105deg,#e3e3e3 0%,#fff 92%)!important}
+.birth-pin{background:#fff!important}
 .hero-composition .hero-title-ja,.hero-composition .hero-venue,.hero-composition .hero-dates{filter:none}
 .hero-composition .hero-wordmark{filter:brightness(0)}
 
