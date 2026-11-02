@@ -67,13 +67,17 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       ? '.works-mobile-card, .works-mobile-feature'
       : 'button.works-desktop-card',
   );
-  await expect(cards).toHaveCount(3);
+  // 15 works; the desktop catalog pages them 11 at a time.
+  const allCount = isMobile ? 15 : 11;
+  const invited = ['MoHeat', 'forming patterns', '朽ちもの園', 'zipper'];
+  await expect(cards).toHaveCount(allCount);
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveText([
-      /MoHeat/,
-      /forming patterns/,
-    ]);
-    await expect(page.locator('.works-mobile-card')).toHaveText(/vi-Vinci/);
+    await expect(page.locator('.works-mobile-feature')).toHaveText(
+      invited.map((title) => new RegExp(title)),
+    );
+    await expect(page.locator('.works-mobile-card').first()).toHaveText(
+      /vi-Vinci/,
+    );
     await expect(page.locator('.works-mobile-grid')).toHaveCSS(
       'grid-template-columns',
       /^(?:\d+(?:\.\d+)?px ){1}\d+(?:\.\d+)?px$/,
@@ -88,16 +92,16 @@ test('confirmed works show supplied images, authors, descriptions and invitation
     ).toHaveCSS('grid-column-start', 'span 2');
   }
   await page.locator(`[data-${prefix}-venue="0"]`).click();
-  await expect(cards).toHaveCount(3);
+  await expect(cards).toHaveCount(allCount);
   if (isMobile)
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(4);
   await page.locator(`[data-${prefix}-venue="invite"]`).click();
-  await expect(cards).toHaveCount(2);
+  await expect(cards).toHaveCount(4);
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(4);
     await expect(page.locator('.works-mobile-card')).toHaveCount(0);
   }
-  await expect(cards).toContainText(['MoHeat', 'forming patterns']);
+  await expect(cards).toContainText(invited);
   await page.locator(`[data-${prefix}-venue="1"]`).click();
   await expect(cards).toHaveCount(0);
   await page.locator(`[data-${prefix}-venue="all"]`).click();
@@ -110,6 +114,7 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       'forming-patterns.png',
       'それと認知の結びつきを探っている。',
     ],
+    ['paw walk', '牧田陽奈子', 'paw-walk.jpg', '犬の肉球が受ける歩行感'],
   ];
   for (const [title, author, image, description] of catalog) {
     const trigger = cards.filter({ hasText: title });
@@ -152,7 +157,7 @@ test('confirmed works show supplied images, authors, descriptions and invitation
         ),
       )
       .toBe(true);
-    if (isMobile && title !== 'vi-Vinci')
+    if (isMobile && invited.includes(title))
       await expect(detail).toContainText('招待作品');
     if (isMobile) await page.locator('.works-mobile-back').click();
     else await page.keyboard.press('Escape');
