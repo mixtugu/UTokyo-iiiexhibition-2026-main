@@ -12,6 +12,9 @@
   pin.prepend(canvas);
 
   const ctx = canvas.getContext('2d');
+  // Resting dots never change, so they are painted once and copied each frame.
+  const base = document.createElement('canvas');
+  const baseContext = base.getContext('2d');
   const logoMask = document.createElement('canvas');
   logoMask.width = 560;
   logoMask.height = 560;
@@ -32,6 +35,7 @@
   let last = performance.now();
   let frame = 0;
   let visible = true;
+  let faded = false;
   const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
   let pointerLobes = [];
   let pointerLobesAt = 0;
@@ -141,8 +145,35 @@
       for (let x = spacing * .5; x < width; x += spacing) {
         const dot = { x, y, h: hash(Math.round(x), Math.round(y)), memory: 0 };
         mapDot(dot);
+        // The path shape around a dot is fixed; only the travelling light depends on time.
+        const path = paths[dot.path];
+        const widthArc = .62 + Math.sin(Math.PI * dot.progress) * .5;
+        const widthNoise = .86 + Math.sin(dot.progress * 10 + hash(dot.path, 7) * Math.PI * 2) * .2;
+        dot.mask = gaussian(dot.distance, widths[dot.path] * widthArc * widthNoise);
+        dot.route = path[8] + dot.progress * path[9];
+        dot.square = dot.h > .63;
         dots.push(dot);
       }
+    }
+  }
+
+  function paintBase(dpr) {
+    base.width = canvas.width;
+    base.height = canvas.height;
+    baseContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+    baseContext.globalAlpha = .11;
+    for (const square of [true, false]) {
+      baseContext.fillStyle = square ? red : blue;
+      baseContext.beginPath();
+      for (const dot of dots) {
+        if (dot.square !== square) continue;
+        if (square) baseContext.rect(dot.x - .34, dot.y - .34, .68, .68);
+        else {
+          baseContext.moveTo(dot.x + .34, dot.y);
+          baseContext.arc(dot.x, dot.y, .34, 0, Math.PI * 2);
+        }
+      }
+      baseContext.fill();
     }
   }
 
@@ -172,6 +203,7 @@
       pointer.y = pointer.targetY = height / 2;
       build();
     }
+    paintBase(dpr);
     measureLogo();
     draw(true);
   }
@@ -186,8 +218,7 @@
   }
 
   function strength(dot, now) {
-    const path = paths[dot.path];
-    const route = path[8] + dot.progress * path[9];
+    const route = dot.route;
     const cycle = (now * .115) % 1;
     let front = 0;
     let trace = 0;
@@ -210,11 +241,8 @@
       fade = cycle < .88 ? 1 : Math.max(0, (1 - cycle) / .12);
       bloom = dot.junction * gaussian(cycle - route - .028, .06);
     }
-    const widthArc = .62 + Math.sin(Math.PI * dot.progress) * .5;
-    const widthNoise = .86 + Math.sin(dot.progress * 10 + hash(dot.path, 7) * Math.PI * 2) * .2;
-    const pathMask = gaussian(dot.distance, widths[dot.path] * widthArc * widthNoise);
     const pulse = Math.pow(Math.max(0, Math.sin(now * 2.1 + route * 26 + dot.h * 4)), 4);
-    let active = pathMask * Math.max(front, trace * (.20 + pulse * .22), bloom * .72) * fade;
+    let active = dot.mask * Math.max(front, trace * (.20 + pulse * .22), bloom * .72) * fade;
     if (pointer.active) {
       let irregularReveal = 0;
       for (const lobe of pointerLobes) {
@@ -234,15 +262,20 @@
   function draw(force = false) {
     if (!width) return;
     ctx.clearRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
+    ctx.drawImage(base, 0, 0, width, height);
+    const retention = .72 + (afterglow / 100) * .255;
     for (const dot of dots) {
-      const field = strength(dot, time);
-      const retention = .72 + (afterglow / 100) * .255;
+      // Dots far from every path stay at rest unless the pointer reveals them.
+      const field = dot.mask > .002 || pointer.active ? strength(dot, time) : { active: 0, bloom: 0 };
       dot.memory = force ? field.active : Math.max(field.active, dot.memory * retention);
       const active = dot.memory;
-      const square = dot.h > .63;
+      if (active < .003) continue;
+      const square = dot.square;
       const color = square ? red : blue;
       const size = .34 + active * (square ? 1.05 : .9) + (field.bloom > .12 ? .12 : 0);
-      ctx.globalAlpha = .11 + active * .84;
+      // Drawn over the resting dot, so the combined opacity matches .11 + active * .84.
+      ctx.globalAlpha = active * .84 / .89;
       ctx.fillStyle = color;
       ctx.shadowColor = color;
       ctx.shadowBlur = active > .34 ? active * 4.5 : 0;
@@ -267,7 +300,14 @@
 
   function setScrollOpacity() {
     const travel = Math.max(0, -journey.getBoundingClientRect().top);
-    canvas.style.opacity = String(clamp(1 - travel / (innerHeight * .72)));
+    const opacity = clamp(1 - travel / (innerHeight * .72));
+    canvas.style.opacity = String(opacity);
+    // Fully faded out: stop redrawing thousands of dots nobody can see.
+    faded = opacity <= 0;
+    if (faded) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    } else start();
   }
 
   function animate(now) {
@@ -282,11 +322,11 @@
       if (pointer.active && now - pointerLobesAt > 720) scatterPointerLobes(now);
     }
     draw(false);
-    if (visible && !document.hidden && !reducedMotion.matches) frame = requestAnimationFrame(animate);
+    if (visible && !faded && !document.hidden && !reducedMotion.matches) frame = requestAnimationFrame(animate);
   }
 
   function start() {
-    if (frame || !visible || document.hidden) return;
+    if (frame || !visible || faded || document.hidden) return;
     last = performance.now();
     if (reducedMotion.matches) draw(true);
     else frame = requestAnimationFrame(animate);

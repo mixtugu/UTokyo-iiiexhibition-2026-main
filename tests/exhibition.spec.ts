@@ -131,10 +131,9 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       await expect(detail.locator('.detail-copy > .detail-venue')).toHaveCount(
         0,
       );
-      await expect(detail.locator('.detail-type')).toHaveText(
-        '鑑賞タイプじっくり',
-      );
+      await expect(detail.locator('.detail-type')).toHaveCount(0);
     }
+    await expect(page.getByText('じっくり')).toHaveCount(0);
     await expect(detail.locator(isMobile ? 'h3' : '#detail-title')).toHaveText(
       title,
     );

@@ -8,18 +8,17 @@
  // Desktop catalog: four columns, with invited works spanning two columns.
  const desktopRoot=document.createElement('div');
  desktopRoot.className='works-desktop';
- desktopRoot.innerHTML=`<div class="works-desktop-panel"><div class="wave-filters works-desktop-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-desktop-venue="all" aria-pressed="true">ALL</button><button type="button" data-desktop-venue="0" aria-pressed="false">会場A</button><button type="button" data-desktop-venue="1" aria-pressed="false">会場B</button><button type="button" data-desktop-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-desktop-grid"></div><nav class="works-desktop-pagination" aria-label="作品一覧のページ"></nav></div>`;
+ desktopRoot.innerHTML=`<div class="works-desktop-panel"><div class="wave-filters works-desktop-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-desktop-venue="all" aria-pressed="true">ALL</button><button type="button" data-desktop-venue="0" aria-pressed="false">A 工学部2号館</button><button type="button" data-desktop-venue="1" aria-pressed="false">B 情報学環本館</button><button type="button" data-desktop-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-desktop-grid"></div><nav class="works-desktop-pagination" aria-label="作品一覧のページ"></nav></div>`;
  ui.append(desktopRoot);
  const desktopGrid=desktopRoot.querySelector('.works-desktop-grid');
  const desktopPagination=desktopRoot.querySelector('.works-desktop-pagination');
  const desktopPageSize=11;
  let desktopVenue='all',desktopPage=0;
- const desktopVenueName=w=>w.invited?'招待作品':w.venue==='1'?'会場B':'会場A';
+ const desktopVenueName=w=>w.invited?'招待作品':w.venue==='1'?'B 情報学環本館':'A 工学部2号館';
  function desktopTags(work){
   const row=document.createElement('span');row.className='works-desktop-tags';
   const place=document.createElement('span');place.className='works-desktop-tag is-solid';place.textContent=desktopVenueName(work);
-  const view=document.createElement('span');view.className='works-desktop-tag';view.textContent='じっくり';
-  row.append(place,view);return row;
+  row.append(place);return row;
  }
  function desktopCard(work,index){
   const available=!work.placeholder;
@@ -68,7 +67,7 @@
  // Mobile catalog: invited works use full-width features; regular works use a two-column grid.
  const mobileRoot=document.createElement('div');
  mobileRoot.className='works-mobile';
- mobileRoot.innerHTML=`<div class="wave-filters works-mobile-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-mobile-venue="all" aria-pressed="true">ALL</button><button type="button" data-mobile-venue="0" aria-pressed="false">会場A</button><button type="button" data-mobile-venue="1" aria-pressed="false">会場B</button><button type="button" data-mobile-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-mobile-list"></div><article class="works-mobile-detail" hidden><img class="works-mobile-detail-image" alt=""><div class="works-mobile-detail-tags"></div><h3></h3><p class="works-mobile-detail-meta">名前が入ります。 所属情報が入ります。</p><p class="works-mobile-detail-body"></p><button type="button" class="works-mobile-back">一覧に戻る</button></article>`;
+ mobileRoot.innerHTML=`<div class="wave-filters works-mobile-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-mobile-venue="all" aria-pressed="true">ALL</button><button type="button" data-mobile-venue="0" aria-pressed="false">A 工学部2号館</button><button type="button" data-mobile-venue="1" aria-pressed="false">B 情報学環本館</button><button type="button" data-mobile-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-mobile-list"></div><article class="works-mobile-detail" hidden><img class="works-mobile-detail-image" alt=""><div class="works-mobile-detail-tags"></div><h3></h3><p class="works-mobile-detail-meta">名前が入ります。 所属情報が入ります。</p><p class="works-mobile-detail-body"></p><button type="button" class="works-mobile-back">一覧に戻る</button></article>`;
  ui.append(mobileRoot);
  const mobileList=mobileRoot.querySelector('.works-mobile-list');
  const mobileDetail=mobileRoot.querySelector('.works-mobile-detail');
@@ -76,12 +75,11 @@
  let mobileVenue='all',mobileTrigger=null,listScroll=0;
  const mobileTitle=w=>w.title;
  const mobileImage=w=>w.image;
- const mobileChip=w=>w.invited?'招待作品':w.venue==='1'?'会場B':'会場A';
+ const mobileChip=w=>w.invited?'招待作品':w.venue==='1'?'B 情報学環本館':'A 工学部2号館';
  function tagRow(work,solid){
   const row=document.createElement('span');row.className='works-mobile-tags';
-  const view=document.createElement('span');view.className='works-mobile-tag';view.textContent='じっくり';
   const place=document.createElement('span');place.className='works-mobile-tag'+(solid?' is-solid':'');place.textContent=mobileChip(work);
-  row.append(view,place);return row;
+  row.append(place);return row;
  }
  function renderMobileList(){
   mobileList.replaceChildren();

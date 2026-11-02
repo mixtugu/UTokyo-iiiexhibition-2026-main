@@ -13,7 +13,7 @@
  const clamp=x=>Math.max(0,Math.min(1,x)),ease=x=>{x=clamp(x);return x*x*(3-2*x);};
  // A smaller cell on phones would mean thousands of drawImage calls per frame.
  const cell=innerWidth<700?8:4,ink=document.createElement('canvas'),inkContext=ink.getContext('2d');
- let tiles=[],ready=false,visible=true,raf=0,width=0,height=0,box={},progress=0,lastPaint=0,tileSource=source;
+ let tiles=[],ready=false,visible=true,raf=0,width=0,height=0,box={},progress=0,lastPaint=0,tileSource=source,played=false;
  const random=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x);};
  function layout(){
   const a=art.getBoundingClientRect(),b=image.getBoundingClientRect();width=a.width;height=a.height;
@@ -35,7 +35,16 @@
   const leave=ease(progress/.72),merge=ease((height-cr.top)/(height*.8)),end=ease((height*.95-cr.bottom)/(height*.8));
   hero.style.opacity=String(1-ease((progress-.18)/.65));if(hero.inert!==progress>.8)hero.inert=progress>.8;
   ctx.clearRect(0,0,width,height);
-  if(progress<.005){
+  // The dissolve plays once; afterwards the logo is a still image that fades with the scroll.
+  if(played){
+   ctx.globalAlpha=1-ease(progress/.3);if(ctx.globalAlpha>0)ctx.drawImage(ink,box.x,box.y,box.w,box.h);ctx.globalAlpha=1;
+   if(canvas.dataset.phase!=='motif')canvas.dataset.phase='motif';
+   return;
+  }
+  // Once the vortex has faded out entirely, wait for the next scroll instead of animating nothing.
+  let settled=false;
+  if(progress>=.1&&end>=.999)settled=played=true;
+  else if(progress<.005){
    if(reduced.matches)ctx.drawImage(image,box.x,box.y,box.w,box.h);
    else{
     // Subtle refraction in the ink only; typography remains perfectly still.
@@ -61,17 +70,18 @@
    // Complementary opacity, but unlike a crossfade every tile also changes position and size.
    const full=1-ease(progress/.10);
    if(full>0){ctx.globalAlpha=full;ctx.drawImage(ink,box.x,box.y,box.w,box.h);}
+   const sx0=box.x,sy0=box.y,kx=box.w/560,ky=box.h/560,tw=box.w*cell/560,th=box.h*cell/560;
+   ctx.globalAlpha=(1-full)*(1-end);
    for(const p of tiles){
-    const release=ease((progress-p.seed*.12)/.65),wave=Math.sin(release*Math.PI);
-    const bx=box.x+p.x/560*box.w,by=box.y+p.y/560*box.h;
-    const theta=time+(p.seed*3|0)*Math.PI*2/3+p.q*15;
-    const sx=width*.5+Math.cos(theta)*width*(.045+p.q*.24),sy=height*(.88-p.q*.78)+Math.sin(theta)*height*.055;
+    const release=ease((progress-p.seed*.12)/.65);
+    const bx=sx0+p.x*kx,by=sy0+p.y*ky;
+    const theta=time+p.theta;
+    const sx=width*.5+Math.cos(theta)*width*p.orbit,sy=height*(.88-p.q*.78)+Math.sin(theta)*height*.055;
     // A continuous, irregular arc directly to the vortex: no rectangular holding field.
     const travel=ease(release*.8+merge*.2),curl=Math.sin(Math.PI*travel);
     let x=bx+(sx-bx)*travel+Math.sin(p.seed*6.28+travel*2)*curl*width*(.035+p.r*.12);
     let y=by+(sy-by)*travel+Math.cos(p.r*6.28+travel*2)*curl*height*(.04+p.seed*.12);
-    const particle=ease((release-.3)/.6),w=box.w*cell/560*(1-particle)+1.7*particle,h=box.h*cell/560*(1-particle)+1.7*particle;
-    ctx.globalAlpha=(1-full)*(1-end);
+    const particle=ease((release-.3)/.6),w=tw*(1-particle)+1.7*particle,h=th*(1-particle)+1.7*particle;
     if(particle<.98)ctx.drawImage(tileSource,p.x,p.y,cell,cell,x,y,w,h);
     else{ctx.fillStyle=p.color;ctx.fillRect(x,y,w,h);}
    }
@@ -79,18 +89,19 @@
   ctx.globalAlpha=1;
   const phase=merge>.9?'vortex':leave>0?'dissolving':'motif';
   if(canvas.dataset.phase!==phase)canvas.dataset.phase=phase;
-  if(visible&&!document.hidden&&!reduced.matches)raf=requestAnimationFrame(draw);
+  if(visible&&!settled&&!document.hidden&&!reduced.matches)raf=requestAnimationFrame(draw);
  }
  function update(){if(ready&&!raf)raf=requestAnimationFrame(draw);}
  image.decode().then(()=>{
   sg.drawImage(image,0,0,560,560);const pixels=sg.getImageData(0,0,560,560).data;
-  for(let y=0;y<560;y+=cell)for(let x=0;x<560;x+=cell){const i=(y*560+x)*4;if(pixels[i+3]<16)continue;const n=tiles.length;tiles.push({x,y,seed:random(n),r:random(n+700),q:random(n+1700),color:`rgba(${pixels[i]},${pixels[i+1]},${pixels[i+2]},${pixels[i+3]/255})`});}
+  for(let y=0;y<560;y+=cell)for(let x=0;x<560;x+=cell){const i=(y*560+x)*4;if(pixels[i+3]<16)continue;const n=tiles.length,seed=random(n),q=random(n+1700);tiles.push({x,y,seed,r:random(n+700),q,theta:(seed*3|0)*Math.PI*2/3+q*15,orbit:.045+q*.24,color:`rgba(${pixels[i]},${pixels[i+1]},${pixels[i+2]},${pixels[i+3]/255})`});}
   // willReadFrequently keeps a canvas on the CPU; draw tiles from a GPU copy instead.
   tileSource=document.createElement('canvas');tileSource.width=tileSource.height=560;tileSource.getContext('2d').drawImage(source,0,0);
   ready=true;art.append(canvas);image.style.visibility='hidden';hero.classList.add('has-particle-logo');layout();
  }).catch(()=>{image.style.visibility='visible';});
  new ResizeObserver(()=>{if(ready)layout();}).observe(art);
- new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(!visible){cancelAnimationFrame(raf);raf=0;}else update();}).observe(journey);
+ // Scrolling past the whole concept counts as having watched the dissolve.
+ new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(!visible){if(progress>.5)played=true;cancelAnimationFrame(raf);raf=0;}else update();}).observe(journey);
  addEventListener('scroll',update,{passive:true});reduced.addEventListener('change',update);
  document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);raf=0;if(!document.hidden)update();});
 })();
