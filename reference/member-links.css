@@ -1,0 +1,7 @@
+/* Member profile links: underlined names on phones, hidden hit areas over the desktop artwork. */
+#members .member-profile-link{color:inherit;text-decoration:underline;text-decoration-color:#64B64E;text-underline-offset:3px}
+.member-link-layer{position:absolute;z-index:2;pointer-events:none}
+.member-art:not(.marker-ready) .member-link-layer{display:none}
+.member-link-spot{position:absolute;display:block;border-radius:999px;pointer-events:auto;transition:background-color .2s}
+.member-link-spot:hover{background:rgba(100,182,78,.14)}
+.member-link-spot:focus-visible{outline:2px solid #64B64E;outline-offset:2px}
