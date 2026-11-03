@@ -159,7 +159,8 @@
     const r=section.getBoundingClientRect(),h=pin.clientHeight;
     const down=scrollY>lastScroll;lastScroll=scrollY;
     // The exit plays once per page view; scrolling back into CONCEPT never re-arms it.
-    if(!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.5){
+    // It waits for the backgrounds: arming it earlier would lock scrolling until they load.
+    if(ready&&!reduced.matches&&!exitStart&&!exitDone&&down&&now-lastIntent<800&&r.bottom<h*1.08&&r.bottom>h*.5){
       exitStart=now;exitFrom=scrollY;exitTo=document.querySelector('#works').getBoundingClientRect().top+scrollY;
       window.conceptAutoScroll=true;dispatchEvent(new Event('concept-auto-scroll'));
     }

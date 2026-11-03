@@ -67,13 +67,17 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       ? '.works-mobile-card, .works-mobile-feature'
       : 'button.works-desktop-card',
   );
-  await expect(cards).toHaveCount(3);
+  // 16 works; the desktop catalog pages them 11 at a time.
+  const allCount = isMobile ? 16 : 11;
+  const invited = ['MoHeat', 'forming patterns', '朽ちもの園', 'zipper'];
+  await expect(cards).toHaveCount(allCount);
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveText([
-      /MoHeat/,
-      /forming patterns/,
-    ]);
-    await expect(page.locator('.works-mobile-card')).toHaveText(/vi-Vinci/);
+    await expect(page.locator('.works-mobile-feature')).toHaveText(
+      invited.map((title) => new RegExp(title)),
+    );
+    await expect(page.locator('.works-mobile-card').first()).toHaveText(
+      /vi-Vinci/,
+    );
     await expect(page.locator('.works-mobile-grid')).toHaveCSS(
       'grid-template-columns',
       /^(?:\d+(?:\.\d+)?px ){1}\d+(?:\.\d+)?px$/,
@@ -87,28 +91,48 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       page.locator('.works-desktop-card.is-invited').first(),
     ).toHaveCSS('grid-column-start', 'span 2');
   }
+  // Building A: 9 works including three invited ones; 制作展クエスト is in both buildings.
   await page.locator(`[data-${prefix}-venue="0"]`).click();
-  await expect(cards).toHaveCount(3);
+  await expect(cards).toHaveCount(9);
+  await expect(cards).toContainText(['In/Sight']);
+  await expect(cards).toContainText(['制作展クエスト']);
   if (isMobile)
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(3);
   await page.locator(`[data-${prefix}-venue="invite"]`).click();
-  await expect(cards).toHaveCount(2);
+  await expect(cards).toHaveCount(4);
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(2);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(4);
     await expect(page.locator('.works-mobile-card')).toHaveCount(0);
   }
-  await expect(cards).toContainText(['MoHeat', 'forming patterns']);
+  await expect(cards).toContainText(invited);
   await page.locator(`[data-${prefix}-venue="1"]`).click();
-  await expect(cards).toHaveCount(0);
+  await expect(cards).toHaveCount(8);
+  await expect(cards).toContainText(['MoHeat', '制作展クエスト']);
+  await expect(cards.filter({ hasText: 'MoHeat' })).toContainText(
+    '情報学環本館',
+  );
   await page.locator(`[data-${prefix}-venue="all"]`).click();
   const catalog = [
-    ['vi-Vinci', '三上日向汰', 'vi-vinci.png', 'ベストプレゼンテーション賞'],
+    ['vi-Vinci', '三上日向汰', 'vi-vinci.jpg', 'ベストプレゼンテーション賞'],
     ['MoHeat', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
     [
       'forming patterns',
       '上條陽斗',
-      'forming-patterns.png',
+      'forming-patterns.jpg',
       'それと認知の結びつきを探っている。',
+    ],
+    // Credits list every participating member, representative first.
+    [
+      'paw walk',
+      '牧田陽奈子、杉本隆平',
+      'paw-walk.jpg',
+      '犬の肉球が受ける歩行感',
+    ],
+    [
+      'Programmable Strap',
+      '猪原大智',
+      'programmable-strap.jpg',
+      'つり革型のインタラクティブメディア',
     ],
   ];
   for (const [title, author, image, description] of catalog) {
@@ -126,10 +150,9 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       await expect(detail.locator('.detail-copy > .detail-venue')).toHaveCount(
         0,
       );
-      await expect(detail.locator('.detail-type')).toHaveText(
-        '鑑賞タイプじっくり',
-      );
+      await expect(detail.locator('.detail-type')).toHaveCount(0);
     }
+    await expect(page.getByText('じっくり')).toHaveCount(0);
     await expect(detail.locator(isMobile ? 'h3' : '#detail-title')).toHaveText(
       title,
     );
@@ -152,7 +175,22 @@ test('confirmed works show supplied images, authors, descriptions and invitation
         ),
       )
       .toBe(true);
-    if (isMobile && title !== 'vi-Vinci')
+    // Members with a profile (SNS / web page) are linked from their credits.
+    const profile = detail.locator('a.member-profile-link');
+    if (title === 'Programmable Strap') {
+      await expect(profile).toHaveText('猪原大智');
+      await expect(profile).toHaveAttribute('href', 'https://inotai.net/about');
+      await expect(profile).toHaveAttribute('target', '_blank');
+      // Same weight as the surrounding credit; only a faint underline marks the link.
+      expect(
+        await profile.evaluate(
+          (a) =>
+            getComputedStyle(a).fontWeight ===
+            getComputedStyle(a.parentElement!).fontWeight,
+        ),
+      ).toBe(true);
+    } else await expect(profile).toHaveCount(0);
+    if (isMobile && invited.includes(title))
       await expect(detail).toContainText('招待作品');
     if (isMobile) await page.locator('.works-mobile-back').click();
     else await page.keyboard.press('Escape');
