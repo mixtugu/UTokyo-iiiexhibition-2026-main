@@ -128,6 +128,12 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       'paw-walk.jpg',
       '犬の肉球が受ける歩行感',
     ],
+    [
+      'Programmable Strap',
+      '猪原大智',
+      'programmable-strap.jpg',
+      'つり革型のインタラクティブメディア',
+    ],
   ];
   for (const [title, author, image, description] of catalog) {
     const trigger = cards.filter({ hasText: title });
@@ -169,6 +175,21 @@ test('confirmed works show supplied images, authors, descriptions and invitation
         ),
       )
       .toBe(true);
+    // Members with a profile (SNS / web page) are linked from their credits.
+    const profile = detail.locator('a.member-profile-link');
+    if (title === 'Programmable Strap') {
+      await expect(profile).toHaveText('猪原大智');
+      await expect(profile).toHaveAttribute('href', 'https://inotai.net/about');
+      await expect(profile).toHaveAttribute('target', '_blank');
+      // Same weight as the surrounding credit; only a faint underline marks the link.
+      expect(
+        await profile.evaluate(
+          (a) =>
+            getComputedStyle(a).fontWeight ===
+            getComputedStyle(a.parentElement!).fontWeight,
+        ),
+      ).toBe(true);
+    } else await expect(profile).toHaveCount(0);
     if (isMobile && invited.includes(title))
       await expect(detail).toContainText('招待作品');
     if (isMobile) await page.locator('.works-mobile-back').click();

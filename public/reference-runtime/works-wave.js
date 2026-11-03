@@ -129,7 +129,8 @@
   tags.replaceChildren(tagRow(work,true));
   mobileRoot.querySelector('.works-mobile-detail h3').textContent=mobileTitle(work);
   mobileRoot.querySelector('.works-mobile-detail-body').textContent=work.description;
-  mobileRoot.querySelector('.works-mobile-detail-meta').textContent=work.author;
+  const meta=mobileRoot.querySelector('.works-mobile-detail-meta');
+  if(window.writeMemberNames)window.writeMemberNames(meta,work.author);else meta.textContent=work.author;
   mobileList.hidden=true;mobileDetail.hidden=false;
   section.scrollIntoView({block:'start'});
   mobileRoot.querySelector('.works-mobile-back').focus();

@@ -1,7 +1,11 @@
-/* Member profile links: underlined names on phones, hidden hit areas over the desktop artwork. */
-#members .member-profile-link{color:inherit;text-decoration:underline;text-decoration-color:#64B64E;text-underline-offset:3px}
-.member-link-layer{position:absolute;z-index:2;pointer-events:none}
+/* Member profile links: underlined names in the phone member list and work credits, a curved silhouette over the names on the desktop artwork. */
+.member-profile-link{color:inherit;text-decoration:underline;text-decoration-color:#64B64E;text-underline-offset:3px}
+/* Work credits: same weight as the other names, only a faint underline. */
+.detail-author .member-profile-link,.works-mobile-detail-meta .member-profile-link{font:inherit;text-decoration-color:rgba(100,182,78,.45);text-decoration-thickness:1px;text-underline-offset:4px;transition:text-decoration-color .2s}
+.detail-author .member-profile-link:hover,.works-mobile-detail-meta .member-profile-link:hover{text-decoration-color:#64B64E}
+.member-link-layer{position:absolute;z-index:2;overflow:visible;pointer-events:none}
 .member-art:not(.marker-ready) .member-link-layer{display:none}
-.member-link-spot{position:absolute;display:block;border-radius:999px;pointer-events:auto;transition:background-color .2s}
-.member-link-spot:hover{background:rgba(100,182,78,.14)}
-.member-link-spot:focus-visible{outline:2px solid #64B64E;outline-offset:2px}
+.member-link-hit{fill:none;stroke:rgba(100,182,78,0);stroke-width:40;stroke-linecap:round;pointer-events:stroke;transition:stroke .2s}
+.member-link-spot:hover .member-link-hit{stroke:rgba(100,182,78,.14)}
+.member-link-spot:focus-visible{outline:none}
+.member-link-spot:focus-visible .member-link-hit{stroke:rgba(100,182,78,.22)}
