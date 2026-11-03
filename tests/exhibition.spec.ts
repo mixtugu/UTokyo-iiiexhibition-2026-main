@@ -91,10 +91,12 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       page.locator('.works-desktop-card.is-invited').first(),
     ).toHaveCSS('grid-column-start', 'span 2');
   }
+  // Building A: 8 works including three invited ones; 制作展クエスト is in both buildings.
   await page.locator(`[data-${prefix}-venue="0"]`).click();
-  await expect(cards).toHaveCount(allCount);
+  await expect(cards).toHaveCount(8);
+  await expect(cards).toContainText(['制作展クエスト']);
   if (isMobile)
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(4);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(3);
   await page.locator(`[data-${prefix}-venue="invite"]`).click();
   await expect(cards).toHaveCount(4);
   if (isMobile) {
@@ -103,15 +105,19 @@ test('confirmed works show supplied images, authors, descriptions and invitation
   }
   await expect(cards).toContainText(invited);
   await page.locator(`[data-${prefix}-venue="1"]`).click();
-  await expect(cards).toHaveCount(0);
+  await expect(cards).toHaveCount(8);
+  await expect(cards).toContainText(['MoHeat', '制作展クエスト']);
+  await expect(cards.filter({ hasText: 'MoHeat' })).toContainText(
+    '情報学環本館',
+  );
   await page.locator(`[data-${prefix}-venue="all"]`).click();
   const catalog = [
-    ['vi-Vinci', '三上日向汰', 'vi-vinci.png', 'ベストプレゼンテーション賞'],
+    ['vi-Vinci', '三上日向汰', 'vi-vinci.jpg', 'ベストプレゼンテーション賞'],
     ['MoHeat', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
     [
       'forming patterns',
       '上條陽斗',
-      'forming-patterns.png',
+      'forming-patterns.jpg',
       'それと認知の結びつきを探っている。',
     ],
     ['paw walk', '牧田陽奈子', 'paw-walk.jpg', '犬の肉球が受ける歩行感'],

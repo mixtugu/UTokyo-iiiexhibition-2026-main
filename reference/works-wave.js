@@ -8,17 +8,24 @@
  // Desktop catalog: four columns, with invited works spanning two columns.
  const desktopRoot=document.createElement('div');
  desktopRoot.className='works-desktop';
- desktopRoot.innerHTML=`<div class="works-desktop-panel"><div class="wave-filters works-desktop-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-desktop-venue="all" aria-pressed="true">ALL</button><button type="button" data-desktop-venue="0" aria-pressed="false">A 工学部2号館</button><button type="button" data-desktop-venue="1" aria-pressed="false">B 情報学環本館</button><button type="button" data-desktop-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-desktop-grid"></div><nav class="works-desktop-pagination" aria-label="作品一覧のページ"></nav></div>`;
+ desktopRoot.innerHTML=`<div class="works-desktop-panel"><div class="wave-filters works-desktop-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-desktop-venue="all" aria-pressed="true">ALL</button><button type="button" data-desktop-venue="0" aria-pressed="false">工学部2号館</button><button type="button" data-desktop-venue="1" aria-pressed="false">情報学環本館</button><button type="button" data-desktop-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-desktop-grid"></div><nav class="works-desktop-pagination" aria-label="作品一覧のページ"></nav></div>`;
  ui.append(desktopRoot);
  const desktopGrid=desktopRoot.querySelector('.works-desktop-grid');
  const desktopPagination=desktopRoot.querySelector('.works-desktop-pagination');
  const desktopPageSize=11;
  let desktopVenue='all',desktopPage=0;
- const desktopVenueName=w=>w.invited?'招待作品':w.venue==='1'?'B 情報学環本館':'A 工学部2号館';
+ // A work may be shown in both buildings ("0,1"); invited works also keep their building.
+ const venuesOf=w=>String(w.venue).split(',');
+ const matchesVenue=(w,venue)=>venue==='all'||(venue==='invite'?w.invited:venuesOf(w).includes(venue));
+ const venueNames=w=>venuesOf(w).map(v=>v==='1'?'情報学環本館':'工学部2号館');
+ function venueTags(work,className,solid){
+  return [...venueNames(work),...(work.invited?['招待作品']:[])].map((name,i)=>{
+   const tag=document.createElement('span');tag.className=className+(solid&&i<venuesOf(work).length?' is-solid':'');tag.textContent=name;return tag;
+  });
+ }
  function desktopTags(work){
   const row=document.createElement('span');row.className='works-desktop-tags';
-  const place=document.createElement('span');place.className='works-desktop-tag is-solid';place.textContent=desktopVenueName(work);
-  row.append(place);return row;
+  row.append(...venueTags(work,'works-desktop-tag',true));return row;
  }
  function desktopCard(work,index){
   const available=!work.placeholder;
@@ -32,7 +39,7 @@
   }
   const media=document.createElement('span');media.className='works-desktop-media';
   const image=document.createElement('img');
-  image.src=available?work.image:'assets/concept/iiiex2026-logo.png';
+  image.src=available?work.image:'assets/concept/iiiex2026-logo.webp';
   image.alt='';image.loading='lazy';media.append(image);
   const title=document.createElement('span');title.className='works-desktop-title';
   title.textContent=available?work.title:'coming soon';
@@ -43,7 +50,7 @@
  }
  function renderDesktop(){
 
-  const items=works.map((work,index)=>({work,index})).filter(({work})=>desktopVenue==='all'||(desktopVenue==='invite'?work.invited:work.venue===desktopVenue));
+  const items=works.map((work,index)=>({work,index})).filter(({work})=>matchesVenue(work,desktopVenue));
   const pageCount=Math.max(1,Math.ceil(items.length/desktopPageSize));
   desktopPage=Math.min(desktopPage,pageCount-1);
   const visible=items.slice(desktopPage*desktopPageSize,(desktopPage+1)*desktopPageSize);
@@ -67,7 +74,7 @@
  // Mobile catalog: invited works use full-width features; regular works use a two-column grid.
  const mobileRoot=document.createElement('div');
  mobileRoot.className='works-mobile';
- mobileRoot.innerHTML=`<div class="wave-filters works-mobile-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-mobile-venue="all" aria-pressed="true">ALL</button><button type="button" data-mobile-venue="0" aria-pressed="false">A 工学部2号館</button><button type="button" data-mobile-venue="1" aria-pressed="false">B 情報学環本館</button><button type="button" data-mobile-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-mobile-list"></div><article class="works-mobile-detail" hidden><img class="works-mobile-detail-image" alt=""><div class="works-mobile-detail-tags"></div><h3></h3><p class="works-mobile-detail-meta">名前が入ります。 所属情報が入ります。</p><p class="works-mobile-detail-body"></p><button type="button" class="works-mobile-back">一覧に戻る</button></article>`;
+ mobileRoot.innerHTML=`<div class="wave-filters works-mobile-filters" role="group" aria-label="作品の絞り込み"><button type="button" data-mobile-venue="all" aria-pressed="true">ALL</button><button type="button" data-mobile-venue="0" aria-pressed="false">工学部2号館</button><button type="button" data-mobile-venue="1" aria-pressed="false">情報学環本館</button><button type="button" data-mobile-venue="invite" aria-pressed="false">招待作品</button></div><div class="works-mobile-list"></div><article class="works-mobile-detail" hidden><img class="works-mobile-detail-image" alt=""><div class="works-mobile-detail-tags"></div><h3></h3><p class="works-mobile-detail-meta">名前が入ります。 所属情報が入ります。</p><p class="works-mobile-detail-body"></p><button type="button" class="works-mobile-back">一覧に戻る</button></article>`;
  ui.append(mobileRoot);
  const mobileList=mobileRoot.querySelector('.works-mobile-list');
  const mobileDetail=mobileRoot.querySelector('.works-mobile-detail');
@@ -75,16 +82,14 @@
  let mobileVenue='all',mobileTrigger=null,listScroll=0;
  const mobileTitle=w=>w.title;
  const mobileImage=w=>w.image;
- const mobileChip=w=>w.invited?'招待作品':w.venue==='1'?'B 情報学環本館':'A 工学部2号館';
  function tagRow(work,solid){
   const row=document.createElement('span');row.className='works-mobile-tags';
-  const place=document.createElement('span');place.className='works-mobile-tag'+(solid?' is-solid':'');place.textContent=mobileChip(work);
-  row.append(place);return row;
+  row.append(...venueTags(work,'works-mobile-tag',solid));return row;
  }
  function renderMobileList(){
   mobileList.replaceChildren();
 
-  const items=works.map((w,i)=>({w,i})).filter(({w})=>mobileVenue==='all'||(mobileVenue==='invite'?w.invited:w.venue===mobileVenue));
+  const items=works.map((w,i)=>({w,i})).filter(({w})=>matchesVenue(w,mobileVenue));
   const featuredItems=items.filter(({w})=>w.invited);
   const gridItems=items.filter(({w})=>!w.invited);
   featuredItems.forEach(featured=>{
