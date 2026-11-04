@@ -6,3 +6,6 @@ playwright-report/
 *.local
 
 storybook-static/
+
+# Submission spreadsheets (local reference only)
+*.xlsx
