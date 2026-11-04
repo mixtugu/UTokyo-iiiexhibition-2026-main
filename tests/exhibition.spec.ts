@@ -67,8 +67,8 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       ? '.works-mobile-card, .works-mobile-feature'
       : 'button.works-desktop-card',
   );
-  // 16 works; the desktop catalog pages them 11 at a time.
-  const allCount = isMobile ? 16 : 11;
+  // 23 works; the desktop catalog pages them 11 at a time.
+  const allCount = isMobile ? 23 : 11;
   const invited = ['MoHeat', 'forming patterns', '朽ちもの園', 'zipper'];
   await expect(cards).toHaveCount(allCount);
   if (isMobile) {
@@ -91,9 +91,9 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       page.locator('.works-desktop-card.is-invited').first(),
     ).toHaveCSS('grid-column-start', 'span 2');
   }
-  // Building A: 9 works including three invited ones; 制作展クエスト is in both buildings.
+  // Building A: 16 works including three invited ones; 制作展クエスト is in both buildings.
   await page.locator(`[data-${prefix}-venue="0"]`).click();
-  await expect(cards).toHaveCount(9);
+  await expect(cards).toHaveCount(isMobile ? 16 : 11);
   await expect(cards).toContainText(['In/Sight']);
   await expect(cards).toContainText(['制作展クエスト']);
   if (isMobile)
