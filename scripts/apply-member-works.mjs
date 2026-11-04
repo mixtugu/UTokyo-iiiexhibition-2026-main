@@ -1,5 +1,5 @@
 // Fill each work's author line from docs/data/member-works.csv (roster → related works).
-// The work's representative stays first; other members follow in roster order.
+// Existing credits stay as they are (representative first); missing roster members follow in roster order.
 // Usage: node scripts/apply-member-works.mjs, then npm run reference:sync.
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -69,13 +69,11 @@ const match = source.match(/const works = (\[.*?\]);\r?\n/);
 const works = JSON.parse(match[1]);
 for (const work of works) {
   if (!work.id) continue;
-  const lead = work.author.split('、')[0];
-  const names = [
-    lead,
-    ...(membersByWork.get(work.id) || []).filter(
-      (name) => !sameName(name, lead),
-    ),
-  ];
+  // Keep every credited name (members outside the roster are added by hand) and append roster members.
+  const names = work.author.split('、');
+  for (const name of membersByWork.get(work.id) || []) {
+    if (!names.some((other) => sameName(other, name))) names.push(name);
+  }
   work.author = names.join('、');
   console.log(`${work.id} ${work.title}: ${work.author}`);
 }
