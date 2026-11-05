@@ -212,6 +212,12 @@ const exhibitionMemberNames = {
  const originals=new WeakMap(), attributeOriginals=new WeakMap();
  let language='ja';
  try{language=localStorage.getItem('iii-language')==='en'?'en':'ja';}catch{}
+ // ?lang=ja|en (old /ja/ and /en/ URLs redirect here) picks the language once, then leaves the address clean.
+ const params=new URLSearchParams(location.search),requested=params.get('lang');
+ if(requested==='ja'||requested==='en'){
+  language=requested;params.delete('lang');
+  history.replaceState(history.state,'',location.pathname+(params.size?`?${params}`:'')+location.hash);
+ }
  const switcher=document.createElement('div');
  switcher.className='language-switch';switcher.setAttribute('role','group');
  switcher.innerHTML='<button type="button" data-language="ja" lang="ja">JA</button><span aria-hidden="true">/</span><button type="button" data-language="en" lang="en">EN</button>';
