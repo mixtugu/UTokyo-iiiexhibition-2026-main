@@ -1,5 +1,17 @@
 import { expect, test } from '@playwright/test';
 
+test('old /ja/ and /en/ URLs land on the main page in that language', async ({
+  page,
+}) => {
+  // public/_redirects sends /en/* to /?lang=en and /ja/* to /?lang=ja.
+  await page.goto('/?lang=en');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page).toHaveURL(/\/$/);
+  await page.goto('/?lang=ja');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'ja');
+  await expect(page).toHaveURL(/\/$/);
+});
+
 test('hero language choice persists through sections and dynamic works', async ({
   page,
 }) => {

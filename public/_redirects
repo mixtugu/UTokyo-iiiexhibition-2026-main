@@ -4,3 +4,10 @@
 /2026/beginning    https://utokyo-iiiexhibition-2026-beginning.pages.dev/  302
 /2026/beginning/   https://utokyo-iiiexhibition-2026-beginning.pages.dev/  302
 /2026/beginning/*  https://utokyo-iiiexhibition-2026-beginning.pages.dev/:splat  302
+# Old language URLs from search results: open the main page in that language.
+/ja    /?lang=ja  301
+/ja/   /?lang=ja  301
+/ja/*  /?lang=ja  301
+/en    /?lang=en  301
+/en/   /?lang=en  301
+/en/*  /?lang=en  301
