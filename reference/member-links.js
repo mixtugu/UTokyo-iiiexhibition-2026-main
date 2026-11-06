@@ -3,7 +3,7 @@
 // the route to just below the letters at the start/end (artwork units; the names sit slightly off their routes).
 (() => {
  const links=[
-  {name:'ウォンカム 真生路',url:'https://linktr.ee/mikey_130',line:[0,404,656,7,15]},
+  {name:'ウォンカム 真生路',url:'http://michaelwongkam.com',line:[0,404,656,7,15]},
   {name:'猪原 大智',url:'https://inotai.net/about',line:[0,688,846,18,29]},
   {name:'イ ソジョン',url:'https://portfolio-mixtugu.onrender.com/',line:[3,344,502,15,15]},
   {name:'野原 春菜',url:'https://www.linkedin.com/in/haruna-nohara',line:[11,152,290,17,24]},
