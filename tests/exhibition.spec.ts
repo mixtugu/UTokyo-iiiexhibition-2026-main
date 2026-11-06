@@ -24,7 +24,7 @@ test('all reference sections, canvases and image assets load without errors', as
   await expect(
     page.locator('#works .works-desktop, #works .works-mobile'),
   ).toHaveCount(2);
-  await expect(page.locator('.archive-column-link')).toHaveCount(30);
+  await expect(page.locator('.archive-column-link')).toHaveCount(43);
   for (const id of [
     'top',
     'concept',
@@ -209,7 +209,7 @@ test('announcements retain the fund without cancelled talk event links', async (
   ).toHaveCount(0);
 });
 
-test('archive categories show all 30 records and support keyboard and touch previews', async ({
+test('archive categories show all 43 records and support keyboard and touch previews', async ({
   page,
   isMobile,
 }) => {
@@ -223,10 +223,10 @@ test('archive categories show all 30 records and support keyboard and touch prev
   await expect(page.locator('.archive-group')).toHaveCount(2);
   await expect(
     page.locator('[data-group="本展"] .archive-column-link'),
-  ).toHaveCount(15);
+  ).toHaveCount(22);
   await expect(
     page.locator('[data-group="番外展"] .archive-column-link'),
-  ).toHaveCount(15);
+  ).toHaveCount(21);
 });
 
 test('section review routes and direct anchors initialize the same runtime', async ({
