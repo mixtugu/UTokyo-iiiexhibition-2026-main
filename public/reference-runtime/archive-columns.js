@@ -15,6 +15,14 @@
   ['本展','2013','mosaic','https://archive.iiiexhibition.com/log/i3e15','main-2013-visual.png'],
   ['本展','2012','いとをかし','https://archive.iiiexhibition.com/log/i3e14','main-2012-visual.png'],
   ['本展','2011','Re:','https://archive.iiiexhibition.com/log/i3e13','main-2011-visual.jpg'],
+  // 2004–2010: archived copies (old archive server, Internet Archive, NDL WARP). Thumbnails are captures of each archived site; where the top page lost its images, an inner page that kept them.
+  ['本展','2010','BRIDGE','https://archive.iiiexhibition.com/log/i3e12/i3e-top.html','main-2010-i3e12.jpg'],
+  ['本展','2009','夢 見ていますか','https://archive.iiiexhibition.com/log/i3e11/top.php','main-2009-i3e11.jpg'],
+  ['本展','2008','Designing Technology for []','https://archive.iiiexhibition.com/log/i3e10/','main-2008-i3e10.jpg'],
+  ['本展','2007','第8回 東京大学制作展','https://archive.iiiexhibition.com/log/i3e8/','main-2007-i3e8.jpg'],
+  ['本展','2006','第6回 東京大学制作展','https://warp.ndl.go.jp/web/20120512225719/http://www2.iii.u-tokyo.ac.jp/i3e6/','main-2006-i3e6.jpg'],
+  ['本展','2005','第3回 東京大学制作展','https://web.archive.org/web/20051220011714/http://www.iii.u-tokyo.ac.jp/i3e3/','main-2005-i3e3.jpg'],
+  ['本展','2004','第2回 東京大学制作展','https://web.archive.org/web/20041211085107/http://www.iii.u-tokyo.ac.jp/i3e2/index.html','main-2004-i3e2.jpg'],
   ['番外展','2026','たゆたう','https://utokyo-iiiexhibition-2026-beginning.pages.dev/','extra-2026-visual.jpg'],
   ['番外展','2025','あることないこと','https://iii-exhibition2025-beginning.pages.dev','extra-2025-visual.png'],
   ['番外展','2024','なにいう展','https://iii-exhibition-2024-web.vercel.app/','../extra-2024.png'],
@@ -29,7 +37,14 @@
   ['番外展','2015','グッバイ・マイ・ボディ','https://archive.iiiexhibition.com/log/iiiEx2015','extra-2015-visual.jpg'],
   ['番外展','2014','リアルからちょっと離れてる空間','https://archive.iiiexhibition.com/log/iiiEx2014','extra-2014-visual.png'],
   ['番外展','2013','⏻','https://archive.iiiexhibition.com/log/iiiEx2013','extra-2013-visual.png'],
-  ['番外展','2012','パルス','https://archive.iiiexhibition.com/log/iiiEx2012','extra-2012-visual.png']
+  ['番外展','2012','パルス','https://archive.iiiexhibition.com/log/iiiEx2012','extra-2012-visual.png'],
+  ['番外展','2010','[  ]ing','https://warp.ndl.go.jp/web/20100825191455/http://i3e.iii.u-tokyo.ac.jp/i3eex2010/i3e-top.html','extra-2010-i3eex2010.jpg'],
+  ['番外展','2009','そばにある発見。','https://warp.ndl.go.jp/web/20100516001719/http://i3e.iii.u-tokyo.ac.jp/i3eex2009/index.html','extra-2009-i3eex2009.jpg'],
+  // Years with two exhibitions (until 2008): the earlier one sits with the beginning exhibitions.
+  ['番外展','2008','第9回 東京大学制作展','https://archive.iiiexhibition.com/log/i3e9/','extra-2008-i3e9.jpg'],
+  ['番外展','2007','ハイパーマニアックはじめました。','https://web.archive.org/web/20070731195135/http://i3e.iii.u-tokyo.ac.jp/index.html','extra-2007-i3e7.jpg'],
+  ['番外展','2006','第5回 東京大学制作展','https://warp.ndl.go.jp/web/20100516032050/http://i3e.iii.u-tokyo.ac.jp/i3e5/index.html','extra-2006-i3e5.jpg'],
+  ['番外展','2004','第1回 東京大学制作展（学環学府制作展2004）','https://web.archive.org/web/20040716065009/http://www.iii.u-tokyo.ac.jp/i3e/','extra-2004-i3e1.jpg']
  ];
  const root=document.querySelector('#archives .archive-links');
  if(!root)return;
