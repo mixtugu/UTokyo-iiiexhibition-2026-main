@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/main/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/main/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

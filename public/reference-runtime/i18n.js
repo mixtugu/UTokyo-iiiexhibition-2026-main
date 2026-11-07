@@ -1,4 +1,7 @@
 const exhibitionTranslations = {
+ "キム ジェミン": "Jaemin Kim",
+ "東京共鳴線": "Tokyo Resonance Lines",
+ "協力: 東京大学×NTT サステナブルウェルビーイング社会連携講座": "Cooperation: 東京大学×NTT サステナブルウェルビーイング社会連携講座",
  "来場予約": "Reserve your visit",
  "制作展のグリーンのモチーフをあしらった黒いパーカーの前面と背面": "Front and back of the black hoodie featuring the exhibition’s green motif",
  "ご支援のお知らせ": "Support the exhibition",
