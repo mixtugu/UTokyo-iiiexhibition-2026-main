@@ -1,4 +1,5 @@
 const exhibitionTranslations = {
+ "キム ジェミン": "Jaemin Kim",
  "東京共鳴線": "Tokyo Resonance Lines",
  "協力: 東京大学×NTT サステナブルウェルビーイング社会連携講座": "Cooperation: 東京大学×NTT サステナブルウェルビーイング社会連携講座",
  "来場予約": "Reserve your visit",

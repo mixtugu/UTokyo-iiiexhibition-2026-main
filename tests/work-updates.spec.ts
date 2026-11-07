@@ -44,3 +44,27 @@ test('OGP is present in server HTML and its image is served as a PNG', async ({
     '89504e470d0a1a0a',
   );
 });
+
+test('Tokyo Resonance Lines author uses the selected language and portfolio link', async ({
+  page,
+  isMobile,
+}) => {
+  for (const [language, title, name] of [
+    ['ja', '東京共鳴線', 'キム ジェミン'],
+    ['en', 'Tokyo Resonance Lines', 'Jaemin Kim'],
+  ]) {
+    await page.goto(`/?lang=${language}`);
+    const cards = page.locator(
+      '.works-desktop-card:visible, .works-mobile-feature:visible, .works-mobile-card:visible',
+    );
+    await cards.filter({ hasText: title }).click();
+    const detail = page.locator(isMobile ? '.works-mobile-detail' : '#detail');
+    const link = detail.getByRole('link', { name, exact: true });
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute(
+      'href',
+      'https://loveisanopendoor.github.io/',
+    );
+    await expect(link).toHaveAttribute('target', '_blank');
+  }
+});
