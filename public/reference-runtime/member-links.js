@@ -3,6 +3,7 @@
 // the route to just below the letters at the start/end (artwork units; the names sit slightly off their routes).
 (() => {
  const links=[
+  {name:'キム ジェミン',url:'https://loveisanopendoor.github.io/'},
   {name:'ウォンカム 真生路',url:'http://michaelwongkam.com',line:[0,404,656,7,15]},
   {name:'猪原 大智',url:'https://inotai.net/about',line:[0,688,846,18,29]},
   {name:'イ ソジョン',url:'https://portfolio-mixtugu.onrender.com/',line:[3,344,502,15,15]},
@@ -40,7 +41,7 @@
  const ns='http://www.w3.org/2000/svg';
  const layer=document.createElementNS(ns,'svg');
  layer.setAttribute('class','member-link-layer');layer.setAttribute('viewBox',`0 0 ${width} ${height}`);
- for(const link of links){
+ for(const link of links.filter(link=>link.line)){
   const [index,from,to,below0,below1]=link.line,route=routes[index],length=route.getTotalLength();
   // Past the route's end, continue straight along its last direction.
   const at=s=>{const q=route.getPointAtLength(Math.min(length,Math.max(0,s))),over=s-length;
