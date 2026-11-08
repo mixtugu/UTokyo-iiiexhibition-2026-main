@@ -63,7 +63,7 @@
     "sp-top.css": "c9b040f17fe2da42a76f96de7ff73abb83b48db8de153b2bbc337b10ea9d8b8a",
     "member-links.css": "fc890fbdbbe9b93c4f89c76456780d5fbf1f1c271392e2b5f84fcbe155c7a0cb",
     "figma-export.js": "36c37854c8d8ab8a2a4c128f6d98a8f719f39100976cff1a68085f41a8b84827",
-    "preview.js": "312bd9f9fa5fc00025b22445152783d77a0624c898d0dff59004bad757f6bbae",
+    "preview.js": "c2c5196bf8b42daa2b0086342620f4be23ae4c4cc04104080cbc818f0143dbee",
     "archive-columns.js": "761e91e644e7542872e83d4c7542871c291f39233637f8125801428edc4bf309",
     "work-credits.js": "105ccb25d142e46a8202bedfd0c783d60f17453460efcb7e627206b3ac836f1b",
     "works-wave.js": "5f8a397ad6c8f4f625a7f483310b9ec62f7cbd2e0d0bba123317c540484b1154",
@@ -80,6 +80,6 @@
     "announce-flow.js": "9788b81e57833f6e8ca516f1ef0ba629e3897e6762af9bd5cc02b372d5b92a4b",
     "prototype-review.js": "ed53ffa31cd676dd5b176fd63c56f522ab7a0ffa4182cd51fee3a067dd43bb14",
     "mobile-menu.js": "0542917aa17e452988970c46c1c852d89bfa8d1383d6c617237bc149a59e565d",
-    "i18n.js": "779ceeb52274a17e82021f15952b46ff40c790dbc350ae466f44f75ed6379d2f"
+    "i18n.js": "3ac156297564ff87a81bdc3a14185d7f2d92e09afc1f884cfe70c71943237b84"
   }
 }
