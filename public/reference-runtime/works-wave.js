@@ -17,7 +17,7 @@
  // A work may be shown in both buildings ("0,1"); invited works also keep their building.
  const venuesOf=w=>String(w.venue).split(',');
  const matchesVenue=(w,venue)=>venue==='all'||(venue==='invite'?w.invited:venuesOf(w).includes(venue));
- const venueNames=w=>venuesOf(w).map(v=>v==='1'?'情報学環本館':'工学部2号館');
+ const venueNames=w=>venuesOf(w).map(v=>v==='1'?'情報学環本館':v==='0'?'工学部2号館':'会場確認中');
  function venueTags(work,className,solid){
   return [...venueNames(work),...(work.invited?['招待作品']:[])].map((name,i)=>{
    const tag=document.createElement('span');tag.className=className+(solid&&i<venuesOf(work).length?' is-solid':'');tag.textContent=name;return tag;
