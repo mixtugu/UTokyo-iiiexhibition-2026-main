@@ -12,7 +12,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 3,
-        "placement": [9],
+        "placement": [
+          9
+        ],
         "photo": 4
       },
       "photoStatus": "提出確認",
@@ -28,7 +30,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 28,
-        "placement": [25],
+        "placement": [
+          25
+        ],
         "photo": 30
       },
       "photoStatus": "提出確認",
@@ -45,7 +49,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 18,
-        "placement": [17],
+        "placement": [
+          17
+        ],
         "photo": 19
       },
       "photoStatus": "提出確認",
@@ -73,7 +79,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 4,
-        "placement": [3],
+        "placement": [
+          3
+        ],
         "photo": 5
       },
       "photoStatus": "提出確認",
@@ -89,7 +97,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 21,
-        "placement": [22],
+        "placement": [
+          22
+        ],
         "photo": 22
       },
       "photoStatus": "提出確認",
@@ -105,7 +115,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 23,
-        "placement": [27],
+        "placement": [
+          27
+        ],
         "photo": 24
       },
       "photoStatus": "提出確認",
@@ -122,7 +134,10 @@
       "room": "展示室＋中山",
       "sourceRows": {
         "status": 6,
-        "placement": [10, 30],
+        "placement": [
+          10,
+          30
+        ],
         "photo": 7
       },
       "photoStatus": "提出確認",
@@ -139,7 +154,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 24,
-        "placement": [24],
+        "placement": [
+          24
+        ],
         "photo": 26
       },
       "photoStatus": "提出確認",
@@ -155,7 +172,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 25,
-        "placement": [26],
+        "placement": [
+          26
+        ],
         "photo": 27
       },
       "photoStatus": "提出確認",
@@ -172,7 +191,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 9,
-        "placement": [7],
+        "placement": [
+          7
+        ],
         "photo": 10
       },
       "photoStatus": "提出確認",
@@ -189,7 +210,9 @@
       "room": "フォーラム",
       "sourceRows": {
         "status": 34,
-        "placement": [33],
+        "placement": [
+          33
+        ],
         "photo": 36
       },
       "photoStatus": "提出確認",
@@ -206,7 +229,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 15,
-        "placement": [18],
+        "placement": [
+          18
+        ],
         "photo": 16
       },
       "photoStatus": "提出確認",
@@ -223,7 +248,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 17,
-        "placement": [15],
+        "placement": [
+          15
+        ],
         "photo": 18
       },
       "photoStatus": "提出確認",
@@ -240,7 +267,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 26,
-        "placement": [20],
+        "placement": [
+          20
+        ],
         "photo": 28
       },
       "photoStatus": "提出確認",
@@ -256,7 +285,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 27,
-        "placement": [29],
+        "placement": [
+          29
+        ],
         "photo": 29
       },
       "photoStatus": "提出確認",
@@ -272,7 +303,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 5,
-        "placement": [8],
+        "placement": [
+          8
+        ],
         "photo": 6
       },
       "photoStatus": "提出確認",
@@ -288,7 +321,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 10,
-        "placement": [4],
+        "placement": [
+          4
+        ],
         "photo": 11
       },
       "photoStatus": "提出確認",
@@ -304,7 +339,9 @@
       "room": "フォーラム",
       "sourceRows": {
         "status": 31,
-        "placement": [35],
+        "placement": [
+          35
+        ],
         "photo": 33
       },
       "photoStatus": "提出確認",
@@ -320,7 +357,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 14,
-        "placement": [19],
+        "placement": [
+          19
+        ],
         "photo": 15
       },
       "photoStatus": "提出確認",
@@ -346,7 +385,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 11,
-        "placement": [13],
+        "placement": [
+          13
+        ],
         "photo": 12
       },
       "photoStatus": "提出確認",
@@ -362,7 +403,9 @@
       "room": "フォーラム",
       "sourceRows": {
         "status": 33,
-        "placement": [32],
+        "placement": [
+          32
+        ],
         "photo": 35
       },
       "photoStatus": "提出確認",
@@ -378,7 +421,9 @@
       "room": "フォーラム",
       "sourceRows": {
         "status": 30,
-        "placement": [34],
+        "placement": [
+          34
+        ],
         "photo": 32
       },
       "photoStatus": "提出確認",
@@ -394,7 +439,9 @@
       "room": "フォーラム",
       "sourceRows": {
         "status": 32,
-        "placement": [36],
+        "placement": [
+          36
+        ],
         "photo": 34
       },
       "photoStatus": "提出確認",
@@ -410,12 +457,23 @@
       "room": "中山",
       "sourceRows": {
         "status": 22,
-        "placement": [28],
+        "placement": [
+          28
+        ],
         "photo": 23
       },
       "photoStatus": "提出確認",
       "photoUrls": [],
-      "imageAccess": "not-downloaded"
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/audible-genes.webp",
+        "sourceFile": "IMG_4479のコピー - Hiroaki TSUNEIZUMI.jpeg",
+        "sourceWidth": 2880,
+        "sourceHeight": 2304,
+        "width": 1800,
+        "height": 1440,
+        "cropped": false
+      }
     },
     {
       "id": "M08",
@@ -424,7 +482,9 @@
       "room": "Sky",
       "sourceRows": {
         "status": 12,
-        "placement": [12],
+        "placement": [
+          12
+        ],
         "photo": 13
       },
       "photoStatus": "提出確認",
@@ -449,14 +509,25 @@
       "room": "Sky",
       "sourceRows": {
         "status": 13,
-        "placement": [11],
+        "placement": [
+          11
+        ],
         "photo": 14
       },
       "photoStatus": "提出確認",
       "photoUrls": [
         "https://drive.google.com/file/d/1RdlmaOUr5jNsGB5cI8c9aIrdd61VcLAe/view"
       ],
-      "imageAccess": "not-downloaded"
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/weaving-wind.webp",
+        "sourceFile": "風を編む4 - Meika MIZUNO.jpg",
+        "sourceWidth": 3000,
+        "sourceHeight": 2400,
+        "width": 1800,
+        "height": 1440,
+        "cropped": false
+      }
     },
     {
       "id": "M11",
@@ -465,7 +536,9 @@
       "room": "中山",
       "sourceRows": {
         "status": null,
-        "placement": [23],
+        "placement": [
+          23
+        ],
         "photo": 25
       },
       "photoStatus": "未確認",
@@ -479,14 +552,25 @@
       "room": "展示室",
       "sourceRows": {
         "status": 7,
-        "placement": [6],
+        "placement": [
+          6
+        ],
         "photo": 8
       },
       "photoStatus": "提出確認",
       "photoUrls": [
         "https://drive.google.com/file/d/1GgjR62yvlj4TARuwux1KWd1vpKWFEgGu/view"
       ],
-      "imageAccess": "not-downloaded"
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/stop-motion-haptics.webp",
+        "sourceFile": "Finger Pressing a Clear Ballpoint Pen - Aino Kishimoto.png",
+        "sourceWidth": 1122,
+        "sourceHeight": 1402,
+        "width": 1122,
+        "height": 1402,
+        "cropped": false
+      }
     },
     {
       "id": "M16",
@@ -495,7 +579,9 @@
       "room": "展示室",
       "sourceRows": {
         "status": 8,
-        "placement": [5],
+        "placement": [
+          5
+        ],
         "photo": 9
       },
       "photoStatus": "提出確認",
@@ -520,12 +606,23 @@
       "room": "Sky",
       "sourceRows": {
         "status": 16,
-        "placement": [14],
+        "placement": [
+          14
+        ],
         "photo": 17
       },
       "photoStatus": "個別確認",
       "photoUrls": [],
-      "imageAccess": "not-downloaded"
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/otherwares.webp",
+        "sourceFile": "IMG_9917.jpg",
+        "sourceWidth": 3696,
+        "sourceHeight": 3666,
+        "width": 1800,
+        "height": 1785,
+        "cropped": false
+      }
     },
     {
       "id": "I07",
@@ -534,7 +631,9 @@
       "room": "中山",
       "sourceRows": {
         "status": 29,
-        "placement": [21],
+        "placement": [
+          21
+        ],
         "photo": 31
       },
       "photoStatus": "提出確認",
@@ -551,15 +650,26 @@
       "room": "Sky",
       "sourceRows": {
         "status": 20,
-        "placement": [16],
+        "placement": [
+          16
+        ],
         "photo": 21
       },
       "photoStatus": "提出確認",
       "photoUrls": [
         "https://drive.google.com/file/d/1d7p96ckBFTPWvUvViVGDLFjApfK4xwGW/view"
       ],
-      "imageAccess": "not-downloaded",
-      "author": "田中祐玖、韓燦教、苗村健"
+      "imageAccess": "local-file-received",
+      "author": "田中祐玖、韓燦教、苗村健",
+      "localImage": {
+        "path": "assets/works/human-in-the-loop.webp",
+        "sourceFile": "humanintheloop_45 - Tasuku Tanaka.jpg",
+        "sourceWidth": 2419,
+        "sourceHeight": 3024,
+        "width": 1440,
+        "height": 1800,
+        "cropped": false
+      }
     },
     {
       "id": "X01",
