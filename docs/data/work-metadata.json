@@ -1,0 +1,592 @@
+{
+  "source": "制作展2026_作品提出管理_統合ダッシュボード.xlsx",
+  "notes": [
+    "Status rows take precedence over older photo and placement rows.",
+    "Final copy remains sourced from the completed bilingual workbook."
+  ],
+  "works": [
+    {
+      "id": "M01",
+      "title": "vi-Vinci",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 3,
+        "placement": [9],
+        "photo": 4
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1ccnfUhRkZsLNjwa-yN29JMy2Uh9zjC3f/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I04",
+      "title": "MoHeat Evo",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 28,
+        "placement": [25],
+        "photo": 30
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1W7o3al0bCjYOEqA2K5chhogvfF9TOLEZ/view?usp=drivesdk",
+        "https://drive.google.com/drive/folders/1VNAue26ciR6b9LvJQna0gtLXrxQ1k-dV42NouT2-SWhZ5ulElEdKR_XkTHLiaQZVxHXMcyu2"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I05",
+      "title": "構造形態学",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 18,
+        "placement": [17],
+        "photo": 19
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I06",
+      "title": "forming patterns",
+      "venue": "0",
+      "room": "Sky（I05と共有展示）",
+      "sourceRows": {
+        "status": 19,
+        "placement": [],
+        "photo": 20
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M03",
+      "title": "Haptics powered armor",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 4,
+        "placement": [3],
+        "photo": 5
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1xaREeE0ZON2d0HXWm5BkwxdufG0ilGI3/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M06",
+      "title": "Tokyo Resonance Lines",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 21,
+        "placement": [22],
+        "photo": 22
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1SKUNsxqTOqLtxgkF1QMaVuFrHq-gNEdK/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M10",
+      "title": "Programmable Strap",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 23,
+        "placement": [27],
+        "photo": 24
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1PW7dRozVQyXm265JfKbcWUeHnji9cL5y/view?usp=drivesdk",
+        "https://drive.google.com/drive/folders/1VNAue26ciR6b9LvJQna0gtLXrxQ1k-dV42NouT2-SWhZ5ulElEdKR_XkTHLiaQZVxHXMcyu2"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M12",
+      "title": "制作展クエスト",
+      "venue": "0,1",
+      "room": "展示室＋中山",
+      "sourceRows": {
+        "status": 6,
+        "placement": [10, 30],
+        "photo": 7
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1Eoe2Zlgoy2hmGhDdH5KmVdF7sTkrxguG/view?usp=drivesdk",
+        "https://drive.google.com/file/d/1Eoe2Zlgoy2hmGhDdH5KmVdF7sTkrxguG/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M13",
+      "title": "The Living ⇄ Dining",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 24,
+        "placement": [24],
+        "photo": 26
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1V7SyFX29YZ4WCkmc7hvCKgGszXyiIlUd/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M15",
+      "title": "paw walk",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 25,
+        "placement": [26],
+        "photo": 27
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1GwtvjKGE59P5yObqF45IPgVZMWQzxCja/view?usp=drivesdk",
+        "https://drive.google.com/file/d/1GwtvjKGE59P5yObqF45IPgVZMWQzxCja/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M18",
+      "title": "Dynamic Heartbeat",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 9,
+        "placement": [7],
+        "photo": 10
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1dJd6Oi_vd25PI3A5_aB5D4bPjQ_sz0Gi/view?usp=drivesdk",
+        "https://drive.google.com/drive/folders/1VNAue26ciR6b9LvJQna0gtLXrxQ1k-dV42NouT2-SWhZ5ulElEdKR_XkTHLiaQZVxHXMcyu2"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M24",
+      "title": "Sound Atlas of Shapes",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 34,
+        "placement": [33],
+        "photo": 36
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1xhjPpHw9WVXgA4G1JtH3f8u5tdZ_DEkc/view?usp=drivesdk",
+        "https://drive.google.com/file/d/1xhjPpHw9WVXgA4G1JtH3f8u5tdZ_DEkc/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I01",
+      "title": "朽ちもの園",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 15,
+        "placement": [18],
+        "photo": 16
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1Y3AuVwqOHcqg2mLOyQG0dzAKTKsPfNp5/view?usp=drivesdk",
+        "https://drive.google.com/drive/folders/1VNAue26ciR6b9LvJQna0gtLXrxQ1k-dV42NouT2-SWhZ5ulElEdKR_XkTHLiaQZVxHXMcyu2"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I03",
+      "title": "zipper",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 17,
+        "placement": [15],
+        "photo": 18
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1I3ZSiQW2g1v1MQyNB9ib-c3ocL2Gaz96/view?usp=drivesdk",
+        "https://drive.google.com/drive/folders/1VNAue26ciR6b9LvJQna0gtLXrxQ1k-dV42NouT2-SWhZ5ulElEdKR_XkTHLiaQZVxHXMcyu2"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M17",
+      "title": "Who typed?",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 26,
+        "placement": [20],
+        "photo": 28
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1XHfF0FSor0-el3FI5MpRMSI8Qxhw1zm2/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M20",
+      "title": "Transforming Sequence Cycles",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 27,
+        "placement": [29],
+        "photo": 29
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/19oWkaZFB6cLLtgVI1g16fh0oS0Q50KoQ/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M04",
+      "title": "In/Sight",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 5,
+        "placement": [8],
+        "photo": 6
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1IS00OTv4wq8HLdvvztCtChabxJ0Ke0d6/view?usp=drivesdk"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M19",
+      "title": "DRIFTER",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 10,
+        "placement": [4],
+        "photo": 11
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/15BcvB55l-rmiSVy0xDeHo7nQdMISoUkI/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M21",
+      "title": "過去を感じるミライ",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 31,
+        "placement": [35],
+        "photo": 33
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1_HsRfqVWz1ZY5OEiOyINOPr24xpATrtZ/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M25",
+      "title": "Threshold",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 14,
+        "placement": [19],
+        "photo": 15
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/open?id=1phZ-WKRkvZFWiG2J96v5fXsIcQ-z5Xgq",
+        "https://drive.google.com/file/d/1phZ-WKRkvZFWiG2J96v5fXsIcQ-z5Xgq/view"
+      ],
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/threshold.webp",
+        "sourceFile": "Threshold（1） - JINGTONG DOU.png",
+        "sourceWidth": 2564,
+        "sourceHeight": 1574,
+        "width": 1800,
+        "height": 1105,
+        "cropped": false
+      }
+    },
+    {
+      "id": "M02",
+      "title": "わたしの境界",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 11,
+        "placement": [13],
+        "photo": 12
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1FTih5nkWUHVkkSlfBLJWTrfOzFEX5rFN/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M23",
+      "title": "Suki-ma",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 33,
+        "placement": [32],
+        "photo": 35
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1Cm9R0p8qCNGcvAuoHdNNNE7SHPBOV-Jy/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M05",
+      "title": "記憶の風景を歩く",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 30,
+        "placement": [34],
+        "photo": 32
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1_UhBAegjD7y3_3l2_qh8iXgACwpEd9rc/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M22",
+      "title": "ロボットのニン",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 32,
+        "placement": [36],
+        "photo": 34
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1tmYdDhCMLX4J8HUSArNUO5eksw7ZJqPi/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M07",
+      "title": "可聴化する遺伝子",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 22,
+        "placement": [28],
+        "photo": 23
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M08",
+      "title": "Breathing Currents",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 12,
+        "placement": [12],
+        "photo": 13
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1oRRLnnqMmAGklzrWrc822uTWqM09t1T9/view"
+      ],
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/breathing-currents.webp",
+        "sourceFile": "白45 - Meika MIZUNO.jpg",
+        "sourceWidth": 2500,
+        "sourceHeight": 2000,
+        "width": 1800,
+        "height": 1440,
+        "cropped": false
+      }
+    },
+    {
+      "id": "M09",
+      "title": "風を編む",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 13,
+        "placement": [11],
+        "photo": 14
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1RdlmaOUr5jNsGB5cI8c9aIrdd61VcLAe/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M11",
+      "title": "計算機の羞恥性",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": null,
+        "placement": [23],
+        "photo": 25
+      },
+      "photoStatus": "未確認",
+      "photoUrls": [],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M14",
+      "title": "Stop Motion Haptics",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 7,
+        "placement": [6],
+        "photo": 8
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1GgjR62yvlj4TARuwux1KWd1vpKWFEgGu/view"
+      ],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "M16",
+      "title": "GhostShape",
+      "venue": "0",
+      "room": "展示室",
+      "sourceRows": {
+        "status": 8,
+        "placement": [5],
+        "photo": 9
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1hjYUCORer31KfjeAtgFf585J38E_NpA_/view"
+      ],
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/ghostshape.webp",
+        "sourceFile": "鏡に映る白いドームと指差す手 - 杉本隆平.png",
+        "sourceWidth": 1122,
+        "sourceHeight": 1402,
+        "width": 1122,
+        "height": 1402,
+        "cropped": false
+      }
+    },
+    {
+      "id": "I02",
+      "title": "Otherwares",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 16,
+        "placement": [14],
+        "photo": 17
+      },
+      "photoStatus": "個別確認",
+      "photoUrls": [],
+      "imageAccess": "not-downloaded"
+    },
+    {
+      "id": "I07",
+      "title": "EmoJammer",
+      "venue": "1",
+      "room": "中山",
+      "sourceRows": {
+        "status": 29,
+        "placement": [21],
+        "photo": 31
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/drive/folders/1-t-vqjSFKrWDsr6l8W8XH0aUry108Gcb?usp=sharing"
+      ],
+      "imageAccess": "not-downloaded",
+      "author": "中條麟太郎、秋山満昭、ジェミソンジャック、渡邊淳司、ハウタサーリアリ、苗村健"
+    },
+    {
+      "id": "I08",
+      "title": "Human in the Loop?",
+      "venue": "0",
+      "room": "Sky",
+      "sourceRows": {
+        "status": 20,
+        "placement": [16],
+        "photo": 21
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1d7p96ckBFTPWvUvViVGDLFjApfK4xwGW/view"
+      ],
+      "imageAccess": "not-downloaded",
+      "author": "田中祐玖、韓燦教、苗村健"
+    },
+    {
+      "id": "X01",
+      "title": "フォーラムのモニュメント",
+      "venue": "0",
+      "room": "フォーラム",
+      "sourceRows": {
+        "status": 35,
+        "placement": [],
+        "photo": 37
+      },
+      "photoStatus": "提出確認",
+      "photoUrls": [
+        "https://drive.google.com/file/d/1CAwzQwq6q1WINqJbNS56ZwAMe32sV4Kf/view"
+      ],
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/utena.webp",
+        "sourceFile": "utena - タマキユーゴ.png",
+        "sourceWidth": 2000,
+        "sourceHeight": 2500,
+        "width": 1440,
+        "height": 1800,
+        "cropped": false
+      },
+      "sourceTitle": "utena",
+      "titleStatus": "ユーザー確認済み"
+    }
+  ]
+}
