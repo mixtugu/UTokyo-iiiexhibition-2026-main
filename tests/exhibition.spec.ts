@@ -1,4 +1,11 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const works: { title: string; venue: string; invited?: boolean }[] = JSON.parse(
+  readFileSync('reference/preview.js', 'utf8').match(
+    /const works = (\[.*?\]);/s,
+  )![1],
+);
 
 async function ready(page: import('@playwright/test').Page, path = '/') {
   await page.goto(path);
@@ -61,19 +68,39 @@ test('confirmed works show supplied images, authors, descriptions and invitation
   isMobile,
 }) => {
   await ready(page, '/preview.html?prototype=works');
+  await page.addStyleTag({
+    content: 'html { scroll-behavior: auto !important; }',
+  });
   const prefix = isMobile ? 'mobile' : 'desktop';
   const cards = page.locator(
     isMobile
       ? '.works-mobile-card, .works-mobile-feature'
       : 'button.works-desktop-card',
   );
-  // 23 works; the desktop catalog pages them 11 at a time.
-  const allCount = isMobile ? 23 : 11;
-  const invited = ['MoHeat', 'forming patterns', '朽ちもの園', 'zipper'];
-  await expect(cards).toHaveCount(allCount);
+  const invited = works
+    .filter((work) => work.invited)
+    .map((work) => work.title);
+  const pagination = page.locator('.works-desktop-pagination button');
+  async function expectCatalog(expected: typeof works) {
+    const titles: string[] = [];
+    const pageCount = isMobile ? 1 : await pagination.count();
+    for (let index = 0; index < pageCount; index++) {
+      if (!isMobile) await pagination.nth(index).click();
+      titles.push(
+        ...(await cards
+          .locator(
+            '.works-desktop-title, .works-mobile-feature-title, .works-mobile-card-title',
+          )
+          .allTextContents()),
+      );
+    }
+    expect(titles.sort()).toEqual(expected.map((work) => work.title).sort());
+  }
+  await expectCatalog(works);
+  if (!isMobile) await pagination.first().click();
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveText(
-      invited.map((title) => new RegExp(title)),
+    await expect(page.locator('.works-mobile-feature-title')).toHaveText(
+      invited,
     );
     await expect(page.locator('.works-mobile-card').first()).toHaveText(
       /vi-Vinci/,
@@ -91,30 +118,34 @@ test('confirmed works show supplied images, authors, descriptions and invitation
       page.locator('.works-desktop-card.is-invited').first(),
     ).toHaveCSS('grid-column-start', 'span 2');
   }
-  // Building A: 16 works including three invited ones; 制作展クエスト is in both buildings.
   await page.locator(`[data-${prefix}-venue="0"]`).click();
-  await expect(cards).toHaveCount(isMobile ? 16 : 11);
-  await expect(cards).toContainText(['In/Sight']);
-  await expect(cards).toContainText(['制作展クエスト']);
+  const buildingA = works.filter((work) => work.venue.split(',').includes('0'));
+  await expectCatalog(buildingA);
   if (isMobile)
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(3);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(
+      buildingA.filter((work) => work.invited).length,
+    );
   await page.locator(`[data-${prefix}-venue="invite"]`).click();
-  await expect(cards).toHaveCount(4);
+  await expectCatalog(works.filter((work) => work.invited));
   if (isMobile) {
-    await expect(page.locator('.works-mobile-feature')).toHaveCount(4);
+    await expect(page.locator('.works-mobile-feature')).toHaveCount(
+      invited.length,
+    );
     await expect(page.locator('.works-mobile-card')).toHaveCount(0);
   }
-  await expect(cards).toContainText(invited);
   await page.locator(`[data-${prefix}-venue="1"]`).click();
-  await expect(cards).toHaveCount(8);
-  await expect(cards).toContainText(['MoHeat', '制作展クエスト']);
-  await expect(cards.filter({ hasText: 'MoHeat' })).toContainText(
+  await expectCatalog(
+    works.filter((work) => work.venue.split(',').includes('1')),
+  );
+  // MoHeat retains its confirmed building when shown as an invitation.
+  if (!isMobile) await pagination.first().click();
+  await expect(cards.filter({ hasText: 'MoHeat Evo' })).toContainText(
     '情報学環本館',
   );
   await page.locator(`[data-${prefix}-venue="all"]`).click();
   const catalog = [
     ['vi-Vinci', '三上日向汰', 'vi-vinci.jpg', 'ベストプレゼンテーション賞'],
-    ['MoHeat', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
+    ['MoHeat Evo', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
     [
       'forming patterns',
       '上條陽斗',
@@ -137,6 +168,16 @@ test('confirmed works show supplied images, authors, descriptions and invitation
   ];
   for (const [title, author, image, description] of catalog) {
     const trigger = cards.filter({ hasText: title });
+    if (!isMobile) {
+      await pagination.first().click();
+      for (
+        let index = 1;
+        !(await trigger.count()) && index < (await pagination.count());
+        index++
+      ) {
+        await pagination.nth(index).click();
+      }
+    }
     await trigger.click();
     const detail = page.locator(isMobile ? '.works-mobile-detail' : '#detail');
     await expect(detail).toBeVisible();

@@ -12,7 +12,7 @@
  ui.append(desktopRoot);
  const desktopGrid=desktopRoot.querySelector('.works-desktop-grid');
  const desktopPagination=desktopRoot.querySelector('.works-desktop-pagination');
- const desktopPageSize=11;
+ const desktopPageCells=12;
  let desktopVenue='all',desktopPage=0;
  // A work may be shown in both buildings ("0,1"); invited works also keep their building.
  const venuesOf=w=>String(w.venue).split(',');
@@ -43,17 +43,34 @@
   image.alt='';image.loading='lazy';media.append(image);
   const title=document.createElement('span');title.className='works-desktop-title';
   title.textContent=available?work.title:'coming soon';
-  const author=document.createElement('span');author.className='works-desktop-author';
-  author.setAttribute('aria-hidden','true');
-  card.append(media,title,author);
+  card.append(media,title);
   return card;
  }
  function renderDesktop(){
 
   const items=works.map((work,index)=>({work,index})).filter(({work})=>matchesVenue(work,desktopVenue));
-  const pageCount=Math.max(1,Math.ceil(items.length/desktopPageSize));
+  // Count occupied cells so double-width invitations do not leave holes at page breaks.
+  const pending=[...items],pages=[];
+  while(pending.length){
+   const page=[];let cells=0;
+   while(cells<desktopPageCells){
+    const next=pending.findIndex(({work})=>cells+(work.invited?2:1)<=desktopPageCells);
+    if(next<0)break;
+    const [item]=pending.splice(next,1);page.push(item);cells+=item.work.invited?2:1;
+   }
+   // If only invitations remain, exchange a single cell to complete this page.
+   if(cells===desktopPageCells-1&&pending.length){
+    const single=page.findLastIndex(({work})=>!work.invited);
+    if(single>=0){
+     const [item]=page.splice(single,1);
+     page.push(pending.shift());pending.unshift(item);
+    }
+   }
+   pages.push(page);
+  }
+  const pageCount=Math.max(1,pages.length);
   desktopPage=Math.min(desktopPage,pageCount-1);
-  const visible=items.slice(desktopPage*desktopPageSize,(desktopPage+1)*desktopPageSize);
+  const visible=pages[desktopPage]||[];
   desktopGrid.replaceChildren(...visible.map(({work,index})=>desktopCard(work,index)));
   desktopPagination.replaceChildren();
   for(let page=0;page<pageCount;page++){
