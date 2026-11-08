@@ -61,6 +61,17 @@ test('new invited work opens with final English copy and confirmed venue', async
       ? '.works-mobile-card, .works-mobile-feature'
       : '.works-desktop-card',
   );
+  if (!isMobile) {
+    const pagination = page.locator('.works-desktop-pagination button');
+    for (
+      let index = 1;
+      !(await cards.filter({ hasText: 'EmoJammer' }).count()) &&
+      index < (await pagination.count());
+      index++
+    ) {
+      await pagination.nth(index).click();
+    }
+  }
   await cards.filter({ hasText: 'EmoJammer' }).click();
   const detail = page.locator(isMobile ? '.works-mobile-detail' : '#detail');
   await expect(detail).toContainText(
