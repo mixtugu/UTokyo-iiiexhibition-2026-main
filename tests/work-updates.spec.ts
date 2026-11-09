@@ -41,7 +41,7 @@ test('final copy covers 32 distinct works with confirmed placement and English d
     'Threshold',
   );
   expect(works.find((work: { id: string }) => work.id === 'X01').title).toBe(
-    'フォーラムのモニュメント',
+    'utena',
   );
 });
 
