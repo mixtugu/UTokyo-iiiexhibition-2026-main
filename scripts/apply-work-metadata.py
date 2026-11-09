@@ -1,5 +1,4 @@
 """Apply reviewed public work metadata without replacing final bilingual copy."""
-import copy
 import json
 import re
 from pathlib import Path
@@ -16,15 +15,12 @@ utena['id'] = 'X01'
 utena['copySourceId'] = 'M25'
 utena.pop('sourceId', None)
 sculpture = by_id['I05']
-if 'I06' not in by_id:
-    fabric = copy.deepcopy(sculpture)
-    fabric.update(id='I06', title='forming patterns', sharedCopyFrom='I05')
-    fabric.pop('sourceAliases', None)
-    works.insert(works.index(sculpture) + 1, fabric)
-    # The existing image belongs to forming patterns, not the separate sculpture.
-    sculpture['image'] = 'assets/works/image-pending.svg'
+# 構造形態学 and forming patterns are listed together as one work, with the forming patterns photo.
+fabric = by_id.get('I06')
+if fabric:
+    sculpture['image'] = fabric['image']
+    works.remove(fabric)
 sculpture.pop('sourceAliases', None)
-next(work for work in works if work['id'] == 'I06')['description'] = sculpture['description']
 for work in works:
     item = next(m for m in metadata['works'] if m['id'] == work['id'])
     work['venue'] = item['venue']
@@ -46,10 +42,7 @@ for row in records:
         row.setdefault('sourceTitle', 'utena')
         row['title'] = next(item['title'] for item in metadata['works'] if item['id'] == 'X01')
     if row['id'] == 'I05':
-        row['title'] = '構造形態学'
+        row['title'] = next(item['title'] for item in metadata['works'] if item['id'] == 'I05')
 records = [row for row in records if row['id'] != 'I06']
-row = copy.deepcopy(next(row for row in records if row['id'] == 'I05'))
-row.update(id='I06', title='forming patterns', sharedCopyFrom='I05')
-records.append(row)
 path.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
 print(f'Applied metadata to {len(works)} works.')

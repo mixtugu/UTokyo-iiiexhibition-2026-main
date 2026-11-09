@@ -30,10 +30,14 @@ with (root / 'docs/data/member-works.csv').open(encoding='utf-8-sig', newline=''
             members.setdefault(line.split()[0], []).append(name)
 
 translations = {'会場確認中': 'Venue to be confirmed'}
+# Works withdrawn from the exhibition stay out even though the workbook still lists them.
+withdrawn = {'M11'}
 records = []
 added = []
 for row in ja:
     ident, title = row[:2]
+    if ident in withdrawn:
+        continue
     english = en[(ident, title)]
     # The workbook reuses M25 for two distinct works. Keep both records.
     key = 'X01' if title == 'utena' else ident

@@ -40,27 +40,13 @@
     },
     {
       "id": "I05",
-      "title": "構造形態学",
+      "title": "構造形態学 / forming patterns",
       "venue": "0",
       "room": "Sky",
       "sourceRows": {
         "status": 18,
         "placement": [17],
         "photo": 19
-      },
-      "photoStatus": "提出確認",
-      "photoUrls": [],
-      "imageAccess": "not-downloaded"
-    },
-    {
-      "id": "I06",
-      "title": "forming patterns",
-      "venue": "0",
-      "room": "Sky（I05と共有展示）",
-      "sourceRows": {
-        "status": 19,
-        "placement": [],
-        "photo": 20
       },
       "photoStatus": "提出確認",
       "photoUrls": [],
@@ -475,20 +461,6 @@
         "height": 1440,
         "cropped": false
       }
-    },
-    {
-      "id": "M11",
-      "title": "計算機の羞恥性",
-      "venue": "1",
-      "room": "中山",
-      "sourceRows": {
-        "status": null,
-        "placement": [23],
-        "photo": 25
-      },
-      "photoStatus": "未確認",
-      "photoUrls": [],
-      "imageAccess": "not-downloaded"
     },
     {
       "id": "M14",
