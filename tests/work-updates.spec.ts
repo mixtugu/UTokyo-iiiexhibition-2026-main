@@ -26,7 +26,7 @@ test('final copy covers 32 distinct works with confirmed placement and English d
   );
   // 構造形態学 and forming patterns are listed as one work.
   expect(works.find((work: { id: string }) => work.id === 'I05').title).toBe(
-    '構造形態学 / forming patterns',
+    '構造形態学/forming patterns',
   );
   expect(
     works.find((work: { id: string }) => work.id === 'I06'),

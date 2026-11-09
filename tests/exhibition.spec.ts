@@ -147,7 +147,7 @@ test('confirmed works show supplied images, authors, descriptions and invitation
     ['vi-Vinci', '三上日向汰', 'vi-vinci.jpg', 'ベストプレゼンテーション賞'],
     ['MoHeat Evo', 'Jiayi Xu', 'moheat.jpg', 'LEDの可視光とエタノールミスト'],
     [
-      '構造形態学 / forming patterns',
+      '構造形態学/forming patterns',
       '上條陽斗',
       'forming-patterns.jpg',
       'それと認知の結びつきを探っている。',
