@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 
-test('final copy covers 34 distinct works with confirmed placement and English descriptions', () => {
+test('final copy covers 32 distinct works with confirmed placement and English descriptions', () => {
   const source = readFileSync('reference/preview.js', 'utf8');
   const works = JSON.parse(source.match(/const works = (\[.*?\]);/s)![1]);
   const translations = runInNewContext(
@@ -10,8 +10,8 @@ test('final copy covers 34 distinct works with confirmed placement and English d
       '// Translate text in place',
     )[0] + '\nexhibitionTranslations;',
   );
-  expect(works).toHaveLength(34);
-  expect(new Set(works.map((work: { id: string }) => work.id)).size).toBe(34);
+  expect(works).toHaveLength(32);
+  expect(new Set(works.map((work: { id: string }) => work.id)).size).toBe(32);
   expect(
     works.filter((work: { venue: string }) => work.venue === 'pending'),
   ).toHaveLength(0);
@@ -24,15 +24,16 @@ test('final copy covers 34 distinct works with confirmed placement and English d
   expect(works.find((work: { id: string }) => work.id === 'M12').venue).toBe(
     '0,1',
   );
+  // 構造形態学 and forming patterns are listed as one work.
   expect(works.find((work: { id: string }) => work.id === 'I05').title).toBe(
-    '構造形態学',
-  );
-  expect(works.find((work: { id: string }) => work.id === 'I06').title).toBe(
-    'forming patterns',
+    '構造形態学 / forming patterns',
   );
   expect(
-    works.find((work: { id: string }) => work.id === 'I06').description,
-  ).toBe(works.find((work: { id: string }) => work.id === 'I05').description);
+    works.find((work: { id: string }) => work.id === 'I06'),
+  ).toBeUndefined();
+  expect(
+    works.find((work: { id: string }) => work.id === 'M11'),
+  ).toBeUndefined();
   for (const work of works) {
     expect(translations[work.description], work.title).toBeTruthy();
   }

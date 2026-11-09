@@ -130,19 +130,6 @@
     }
   },
   {
-    "id": "M11",
-    "sourceId": "M11",
-    "title": "計算機の羞恥性",
-    "ja": {
-      "short": "計算機は恥ずかしさを感じるだろうか。\nAIの登場により計算機は社会性を身に付けはじめた。社会性を持ちながら社会的な存在でない彼らに、最後まで実装されないのは羞恥心かもしれない。\nでは、彼らが恥じらいを持った時、彼らはどう振る舞うのか。\n本作品では箱に開いた覗き穴から、計算機の羞恥心の観察を試みる。\n",
-      "long": "計算機は恥ずかしさを感じるだろうか。\nAIの登場により計算機は社会性を身に付けはじめた。友人や恋人のようにAIと接する人も現れ、人と計算機の境界は曖昧になりつつある。\nしかし、計算機は社会性を持ってはいても社会的な存在ではない。そんな彼らに最後まで実装されないのは、羞恥心ではないだろうか。恥ずかしがって働かない計算機は役に立たないからだ。一方で人間にとって羞恥心は、集団の中で自分の立場を保つための重要な感覚である。\nだとすれば、羞恥心こそが人間と計算機を隔てる最後の境界線なのかもしれない。\nでは、計算機がその境界を越え、恥じらいを持った時、彼らはどう振る舞うのか。\n本作品では、箱に開いた覗き穴から、計算機の羞恥心の観察を試みる。\n"
-    },
-    "en": {
-      "short": "Can a computer feel embarrassed? With the rise of AI, computers have begun to take on a kind of sociality. Yet they are still not social beings, and shame may be the one thing that never gets built into them. So what would a computer do if it came to feel ashamed? This work attempts to observe a computer's shame through peepholes in a box.",
-      "long": "Can a computer feel embarrassed?\n\nWith the rise of AI, a computer have begun to take on a kind of sociality. Some people now treat an AI like a friend or a partner, and it is getting harder to tell people and computers apart.\n\nYet even with this sociality, a computer is not a social being. Shame might be the one thing that never gets built into them. After all, shame would only keep a computer from doing its job. For people, on the other hand, shame is an important feeling. It helps us keep our place in a group.\n\nIf so, shame may be the last line between people and a computer.\nSo what would a computer do if it crossed that line and came to feel ashamed?\n\nThis work attempts to observe a computer's shame through peepholes in a box."
-    }
-  },
-  {
     "id": "M12",
     "sourceId": "M12",
     "title": "制作展クエスト",
@@ -379,7 +366,7 @@
   {
     "id": "I05",
     "sourceId": "I05",
-    "title": "構造形態学",
+    "title": "構造形態学 / forming patterns",
     "ja": {
       "short": "秋の空高くに広がる縞状の雲を、サバの体表に生じる模様に見立ててサバ雲と呼ぶ。見立ては通常、形状的類似性から生じる。しかし、見立てが生じる条件を表層的な偶然の一致で済ませて良いのだろうか。それらに共通する原理はないか。 \n　一連の作品群は、形態を生み出す背景にある仕組み、それと認知の結びつきを探っている。 ",
       "long": "　秋の空高くに広がる縞状の雲を、サバの体表に生じる模様に見立ててサバ雲と呼ぶ。見立ては通常、形状的類似性から生じる。もちろん、雲がサバを真似たわけではないし、ましてやサバが雲を真似たわけもない。しかし、見立てが生じる条件を表層的な偶然の一致で済ませて良いのだろうか。それらに共通する原理はないか。 \n　ここに展示された2種類の作品、布でできた《forming patterns》とプラスチックでできた《構造形態学》は丁寧に恣意性を排した抽象的な形態として構成されている。しかし、これらは鑑賞者の脳内にいくつかの具体的な見立てを喚起する。見立ての内容は必ずしも一定ではないが、少なくない人に共有された感覚ではあるようだ。 \n　ある形態を生み出す背景にある仕組み、それと認知の結びつきを探っている。 "
@@ -428,19 +415,5 @@
       "long": "Fashitecture vol. 2: in search of a body between fashion and architecture.\nUtena. The calyx that holds a flower, the lotus pedestal that seats a Buddha, the tower that shelters a person. One old Japanese word names flower, Buddha, and building alike.\nIn Buddhist sculpture, the garlands and jewels worn on the body, the halo at the back, the lotus seat beneath the feet, and the hall that encloses them all are joined in a single act: shōgon, adornment. Here there is no division between garment and architecture. An ornament that began as flowers offered to the Buddha extends, unbroken, from the body outward into space.\nThis work rebuilds that system from things that have finished blooming. The lotus seed head is what remains after the petals fall; the lotus seat beneath a Buddha, too, takes the shape not of a flower in full bloom but of one already past it. Dyed with ink and persimmon tannin, drying and shifting in color, the materials carry the time of their own decay within them.\nResting against the body like clothing, enclosing space like architecture, and belonging fully to neither, the structure takes the form of a single flower. What was cast aside becomes the utena that holds a person."
     },
     "sourceTitle": "utena"
-  },
-  {
-    "id": "I06",
-    "sourceId": "I05",
-    "title": "forming patterns",
-    "ja": {
-      "short": "秋の空高くに広がる縞状の雲を、サバの体表に生じる模様に見立ててサバ雲と呼ぶ。見立ては通常、形状的類似性から生じる。しかし、見立てが生じる条件を表層的な偶然の一致で済ませて良いのだろうか。それらに共通する原理はないか。 \n　一連の作品群は、形態を生み出す背景にある仕組み、それと認知の結びつきを探っている。 ",
-      "long": "　秋の空高くに広がる縞状の雲を、サバの体表に生じる模様に見立ててサバ雲と呼ぶ。見立ては通常、形状的類似性から生じる。もちろん、雲がサバを真似たわけではないし、ましてやサバが雲を真似たわけもない。しかし、見立てが生じる条件を表層的な偶然の一致で済ませて良いのだろうか。それらに共通する原理はないか。 \n　ここに展示された2種類の作品、布でできた《forming patterns》とプラスチックでできた《構造形態学》は丁寧に恣意性を排した抽象的な形態として構成されている。しかし、これらは鑑賞者の脳内にいくつかの具体的な見立てを喚起する。見立ての内容は必ずしも一定ではないが、少なくない人に共有された感覚ではあるようだ。 \n　ある形態を生み出す背景にある仕組み、それと認知の結びつきを探っている。 "
-    },
-    "en": {
-      "short": "\"Striped clouds spreading high across the autumn sky are called a “mackerel sky,” likened to the patterns on a mackerel’s skin. Seeing one thing in another like this usually arises from a resemblance in form. But should the conditions under which it occurs be dismissed as mere semblance? Might a common principle underlie them both?\nThis body of work explores the mechanisms behind the generation of form, and how they are linked to the way we perceive it.\"",
-      "long": "Striped clouds spreading high across the autumn sky are called a “mackerel sky,” likened to the patterns that appear on a mackerel’s skin. Seeing one thing in another like this usually arises from a resemblance in form. Of course, the clouds did not imitate the mackerel, and the mackerel certainly did not imitate the clouds. Yet should we dismiss such likenesses as mere semblance? Might there be a principle common to both?\n\nThe two kinds of work exhibited here, forming patterns in fabric and Structural Morphology in plastic, are composed as abstract forms from which arbitrariness has been carefully removed. And yet they evoke a number of concrete associations in the viewer’s mind. What each person sees is not always the same, but the sensation appears to be shared by quite a few.\n\nThese works explore the mechanisms that give rise to forms, and how those mechanisms are bound up with perception."
-    },
-    "sharedCopyFrom": "I05"
   }
 ]
