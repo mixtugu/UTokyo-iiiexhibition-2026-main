@@ -549,8 +549,17 @@
       "photoUrls": [
         "https://drive.google.com/drive/folders/1-t-vqjSFKrWDsr6l8W8XH0aUry108Gcb?usp=sharing"
       ],
-      "imageAccess": "not-downloaded",
-      "author": "中條麟太郎、秋山満昭、ジェミソンジャック、渡邊淳司、ハウタサーリアリ、苗村健"
+      "imageAccess": "local-file-received",
+      "author": "中條麟太郎、秋山満昭、ジェミソンジャック、渡邊淳司、ハウタサーリアリ、苗村健",
+      "localImage": {
+        "path": "assets/works/emojammer.webp",
+        "sourceFile": "EmoJammer展示風景（チャット共有）.png",
+        "sourceWidth": 4032,
+        "sourceHeight": 3024,
+        "width": 1800,
+        "height": 1350,
+        "cropped": false
+      }
     },
     {
       "id": "I08",
