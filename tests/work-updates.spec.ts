@@ -83,7 +83,7 @@ test('new invited work opens with final English copy and confirmed venue', async
   await expect(detail).not.toContainText('Venue to be confirmed');
   await expect(detail.locator('img').first()).toHaveJSProperty(
     'naturalWidth',
-    800,
+    1800,
   );
 });
 
