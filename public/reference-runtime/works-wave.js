@@ -3,7 +3,6 @@
  section.querySelector('.rings').remove();section.querySelector('.works-bottom').remove();section.querySelector('#work-list').remove();
  const ui=document.createElement('div');ui.className='wave-gallery spatial-gallery';
  section.append(ui);
- const upcoming=document.createElement('p');upcoming.className='works-upcoming';upcoming.textContent='作品は順次追加予定です。';section.append(upcoming);
 
  // Desktop catalog: four columns, with invited works spanning two columns.
  const desktopRoot=document.createElement('div');
