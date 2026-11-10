@@ -37,10 +37,7 @@ test('hero language choice persists through sections and dynamic works', async (
     .filter({ visible: true })
     .first();
   await expect(filter).toHaveText('Invited Works');
-  // Works are hidden until published; the notice carries the translation instead.
-  await expect(page.locator('.works-upcoming')).toHaveText(
-    'Works will be added progressively.',
-  );
+  await expect(page.locator('.works-upcoming')).toHaveCount(0);
   await page.goto('/');
   await control.getByRole('button', { name: 'JA', exact: true }).click();
   await expect(page.locator('.hero-ticket')).toHaveAttribute(
