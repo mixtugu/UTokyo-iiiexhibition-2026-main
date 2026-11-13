@@ -13,7 +13,7 @@
   let sectionIntent=0,sectionIntentAt=0;
   function stopSection(){cancelAnimationFrame(sectionFrame);sectionMoving=false;sectionIntent=0;sectionCooldown=performance.now()+1000;}
   function snapSection(element,duration=850){
-    cancel();sectionMoving=true;
+    cancel();sectionMoving=true;snapLock=sectionOf(element);
     const from=scrollY,to=Math.min(limit(),element.getBoundingClientRect().top+scrollY),start=performance.now();
     function step(now){const p=Math.min(1,(now-start)/duration),t=1-Math.pow(1-p,3);scrollTo({top:from+(to-from)*t,behavior:'instant'});if(p<1)sectionFrame=requestAnimationFrame(step);else stopSection();}
     sectionFrame=requestAnimationFrame(step);
@@ -36,6 +36,20 @@
   // Sections taller than the screen stay freely scrollable; only edges close to the top attract,
   // and only in the direction of travel (plus a small overshoot correction).
   const SNAP_IDS=['concept','works','announce','access','members','archives'];
+  // One auto-scroll per section: after a snap lands in a section, leave scrolling to the user
+  // there until the viewport moves into a different section.
+  const SNAP_SELECTOR=SNAP_IDS.map(id=>'#'+id).join(',');
+  let snapLock=null;
+  function sectionOf(element){return element?element.closest(SNAP_SELECTOR):null;}
+  function sectionAt(){
+    let current=null;
+    for(const id of SNAP_IDS){
+      const element=document.getElementById(id);
+      if(element&&!element.inert&&element.getBoundingClientRect().top<=innerHeight*.5)current=element;
+    }
+    return current;
+  }
+  function unlocked(element){return element&&sectionOf(element)!==snapLock?element:null;}
   let settleTimer=0,lastInputAt=-Infinity,touching=false,direction=0,lastY=scrollY;
   function settle(){
     settleTimer=0;
@@ -43,7 +57,7 @@
       window.conceptAutoScroll||window.heroAutoScroll||window.memberAutoScroll||window.memberEntryScroll)return;
     let best=null,distance=Infinity;
     for(const id of SNAP_IDS){
-      const element=document.getElementById(id);if(!element)continue;
+      const element=unlocked(document.getElementById(id));if(!element)continue;
       const d=element.getBoundingClientRect().top,ahead=direction>=0?d:-d;
       if(ahead>-innerHeight*.1&&ahead<innerHeight*.4&&Math.abs(d)<Math.abs(distance)){best=element;distance=d;}
     }
@@ -56,6 +70,7 @@
   addEventListener('scroll',()=>{
     if(Math.abs(scrollY-lastY)>.5&&!sectionMoving)direction=Math.sign(scrollY-lastY);
     lastY=scrollY;
+    if(snapLock&&!sectionMoving&&sectionAt()!==snapLock)snapLock=null;
     clearTimeout(settleTimer);
     if(!sectionMoving&&performance.now()-lastInputAt<2000)settleTimer=setTimeout(settle,180);
   },{passive:true});
@@ -112,7 +127,7 @@
 
   addEventListener('wheel', event => {
     if(sectionMoving){if(event.deltaY<0)stopSection();else{if(event.cancelable)event.preventDefault();return;}}
-    if(event.deltaY>0&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&Math.abs(event.deltaY)>Math.abs(event.deltaX)&&!reducedMotion.matches&&!document.querySelector('dialog[open]')&&!nativeArea(event)&&!window.conceptAutoScroll&&!window.heroAutoScroll&&!window.memberAutoScroll&&!window.memberEntryScroll&&performance.now()>sectionCooldown){const next=nextSection();if(next&&next.getBoundingClientRect().height){const now=performance.now();if(now-sectionIntentAt>500)sectionIntent=0;sectionIntentAt=now;sectionIntent+=Math.min(100,event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?innerHeight:1));if(sectionIntent>=220){sectionIntent=0;if(event.cancelable)event.preventDefault();snapSection(next);return;}}else sectionIntent=0;}else sectionIntent=0;
+    if(event.deltaY>0&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&Math.abs(event.deltaY)>Math.abs(event.deltaX)&&!reducedMotion.matches&&!document.querySelector('dialog[open]')&&!nativeArea(event)&&!window.conceptAutoScroll&&!window.heroAutoScroll&&!window.memberAutoScroll&&!window.memberEntryScroll&&performance.now()>sectionCooldown){const next=unlocked(nextSection());if(next&&next.getBoundingClientRect().height){const now=performance.now();if(now-sectionIntentAt>500)sectionIntent=0;sectionIntentAt=now;sectionIntent+=Math.min(100,event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?innerHeight:1));if(sectionIntent>=220){sectionIntent=0;if(event.cancelable)event.preventDefault();snapSection(next);return;}}else sectionIntent=0;}else sectionIntent=0;
     if(window.conceptAutoScroll||window.heroAutoScroll||window.memberAutoScroll||window.memberEntryScroll){cancel();if(event.deltaY>0&&event.cancelable)event.preventDefault();return;}
     if (event.defaultPrevented || !event.cancelable || reducedMotion.matches || !finePointer.matches ||
         event.ctrlKey || event.metaKey || event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) ||

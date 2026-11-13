@@ -339,7 +339,16 @@
       "photoUrls": [
         "https://drive.google.com/file/d/1FTih5nkWUHVkkSlfBLJWTrfOzFEX5rFN/view"
       ],
-      "imageAccess": "not-downloaded"
+      "imageAccess": "local-file-received",
+      "localImage": {
+        "path": "assets/works/watashi-no-kyokai.webp",
+        "sourceFile": "IMG_5212.png",
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "width": 1672,
+        "height": 941,
+        "cropped": false
+      }
     },
     {
       "id": "M23",
