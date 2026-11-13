@@ -12,10 +12,10 @@
   let sectionFrame=0,sectionMoving=false,sectionCooldown=0;
   let sectionIntent=0,sectionIntentAt=0;
   function stopSection(){cancelAnimationFrame(sectionFrame);sectionMoving=false;sectionIntent=0;sectionCooldown=performance.now()+1000;}
-  function snapSection(element){
+  function snapSection(element,duration=850){
     cancel();sectionMoving=true;
     const from=scrollY,to=Math.min(limit(),element.getBoundingClientRect().top+scrollY),start=performance.now();
-    function step(now){const p=Math.min(1,(now-start)/850),t=1-Math.pow(1-p,3);scrollTo({top:from+(to-from)*t,behavior:'instant'});if(p<1)sectionFrame=requestAnimationFrame(step);else stopSection();}
+    function step(now){const p=Math.min(1,(now-start)/duration),t=1-Math.pow(1-p,3);scrollTo({top:from+(to-from)*t,behavior:'instant'});if(p<1)sectionFrame=requestAnimationFrame(step);else stopSection();}
     sectionFrame=requestAnimationFrame(step);
   }
   function nextSection(){
@@ -32,6 +32,41 @@
     }
     return null;
   }
+  // Proximity snap: once a user scroll comes to rest near a section edge, ease that edge to the top.
+  // Sections taller than the screen stay freely scrollable; only edges close to the top attract,
+  // and only in the direction of travel (plus a small overshoot correction).
+  const SNAP_IDS=['concept','works','announce','access','members','archives'];
+  let settleTimer=0,lastInputAt=-Infinity,touching=false,direction=0,lastY=scrollY;
+  function settle(){
+    settleTimer=0;
+    if(reducedMotion.matches||document.querySelector('dialog[open]')||sectionMoving||frameId||touching||performance.now()-lastInputAt>2000||
+      window.conceptAutoScroll||window.heroAutoScroll||window.memberAutoScroll||window.memberEntryScroll)return;
+    let best=null,distance=Infinity;
+    for(const id of SNAP_IDS){
+      const element=document.getElementById(id);if(!element)continue;
+      const d=element.getBoundingClientRect().top,ahead=direction>=0?d:-d;
+      if(ahead>-innerHeight*.1&&ahead<innerHeight*.4&&Math.abs(d)<Math.abs(distance)){best=element;distance=d;}
+    }
+    const move=best?Math.min(limit(),best.getBoundingClientRect().top+scrollY)-scrollY:0;
+    if(Math.abs(move)<=2)return false;
+    snapSection(best,Math.min(800,380+Math.abs(move)*1.2));
+    return true;
+  }
+  function userInput(){lastInputAt=performance.now();}
+  addEventListener('scroll',()=>{
+    if(Math.abs(scrollY-lastY)>.5&&!sectionMoving)direction=Math.sign(scrollY-lastY);
+    lastY=scrollY;
+    clearTimeout(settleTimer);
+    if(!sectionMoving&&performance.now()-lastInputAt<2000)settleTimer=setTimeout(settle,180);
+  },{passive:true});
+  addEventListener('wheel',userInput,{passive:true});
+  addEventListener('touchstart',()=>{touching=true;clearTimeout(settleTimer);},{passive:true});
+  ['touchend','touchcancel'].forEach(type=>addEventListener(type,()=>{touching=false;userInput();},{passive:true}));
+  addEventListener('keydown',event=>{if(/^(Arrow(Up|Down)|Page(Up|Down)| )$/.test(event.key))userInput();});
+  // Link and anchor jumps already land where they mean to; never snap them elsewhere.
+  ['click','hashchange','popstate'].forEach(type=>addEventListener(type,()=>{lastInputAt=-Infinity;clearTimeout(settleTimer);},{capture:true}));
+  ['concept-auto-scroll','hero-auto-scroll','member-auto-scroll'].forEach(type=>addEventListener(type,()=>{clearTimeout(settleTimer);if(sectionMoving)stopSection();}));
+
   const limit = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
   const bound = value => Math.max(0, Math.min(limit(), value));
 
@@ -57,6 +92,8 @@
     if (done) {
       frameId = 0;
       target = position = written;
+    } else if (Math.abs(target - position) < 6 && performance.now() - lastInputAt > 150 && (frameId = 0, settle())) {
+      // The wheel has stopped: hand the last few pixels straight to the section snap.
     } else {
       frameId = requestAnimationFrame(frame);
     }
