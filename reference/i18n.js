@@ -3,7 +3,7 @@ const exhibitionTranslations = {
  "東京共鳴線": "Tokyo Resonance Lines",
  "協力: 東京大学×NTT サステナブルウェルビーイング社会連携講座": "Cooperation: 東京大学×NTT サステナブルウェルビーイング社会連携講座",
  "来場予約": "Reserve your visit",
- "制作展のグリーンのモチーフをあしらった黒いパーカーの前面と背面": "Front and back of the black hoodie featuring the exhibition’s green motif",
+ "制作展の白いロゴをあしらった黒いパーカーの前面と背面": "Front and back of the black hoodie featuring the exhibition’s white logo",
  "ご支援のお知らせ": "Support the exhibition",
  "作品は順次追加予定です。": "Works will be added progressively.",
  "昨年度より、制作展当日にご寄付していただいた方に、金額に応じて返礼品をお渡ししております。": "Since last year, visitors who donate during the exhibition receive a thank-you gift based on their donation amount.",
